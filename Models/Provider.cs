@@ -19,5 +19,24 @@ namespace Search4Support.Models
         {
             Name = name;
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Provider provider &&
+                   Id == provider.Id &&
+                   Name == provider.Name &&
+                   EqualityComparer<Location>.Default.Equals(Location, provider.Location) &&
+                   LocationId == provider.LocationId;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Id, Name, Location, LocationId);
+        }
+
+        public override string ToString()
+        {
+            return base.ToString();
+        }
     }
 }

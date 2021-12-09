@@ -1,0 +1,34 @@
+﻿@using Search4Support.Models
+@model List<Service>
+
+<h1>Services</h1>
+
+@if (Model.Count == 0)
+{
+    <p>No services yet!</p>
+}
+else
+{ 
+<table class="table">
+    <tr>
+        <th>
+            Id
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Description
+        </th>
+    </tr>
+    @foreach (var srv in Model)
+    {
+        <tr>
+            <td>@srv.Id</td>
+            <td>@srv.Name</td>
+            <td>@srv.Description</td>
+        </tr>
+    }
+</table>
+}
+

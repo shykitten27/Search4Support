@@ -17,5 +17,22 @@ namespace Search4Support.Models
         public Tag()
         {
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Tag tag &&
+                   Id == tag.Id &&
+                   Name == tag.Name;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Id, Name);
+        }
+
+        public override string ToString()
+        {
+            return base.ToString();
+        }
     }
 }

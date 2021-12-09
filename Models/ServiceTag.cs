@@ -15,5 +15,24 @@ namespace Search4Support.Models
         public ServiceTag()
         {
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is ServiceTag tag &&
+                   ServiceId == tag.ServiceId &&
+                   EqualityComparer<Service>.Default.Equals(Service, tag.Service) &&
+                   TagId == tag.TagId &&
+                   EqualityComparer<Tag>.Default.Equals(Tag, tag.Tag);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(ServiceId, Service, TagId, Tag);
+        }
+
+        public override string ToString()
+        {
+            return base.ToString();
+        }
     }
 }
