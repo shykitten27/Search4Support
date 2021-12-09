@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Search4Support.Data;
 using Search4Support.Models;
+using Search4Support.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
