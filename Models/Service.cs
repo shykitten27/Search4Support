@@ -11,13 +11,12 @@ namespace Search4Support.Models
         public string Name { get; set; }
         public Provider Provider { get; set; }
         public int ProviderId { get; set; }
-        public ServiceCategory Category { get; set; }
+        public Category Category { get; set; }
         public int CategoryId { get; set; }
         public Location Location { get; set; }
         public int LocationId { get; set; }
         public string Description { get; set; }
-        public List<ServiceCategory> ServiceCategories { get; set; }
-        public List<ServiceTag> ServiceTags { get; set; }
+
 
         public Service()
         {
@@ -35,13 +34,11 @@ namespace Search4Support.Models
                    Name == service.Name &&
                    EqualityComparer<Provider>.Default.Equals(Provider, service.Provider) &&
                    ProviderId == service.ProviderId &&
-                   EqualityComparer<ServiceCategory>.Default.Equals(Category, service.Category) &&
+                   EqualityComparer<Category>.Default.Equals(Category, service.Category) &&
                    CategoryId == service.CategoryId &&
                    EqualityComparer<Location>.Default.Equals(Location, service.Location) &&
                    LocationId == service.LocationId &&
-                   Description == service.Description &&
-                   EqualityComparer<List<ServiceCategory>>.Default.Equals(ServiceCategories, service.ServiceCategories) &&
-                   EqualityComparer<List<ServiceTag>>.Default.Equals(ServiceTags, service.ServiceTags);
+                   Description == service.Description;
         }
 
         public override int GetHashCode()
@@ -56,14 +53,10 @@ namespace Search4Support.Models
             hash.Add(Location);
             hash.Add(LocationId);
             hash.Add(Description);
-            hash.Add(ServiceCategories);
-            hash.Add(ServiceTags);
             return hash.ToHashCode();
         }
-
-        public override string ToString()
-        {
-            return base.ToString();
-        }
     }
+
 }
+
+       

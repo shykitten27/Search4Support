@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Search4Support.Data;
 using Search4Support.Models;
 using Search4Support.ViewModels;
@@ -98,8 +99,9 @@ namespace Search4Support.Controllers
                 {
                     services = context.Services
                         .Include(s => s.Category)
-                        .Where(s => s.Category.Name == value)
+                        .Where(s => s.Category.Name == value) 
                         .ToList();
+                 
 
                     foreach (Service service in services)
                     {
@@ -117,7 +119,7 @@ namespace Search4Support.Controllers
                 {
                     services = context.Services
                         .Include(s => s.Location)
-                        .Where(s => s.Location.Name == value)
+                        .Where(s => s.Location.Address == value)
                         .ToList();
 
                     foreach (Service service in services)
