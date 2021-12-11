@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Search4Support.Data;
+using Search4Support.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +11,17 @@ namespace Search4Support.Controllers
 {
     public class ServicesController : Controller
     {
+        private ServiceDbContext context;
+
+        public ServicesController(ServiceDbContext dbContext)
+        {
+            context = dbContext;
+        }
+
         // GET: ServicesController
         public ActionResult Index()
         {
+            List<Service> services = context.Services.ToList();
             return View();
         }
 
