@@ -95,35 +95,6 @@ namespace Search4Support.Migrations
                     b.ToTable("Services");
                 });
 
-            modelBuilder.Entity("Search4Support.Models.ServiceTag", b =>
-                {
-                    b.Property<int>("ServiceId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TagId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ServiceId", "TagId");
-
-                    b.HasIndex("TagId");
-
-                    b.ToTable("ServiceTags");
-                });
-
-            modelBuilder.Entity("Search4Support.Models.Tag", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Tags");
-                });
-
             modelBuilder.Entity("Search4Support.Models.Provider", b =>
                 {
                     b.HasOne("Search4Support.Models.Location", "Location")
@@ -150,21 +121,6 @@ namespace Search4Support.Migrations
                     b.HasOne("Search4Support.Models.Provider", "Provider")
                         .WithMany()
                         .HasForeignKey("ProviderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Search4Support.Models.ServiceTag", b =>
-                {
-                    b.HasOne("Search4Support.Models.Service", "Service")
-                        .WithMany()
-                        .HasForeignKey("ServiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Search4Support.Models.Tag", "Tag")
-                        .WithMany()
-                        .HasForeignKey("TagId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

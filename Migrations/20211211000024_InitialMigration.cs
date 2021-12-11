@@ -34,19 +34,6 @@ namespace Search4Support.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Tags",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Tags", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Providers",
                 columns: table => new
                 {
@@ -101,30 +88,6 @@ namespace Search4Support.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "ServiceTags",
-                columns: table => new
-                {
-                    ServiceId = table.Column<int>(nullable: false),
-                    TagId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ServiceTags", x => new { x.ServiceId, x.TagId });
-                    table.ForeignKey(
-                        name: "FK_ServiceTags_Services_ServiceId",
-                        column: x => x.ServiceId,
-                        principalTable: "Services",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ServiceTags_Tags_TagId",
-                        column: x => x.TagId,
-                        principalTable: "Tags",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Providers_LocationId",
                 table: "Providers",
@@ -144,23 +107,12 @@ namespace Search4Support.Migrations
                 name: "IX_Services_ProviderId",
                 table: "Services",
                 column: "ProviderId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ServiceTags_TagId",
-                table: "ServiceTags",
-                column: "TagId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ServiceTags");
-
-            migrationBuilder.DropTable(
                 name: "Services");
-
-            migrationBuilder.DropTable(
-                name: "Tags");
 
             migrationBuilder.DropTable(
                 name: "Categories");

@@ -17,16 +17,14 @@ namespace Search4Support.Controllers
             {"all", "All" },
             {"provider", "Provider" },
             {"category", "Category"},
-            {"location", "Location" },
-            {"tag", "Tag" }
+            {"location", "Location" }
         };
 
         internal static List<string> TableChoices = new List<string>()
         {
             "provider",
             "category",
-            "location",
-            "tag"
+            "location"
         };
 
         private ServiceDbContext context;
@@ -61,17 +59,6 @@ namespace Search4Support.Controllers
                     .Include(s => s.Provider)
                     .ToList();
 
-                foreach (var service in services)
-                {
-                    List<ServiceTag> serviceTags = context.ServiceTags
-                        .Where(st => st.ServiceId == service.Id)
-                        .Include(st => st.Tag)
-                        .ToList();
-
-                    ServiceDetailViewModel newDisplayService = new ServiceDetailViewModel(service, serviceTags);
-                    displayServices.Add(newDisplayService);
-                }
-
                 ViewBag.title = "All Services";
             }
             else
@@ -82,17 +69,6 @@ namespace Search4Support.Controllers
                         .Include(s => s.Provider)
                         .Where(s => s.Provider.Name == value)
                         .ToList();
-
-                    foreach (Service service in services)
-                    {
-                        List<ServiceTag> serviceTags = context.ServiceTags
-                            .Where(st => st.ServiceId == service.Id)
-                            .Include(st => st.Tag)
-                            .ToList();
-
-                        ServiceDetailViewModel newDisplayService = new ServiceDetailViewModel(service, serviceTags);
-                        displayServices.Add(newDisplayService);
-                    }
                 }
 
                 else if (column == "category")
@@ -101,18 +77,6 @@ namespace Search4Support.Controllers
                         .Include(s => s.Category)
                         .Where(s => s.Category.Name == value) 
                         .ToList();
-                 
-
-                    foreach (Service service in services)
-                    {
-                        List<ServiceTag> serviceTags = context.ServiceTags
-                            .Where(st => st.ServiceId == service.Id)
-                            .Include(st => st.Tag)
-                            .ToList();
-
-                        ServiceDetailViewModel newDisplayService = new ServiceDetailViewModel(service, serviceTags);
-                        displayServices.Add(newDisplayService);
-                    }
                 }
 
                 else if (column == "location")
@@ -121,40 +85,8 @@ namespace Search4Support.Controllers
                         .Include(s => s.Location)
                         .Where(s => s.Location.Address == value)
                         .ToList();
-
-                    foreach (Service service in services)
-                    {
-                        List<ServiceTag> serviceTags = context.ServiceTags
-                            .Where(st => st.ServiceId == service.Id)
-                            .Include(st => st.Tag)
-                            .ToList();
-
-                        ServiceDetailViewModel newDisplayService = new ServiceDetailViewModel(service, serviceTags);
-                        displayServices.Add(newDisplayService);
-                    }
                 }
 
-                else if (column == "tag")
-                {
-                    List<ServiceTag> serviceTags = context.ServiceTags
-                        .Where(s => s.Tag.Name == value)
-                        .ToList();
-
-                    foreach (var service in serviceTags)
-                    {
-                        Service foundService = context.Services
-                            .Include(s => s.Provider)
-                            .Single(s => s.Id == service.ServiceId);
-
-                        List<ServiceTag> displayTags = context.ServiceTags
-                            .Where(st => st.TagId == foundService.Id)
-                            .Include(st => st.Tag)
-                            .ToList();
-
-                        ServiceDetailViewModel newDisplayService = new ServiceDetailViewModel(foundService, displayTags);
-                        displayServices.Add(newDisplayService);
-                    }
-                }
                 ViewBag.title = "Services with " + ColumnChoices[column] + ": " + value;
             }
             ViewBag.services = displayServices;
