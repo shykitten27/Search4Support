@@ -59,20 +59,40 @@ namespace Search4Support.Controllers
             return View("Add", addServiceViewModel);
         }
 
-/*        // POST: ServicesController/Add
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Add(IFormCollection collection)
+        public IActionResult Delete()
         {
-            try
+            List<Service> services = context.Services.ToList();
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Delete(int[] serviceIds)
+        {
+            foreach (int serviceId in serviceIds)
             {
-                return RedirectToAction(nameof(Index));
+                Service theService = context.Services.Find(serviceId);
+                context.Services.Remove(theService);
             }
-            catch
-            {
-                return View();
-            }
-        }*/
+
+            context.SaveChanges();
+
+            return Redirect("/Services");
+        }
+
+        /*        // POST: ServicesController/Add
+                [HttpPost]
+                [ValidateAntiForgeryToken]
+                public IActionResult Add(IFormCollection collection)
+                {
+                    try
+                    {
+                        return RedirectToAction(nameof(Index));
+                    }
+                    catch
+                    {
+                        return View();
+                    }
+                }*/
 
         // GET: ServicesController/Edit/5
         public IActionResult Edit(int id)
