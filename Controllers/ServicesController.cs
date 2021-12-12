@@ -19,20 +19,20 @@ namespace Search4Support.Controllers
         }
 
         // GET: ServicesController
-        public ActionResult Index()
+        public IActionResult Index()
         {
             List<Service> services = context.Services.ToList();
-            return View();
+            return View(services);
         }
 
         // GET: ServicesController/Details/5
-        public ActionResult Details(int id)
+        public IActionResult Details(int id)
         {
             return View();
         }
 
         // GET: ServicesController/Create
-        public ActionResult Create()
+        public IActionResult Create()
         {
             return View();
         }
@@ -40,7 +40,7 @@ namespace Search4Support.Controllers
         // POST: ServicesController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public IActionResult Create(IFormCollection collection)
         {
             try
             {
@@ -53,7 +53,7 @@ namespace Search4Support.Controllers
         }
 
         // GET: ServicesController/Edit/5
-        public ActionResult Edit(int id)
+        public IActionResult Edit(int id)
         {
             return View();
         }
@@ -61,7 +61,7 @@ namespace Search4Support.Controllers
         // POST: ServicesController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public IActionResult Edit(int id, IFormCollection collection)
         {
             try
             {
@@ -74,7 +74,7 @@ namespace Search4Support.Controllers
         }
 
         // GET: ServicesController/Delete/5
-        public ActionResult Delete(int id)
+        public IActionResult Delete(int id)
         {
             return View();
         }
@@ -82,7 +82,7 @@ namespace Search4Support.Controllers
         // POST: ServicesController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public IActionResult Delete(int id, IFormCollection collection)
         {
             try
             {
