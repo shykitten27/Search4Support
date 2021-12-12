@@ -21,6 +21,7 @@ namespace Search4Support.Models
 
         public Service()
         {
+
         }
         public Service(string name, string description)
         {

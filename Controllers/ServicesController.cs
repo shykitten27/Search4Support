@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Search4Support.Data;
 using Search4Support.Models;
+using Search4Support.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,16 +32,37 @@ namespace Search4Support.Controllers
             return View();
         }
 
-        // GET: ServicesController/Create
-        public IActionResult Create()
+        // GET: ServicesController/Add
+        public IActionResult Add()
         {
-            return View();
+            AddServiceViewModel addServiceViewModel = new AddServiceViewModel();
+            return View(addServiceViewModel);
         }
 
-        // POST: ServicesController/Create
+        [HttpPost]
+        public IActionResult Add(AddServiceViewModel addServiceViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                Service theService = new Service
+                {
+                    Name = addServiceViewModel.Name,
+                    Description = addServiceViewModel.Description
+                };
+
+                context.Services.Add(theService);
+                context.SaveChanges();
+
+                return Redirect("/Services");
+            }
+
+            return View("Add", addServiceViewModel);
+        }
+
+/*        // POST: ServicesController/Add
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(IFormCollection collection)
+        public IActionResult Add(IFormCollection collection)
         {
             try
             {
@@ -50,7 +72,7 @@ namespace Search4Support.Controllers
             {
                 return View();
             }
-        }
+        }*/
 
         // GET: ServicesController/Edit/5
         public IActionResult Edit(int id)
