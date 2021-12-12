@@ -135,5 +135,14 @@ namespace Search4Support.Controllers
                 return View();
             }
         }
+
+        public IActionResult Detail(int id)
+        {
+            Service theService = context.Services
+                .Single(s => s.Id == id);
+
+            ServiceDetailViewModel viewModel = new ServiceDetailViewModel(theService);
+            return View(viewModel);
+        }
     }
 }
