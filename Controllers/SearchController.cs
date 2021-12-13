@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Search4Support.Controllers
 {
-    public class SearchController
+    public class SearchController : Controller
     {
         internal static Dictionary<string, string> ColumnChoices = new Dictionary<string, string>()
         {
@@ -31,16 +31,16 @@ namespace Search4Support.Controllers
         {
             context = dbContext;
         }
-        public IActionResult Index()
-        {
-            ViewBag.columns = ColumnChoices;
-            ViewBag.tablechoices = TableChoices;
-            ViewBag.providers = context.Providers.ToList();
-            ViewBag.services = context.Services.ToList();
-            ViewBag.categories = context.Categories.ToList();
-            ViewBag.locations = context.Locations.ToList();
-            return View();
-        }
+        //public IActionResult Index()
+        //{
+        //    ViewBag.columns = ColumnChoices;
+        //    ViewBag.tablechoices = TableChoices;
+        //    ViewBag.providers = context.Providers.ToList();
+        //    ViewBag.services = context.Services.ToList();
+        //    ViewBag.categories = context.Categories.ToList();
+        //    ViewBag.locations = context.Locations.ToList();
+        //    return View();
+        //}
 
         // GET: /<controller>/
         public IActionResult Index()
@@ -83,17 +83,13 @@ namespace Search4Support.Controllers
                         .Where(s => s.Location.Address == searchTerm)
                         .ToList();
                 }
-                ViewBag.title = "Services with " + ColumnChoices[searchType] + ": " + searchTerm;
             }
+            ViewBag.columns = ListController.ColumnChoices;
+            ViewBag.title = "Services with " + ColumnChoices[searchType] + ": " + searchTerm;
             ViewBag.services = displayServices;
-            return View();
+            return View("Index");
         }
 
-            ViewBag.columns = ListController.ColumnChoices;
-            ViewBag.title = "Services with " + ListController.ColumnChoices[searchType] + ": " + searchTerm;
-            ViewBag.services = displayServices;
-
-            return View("Index");
         }
     }
 
