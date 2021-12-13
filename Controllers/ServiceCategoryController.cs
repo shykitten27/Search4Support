@@ -20,10 +20,18 @@ namespace Search4Support.Controllers
         }
 
         // GET: /<controller>/
+        [HttpGet]
         public IActionResult Index()
         {
             List<ServiceCategory> categories = context.Categories.ToList();
             return View(categories);
+        }
+
+        [HttpGet]
+        public IActionResult Add()
+        {
+            AddServiceCategoryViewModel addServiceCategoryViewModel = new AddServiceCategoryViewModel();
+            return View(addServiceCategoryViewModel);
         }
     }
 }
