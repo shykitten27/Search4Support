@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Search4Support.Data;
 using Search4Support.Models;
 using Search4Support.ViewModels;
@@ -18,6 +19,16 @@ namespace Search4Support.Controllers
         {
             context = dbContext;
         }
+        public IActionResult Index()
+        {
+            ViewBag.columns = ColumnChoices;
+            ViewBag.tablechoices = TableChoices;
+            ViewBag.providers = context.Providers.ToList();
+            ViewBag.services = context.Services.ToList();
+            ViewBag.categories = context.Categories.ToList();
+            ViewBag.locations = context.Locations.ToList();
+            return View();
+        }
 
         // GET: /<controller>/
         public IActionResult Index()
@@ -28,25 +39,14 @@ namespace Search4Support.Controllers
 
         public IActionResult Results(string searchType, string searchTerm)
         {
-            List<Service> services;
+            List<Service> services = new List<Service>();
             List<ServiceDetailViewModel> displayServices = new List<ServiceDetailViewModel>();
-
-            if (string.IsNullOrEmpty(searchTerm))
+            if (searchType.ToLower().Equals("all"))
             {
                 services = context.Services
-                   .Include(s => s.Provider)
-                   .ToList();
-
-                foreach (var service in services)
-                {
-                    List<ServiceSkill> serviceSkills = context.ServiceSkills
-                        .Where(ss => ss.serviceId == service.Id)
-                        .Include(ss => service.Skill)
-                        .ToList();
-
-                    ServiceDetailViewModel newDisplayService = new ServiceDetailViewModel(search, serviceSkills);
-                    displayServices.Add(newDisplayService);
-                }
+                    .Include(s => s.Provider)
+                    .ToList();
+                ViewBag.title = "All Services";
             }
             else
             {
@@ -56,42 +56,26 @@ namespace Search4Support.Controllers
                         .Include(s => s.Provider)
                         .Where(s => s.Provider.Name == searchTerm)
                         .ToList();
-
-                    foreach (Service service in services)
-                    {
-                        List<ServiceSkill> serviceSkills = context.JobSkills
-                        .Where(ss => ss.ServiceId == service.Id)
-                        .Include(ss => ss.Skill)
-                        .ToList();
-
-                        ServiceDetailViewModel newDisplayService = new ServiceDetailViewModel(service, serviceSkills);
-                        displayServices.Add(newDisplayService);
-                    }
-
                 }
-                else if (searchType == "skill")
+                else if (searchType == "category")
                 {
-                    List<ServiceSkill> serviceSkills = context.ServiceSkills
-                        .Where(s => s.Skill.Name == searchTerm)
-                        .Include(s => s.Service)
+                    services = context.Services
+                        .Include(s => s.Category)
+                        .Where(s => s.Category.Name == searchTerm)
                         .ToList();
-
-                    foreach (var service in serviceSkills)
-                    {
-                        Service foundService = context.Services
-                            .Include(s => s.Provider)
-                            .Single(s => s.Id == service.ServiceId);
-
-                        List<ServiceSkill> displaySkills = context.JobSkills
-                            .Where(ss => ss.ServiceId == foundService.Id)
-                            .Include(ss => ss.Skill)
-                            .ToList();
-
-                        ServiceDetailViewModel newDisplayJob = new ServiceDetailViewModel(foundService, displaySkills);
-                        displayServices.Add(newDisplayService);
-                    }
                 }
+                else if (searchType == "location")
+                {
+                    services = context.Services
+                        .Include(s => s.Location)
+                        .Where(s => s.Location.Address == searchTerm)
+                        .ToList();
+                }
+                ViewBag.title = "Services with " + ColumnChoices[searchType] + ": " + searchTerm;
             }
+            ViewBag.services = displayServices;
+            return View();
+        }
 
             ViewBag.columns = ListController.ColumnChoices;
             ViewBag.title = "Services with " + ListController.ColumnChoices[searchType] + ": " + searchTerm;
@@ -100,4 +84,4 @@ namespace Search4Support.Controllers
             return View("Index");
         }
     }
-}
+
