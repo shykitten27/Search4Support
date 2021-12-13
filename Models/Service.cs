@@ -11,12 +11,12 @@ namespace Search4Support.Models
         public string Name { get; set; }
         public Provider Provider { get; set; }
         public int ProviderId { get; set; }
-        public ServiceCategory Category { get; set; }
+        public Category Category { get; set; }
         public int CategoryId { get; set; }
         public Location Location { get; set; }
         public int LocationId { get; set; }
         public string Description { get; set; }
-        public List<ServiceCategory> ServiceCategories { get; set; }
+        public List<Category> ServiceCategories { get; set; }
         public List<ServiceTag> ServiceTags { get; set; }
 
         public Service()
