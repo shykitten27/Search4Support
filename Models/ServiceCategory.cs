@@ -5,31 +5,28 @@ using System.Threading.Tasks;
 
 namespace Search4Support.Models
 {
-    public class Category
+    public class ServiceCategory
     {
         public string Name { get; set; }
         public int Id { get; set; }
-        public List<Service> Services { get; set; }
+        public List<Service> services { get; set; }
 
-        public Category(string name)
+        public ServiceCategory(string name)
         {
             Name = name;
         }
-        public Category()
+        public ServiceCategory()
         {
         }
 
         public override bool Equals(object obj)
         {
-            return obj is Category category &&
-                   Name == category.Name &&
-                   Id == category.Id &&
-                   EqualityComparer<List<Service>>.Default.Equals(Services, category.Services);
+            return base.Equals(obj);
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(Name, Id, Services);
+            return base.GetHashCode();
         }
 
         public override string ToString()
