@@ -12,7 +12,19 @@ namespace Search4Support.Controllers
 {
     public class SearchController
     {
-
+        internal static Dictionary<string, string> ColumnChoices = new Dictionary<string, string>()
+        {
+            {"all", "All" },
+            {"provider", "Provider" },
+            {"category", "Category"},
+            {"location", "Location" }
+        };
+        internal static List<string> TableChoices = new List<string>()
+        {
+            "provider",
+            "category",
+            "location"
+        };
         private ServiceDbContext context;
 
         public SearchController(ServiceDbContext dbContext)
@@ -79,9 +91,11 @@ namespace Search4Support.Controllers
 
             ViewBag.columns = ListController.ColumnChoices;
             ViewBag.title = "Services with " + ListController.ColumnChoices[searchType] + ": " + searchTerm;
-            ViewBag.jobs = displayServices;
+            ViewBag.services = displayServices;
 
             return View("Index");
         }
     }
+
+
 
