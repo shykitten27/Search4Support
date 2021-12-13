@@ -29,15 +29,15 @@
     @if (ViewBag.service != null)
     {
         <table>
-            @foreach (var service in ViewBag.service)
+            @foreach (var srv in ViewBag.service)
             {
                 <tr>
                     <td>
-                        <p>Provider: @service.Provider.Name</p>
-                        <p>Location: @service.Location.Address</p>
-                        <p>Category: @service.Category.Name</p>
-                  @*      <p>Tag: @Service.Tag</p>
-                        <p>Keyword: @Service.Keyword</p>*@
+                        <p>Provider: @srv.Provider.Name</p>
+                        <p>Location: @srv.Location.Address</p>
+                        <p>Category: @srv.Category.Name</p>
+                  @*      <p>Tag: @service.Tag</p>
+                        <p>Keyword: @service.Keyword</p>*@
                     </td>
                 </tr>
             }
