@@ -9,7 +9,7 @@ using Search4Support.Data;
 namespace Search4Support.Migrations
 {
     [DbContext(typeof(ServiceDbContext))]
-    [Migration("20211213034153_InitialMigration")]
+    [Migration("20211213182438_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
