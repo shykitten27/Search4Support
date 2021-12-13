@@ -5,17 +5,17 @@ using System.Threading.Tasks;
 
 namespace Search4Support.Models
 {
-    public class Category
+    public class ServiceCategory
     {
         public string Name { get; set; }
         public int Id { get; set; }
-        public List<Service> Services { get; set; }
+        public List<Service> services { get; set; }
 
-        public Category(string name)
+        public ServiceCategory(string name)
         {
             Name = name;
         }
-        public Category()
+        public ServiceCategory()
         {
         }
     }

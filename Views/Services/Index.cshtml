@@ -1,0 +1,47 @@
+﻿@using Search4Support.Models
+
+<h1>Services</h1>
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    th, td {
+        text-align: left;
+        padding: 8px;
+    }
+    tr:nth-child(even) {
+        background-color: #f1f1f1;
+    }
+</style>
+
+@if (Model.Count == 0)
+{
+    <p>No services yet!</p>
+}
+else
+{ 
+<table class="table striped">
+    <tr>
+@*        <th>
+            Id
+        </th>*@
+        <th>
+            Name
+        </th>
+        <th>
+            Description
+        </th>
+    </tr>
+    @foreach (var srv in Model)
+    {
+        <tr>
+@*            <td>@srv.Id</td>*@
+            <td><a asp-controller="Services" asp-action="Detail" asp-route-id="@srv.Id">@srv.Name</a></td>
+            @*<td>@srv.Name</td>*@
+            <td>@srv.Description</td>
+        </tr>
+    }
+</table>
+}

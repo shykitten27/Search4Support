@@ -39,10 +39,10 @@ namespace Search4Support.Controllers
         {
             ViewBag.columns = ColumnChoices;
             ViewBag.tablechoices = TableChoices;
-            ViewBag.providers = context.Providers.ToList();
+            //ViewBag.providers = context.Providers.ToList();
             ViewBag.services = context.Services.ToList();
             ViewBag.categories = context.Categories.ToList();
-            ViewBag.locations = context.Locations.ToList();
+            //ViewBag.locations = context.Locations.ToList();
             return View();
         }
 

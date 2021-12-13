@@ -31,23 +31,23 @@ namespace Search4Support.Controllers
         {
             context = dbContext;
         }
-        //public IActionResult Index()
-        //{
-        //    ViewBag.columns = ColumnChoices;
-        //    ViewBag.tablechoices = TableChoices;
-        //    ViewBag.providers = context.Providers.ToList();
-        //    ViewBag.services = context.Services.ToList();
-        //    ViewBag.categories = context.Categories.ToList();
-        //    ViewBag.locations = context.Locations.ToList();
-        //    return View();
-        //}
-
-        // GET: /<controller>/
         public IActionResult Index()
         {
-            ViewBag.columns = ListController.ColumnChoices;
+            ViewBag.columns = ColumnChoices;
+            ViewBag.tablechoices = TableChoices;
+            //ViewBag.providers = context.Providers.ToList();
+            ViewBag.services = context.Services.ToList();
+            ViewBag.categories = context.Categories.ToList();
+            //ViewBag.locations = context.Locations.ToList();
             return View();
         }
+
+        // GET: /<controller>/
+        //public IActionResult Index()
+        //{
+        //    ViewBag.columns = ListController.ColumnChoices;
+        //    return View();
+        //}
 
         public IActionResult Results(string searchType, string searchTerm)
         {
