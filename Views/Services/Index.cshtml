@@ -10,23 +10,31 @@
 else
 { 
 <table class="table">
-    <tr>
-        <th>
-            Id
-        </th>
-        <th>
-            Name
-        </th>
-        <th>
-            Description
-        </th>
-    </tr>
+        <tr>
+            @*<th>
+                Id
+            </th>*@
+            <th>
+                Name
+            </th>
+            <th>
+                Provider
+            </th>
+            <th>
+                Location
+            </th>
+            <th>
+                Category
+            </th>
+        </tr>
     @foreach (var srv in Model)
     {
         <tr>
-            <td>@srv.Id</td>
+            @*<td>@srv.Id</td>*@
             <td>@srv.Name</td>
-            <td>@srv.Description</td>
+            @*<td>@srv.Provider.Name</td>*@
+            @*<td>@srv.Location.Address</td>
+            <td>@srv.Category.Name</td>*@
         </tr>
     }
 </table>
