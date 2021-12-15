@@ -50,8 +50,8 @@ namespace Search4Support.Controllers
         // list services by column and value
         public IActionResult Services(string column, string value)
         {
-            List<Service> services = new List<Service>();
-            List<ServiceDetailViewModel> displayServices = new List<ServiceDetailViewModel>();
+            List<Service> services;
+            List<ServiceListViewModel> displayServices = new List<ServiceListViewModel>();
 
             if (column.ToLower().Equals("all"))
             {
@@ -69,6 +69,12 @@ namespace Search4Support.Controllers
                         .Include(s => s.Provider)
                         .Where(s => s.Provider.Name == value)
                         .ToList();
+
+                    foreach(Service srv in services)
+                    {
+                        ServiceListViewModel newDisplayService = new ServiceListViewModel(srv);
+                        displayServices.Add(newDisplayService);
+                    }
                 }
 
                 else if (column == "category")
@@ -77,6 +83,12 @@ namespace Search4Support.Controllers
                         .Include(s => s.Category)
                         .Where(s => s.Category.Name == value) 
                         .ToList();
+
+                    foreach (Service srv in services)
+                    {
+                        ServiceListViewModel newDisplayService = new ServiceListViewModel(srv);
+                        displayServices.Add(newDisplayService);
+                    }
                 }
 
                 else if (column == "location")
@@ -85,6 +97,12 @@ namespace Search4Support.Controllers
                         .Include(s => s.Location)
                         .Where(s => s.Location.Address == value)
                         .ToList();
+
+                    foreach (Service srv in services)
+                    {
+                        ServiceListViewModel newDisplayService = new ServiceListViewModel(srv);
+                        displayServices.Add(newDisplayService);
+                    }
                 }
 
                 ViewBag.title = "Services with " + ColumnChoices[column] + ": " + value;
