@@ -19,23 +19,21 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
-                        @*                        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-        </li>*@
-                        @*<li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </li>*@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Services" asp-action="Index">All Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Search" asp-action="Index">Search</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Services" asp-action="Add">Add Service</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="ServiceCategory" asp-action="Index">All Event Categories</a>
+
+                            <a class="nav-link text-dark" asp-area="" asp-controller="ServiceCategory" asp-action="Index">All Service Categories</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="ServiceCategory" asp-action="Create">Add Category</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="ServiceCategory" asp-action="Add">Add Category</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Tag" asp-action="Index">All Tags</a>
@@ -56,7 +54,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-             &copy; 2022 - Search4Support - <a asp-area="" asp-controller="Home" asp-action="About">About</a> |  <a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a> | <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2022 - Search4Support - <a asp-area="" asp-controller="Home" asp-action="About">About</a> |  <a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a> | <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
