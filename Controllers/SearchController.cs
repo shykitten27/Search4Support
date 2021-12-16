@@ -58,7 +58,13 @@ namespace Search4Support.Controllers
                 services = context.Services
                     //.Include(s => s.Provider)
                     .ToList();
-                ViewBag.title = "All Services";
+
+            foreach (Service srv in services)
+                {
+                    ServiceDetailViewModel newDisplayService = new ServiceDetailViewModel(srv);
+                    displayServices.Add(newDisplayService);
+            
+                }
             }
             /*else
             {
@@ -88,7 +94,7 @@ namespace Search4Support.Controllers
             //ViewBag.columns = ListController.ColumnChoices;
             ViewBag.title = "Services with " + ColumnChoices[searchType] + ": " + searchTerm;
             ViewBag.services = displayServices;
-            return View("Index");
+            return View(displayServices);
         }
 
     }
