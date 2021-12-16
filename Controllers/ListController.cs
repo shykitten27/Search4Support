@@ -77,6 +77,7 @@ namespace Search4Support.Controllers
 
 
         
+        //if value is null...
         public IActionResult Services(string column, string value)
         {
             List<Service> services;
@@ -120,19 +121,19 @@ namespace Search4Support.Controllers
                     }
                 }
 
-                else if (column == "location")
-                {
-                    services = context.Services
-                        .Include(s => s.Location)
-                        .Where(s => s.Location.Address == value)
-                        .ToList();
+                //else if (column == "location")
+                //{
+                //    services = context.Services
+                //        .Include(s => s.Location)
+                //        .Where(s => s.Location.Address == value)
+                //        .ToList();
 
-                    foreach (Service srv in services)
-                    {
-                        ServiceListViewModel newDisplayService = new ServiceListViewModel(srv);
-                        displayServices.Add(newDisplayService);
-                    }
-                }
+                //    foreach (Service srv in services)
+                //    {
+                //        ServiceListViewModel newDisplayService = new ServiceListViewModel(srv);
+                //        displayServices.Add(newDisplayService);
+                //    }
+                //}
 
                 ViewBag.title = "Services with " + ColumnChoices[column] + ": " + value;
             }

@@ -8,20 +8,14 @@
     <p>No services yet!</p>
 }
 else
-{ 
-<table class="table">
+{
+    <table class="table">
         <tr>
             @*<th>
-                Id
-            </th>*@
+                    Id
+                </th>*@
             <th>
-                @Html.ActionLink("Name", "Index", new  { sortOrder = ViewBag.NameSortParm})
-            </th>
-            <th>
-                Name
-            </th>
-            <th>
-                @Html.ActionLink("Provider", "Index", new { sortOrder = ViewBag.ProviderSortParm })
+            Name
             </th>
             <th>
                 Provider
@@ -33,16 +27,17 @@ else
                 Category
             </th>
         </tr>
-    @foreach (var srv in Model)
-    {
-        <tr>
-            @*<td>@srv.Id</td>*@
-            <td>@srv.Name</td>
-            <td>@srv.Provider.Name</td>
-            @*<td>@srv.Location.Address</td>
-            <td>@srv.Category.Name</td>*@
-        </tr>
-    }
-</table>
-}
+        @foreach (var srv in Model)
+        {
+            <tr>
+                @*<td>@srv.Id</td>*@
+                <td>@srv.Name</td>
+                <td>@srv.Provider.Name</td>
+                @*<td>@srv.Location.Address</td>
+                    <td>@srv.Category.Name</td>*@
+            </tr>
+        }
+    </table>
+    
+
 

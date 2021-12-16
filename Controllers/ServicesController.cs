@@ -31,108 +31,108 @@ namespace Search4Support.Controllers
         }
 
         // GET: ServicesController/Add
-        public IActionResult Add()
-        {
-            AddServiceViewModel addServiceViewModel = new AddServiceViewModel();
-            return View(addServiceViewModel);
-        }
+        //public IActionResult Add()
+        //{
+        //    AddServiceViewModel addServiceViewModel = new AddServiceViewModel();
+        //    return View(addServiceViewModel);
+        //}
 
-        [HttpPost]
-        public IActionResult Add(AddServiceViewModel addServiceViewModel)
-        {
-            if (ModelState.IsValid)
-            {
-                Service theService = new Service
-                {
-                    Name = addServiceViewModel.Name,
-                    Description = addServiceViewModel.Description
-                };
+        //[HttpPost]
+        //public IActionResult Add(AddServiceViewModel addServiceViewModel)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        Service theService = new Service
+        //        {
+        //            Name = addServiceViewModel.Name,
+        //            Description = addServiceViewModel.Description
+        //        };
 
-                context.Services.Add(theService);
-                context.SaveChanges();
+        //        context.Services.Add(theService);
+        //        context.SaveChanges();
 
-                return Redirect("/Services");
-            }
+        //        return Redirect("/Services");
+        //    }
 
-            return View("Add", addServiceViewModel);
-        }
+        //    return View("Add", addServiceViewModel);
+        //}
 
-        public IActionResult Delete()
-        {
-            List<Service> services = context.Services.ToList();
-            return View();
-        }
+        //public IActionResult Delete()
+        //{
+        //    List<Service> services = context.Services.ToList();
+        //    return View();
+        //}
 
-        [HttpPost]
-        public IActionResult Delete(int[] serviceIds)
-        {
-            foreach (int serviceId in serviceIds)
-            {
-                Service theService = context.Services.Find(serviceId);
-                context.Services.Remove(theService);
-            }
+        //[HttpPost]
+        //public IActionResult Delete(int[] serviceIds)
+        //{
+        //    foreach (int serviceId in serviceIds)
+        //    {
+        //        Service theService = context.Services.Find(serviceId);
+        //        context.Services.Remove(theService);
+        //    }
 
-            context.SaveChanges();
+        //    context.SaveChanges();
 
-            return Redirect("/Services");
-        }
+        //    return Redirect("/Services");
+        //}
 
-        /*        // POST: ServicesController/Add
-                [HttpPost]
-                [ValidateAntiForgeryToken]
-                public IActionResult Add(IFormCollection collection)
-                {
-                    try
-                    {
-                        return RedirectToAction(nameof(Index));
-                    }
-                    catch
-                    {
-                        return View();
-                    }
-                }*/
+        ///*        // POST: ServicesController/Add
+        //        [HttpPost]
+        //        [ValidateAntiForgeryToken]
+        //        public IActionResult Add(IFormCollection collection)
+        //        {
+        //            try
+        //            {
+        //                return RedirectToAction(nameof(Index));
+        //            }
+        //            catch
+        //            {
+        //                return View();
+        //            }
+        //        }*/
 
-        // GET: ServicesController/Edit/5
-        public IActionResult Edit(int id)
-        {
-            return View();
-        }
+        //// GET: ServicesController/Edit/5
+        //public IActionResult Edit(int id)
+        //{
+        //    return View();
+        //}
 
-        // POST: ServicesController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        //// POST: ServicesController/Edit/5
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public IActionResult Edit(int id, IFormCollection collection)
+        //{
+        //    try
+        //    {
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
 
-        // GET: ServicesController/Delete/5
-        public IActionResult Delete(int id)
-        {
-            return View();
-        }
+        //// GET: ServicesController/Delete/5
+        //public IActionResult Delete(int id)
+        //{
+        //    return View();
+        //}
 
-        // POST: ServicesController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        //// POST: ServicesController/Delete/5
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public IActionResult Delete(int id, IFormCollection collection)
+        //{
+        //    try
+        //    {
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
 
         public IActionResult Detail(int id)
         {
