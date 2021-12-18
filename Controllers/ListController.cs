@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Search4Support.Data;
 using Search4Support.Models;
+using Search4Support.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,16 +17,12 @@ namespace Search4Support.Controllers
             {"all", "All" },
             {"provider", "Provider" },
             {"category", "Category"},
-            {"location", "Location" },
-            {"tag", "Tag" }
         };
 
         internal static List<string> TableChoices = new List<string>()
         {
             "provider",
             "category",
-            "location",
-            "tag"
         };
 
         private ServiceDbContext context;
@@ -38,10 +37,8 @@ namespace Search4Support.Controllers
         {
             ViewBag.columns = ColumnChoices;
             ViewBag.tablechoices = TableChoices;
-            ViewBag.providers = context.Providers.ToList();
             ViewBag.services = context.Services.ToList();
             ViewBag.categories = context.Categories.ToList();
-            ViewBag.locations = context.Locations.ToList();
             return View();
         }
 
@@ -55,15 +52,7 @@ namespace Search4Support.Controllers
             if (column.ToLower().Equals("all"))
             {
                 services = context.Services
-                    .Include(s => s.Provider)
                     .ToList();
-
-                foreach (var service in services)
-                {
-                    List<ServiceTag> serviceTags = context.ServiceTags
-                        .Where(st => st.ServiceId == service.Id)
-                        .Include(st => st.Tag)
-                        .ToList();
 
                     ServiceDetailViewModel newDisplayService = new ServiceDetailViewModel(service, serviceTags);
                     displayServices.Add(newDisplayService);
@@ -71,7 +60,6 @@ namespace Search4Support.Controllers
 
                 ViewBag.title = "All Services";
             }
-            else
             {
                 if (column == "provider")
                 {
@@ -108,22 +96,14 @@ namespace Search4Support.Controllers
 
                         ServiceDetailViewModel newDisplayService = new ServiceDetailViewModel(service, serviceTags);
                         displayServices.Add(newDisplayService);
-                    }
+                }
                 }
 
                 else if (column == "location")
                 {
                     services = context.Services
                         .Include(s => s.Location)
-                        .Where(s => s.Location.Name == value)
                         .ToList();
-
-                    foreach (Service service in services)
-                    {
-                        List<ServiceTag> serviceTags = context.ServiceTags
-                            .Where(st => st.ServiceId == service.Id)
-                            .Include(st => st.Tag)
-                            .ToList();
 
                         ServiceDetailViewModel newDisplayService = new ServiceDetailViewModel(service, serviceTags);
                         displayServices.Add(newDisplayService);
@@ -153,7 +133,6 @@ namespace Search4Support.Controllers
                 }
                 ViewBag.title = "Services with " + ColumnChoices[column] + ": " + value;
             }
-            ViewBag.services = displayServices;
 
             return View();
         }

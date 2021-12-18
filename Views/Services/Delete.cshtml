@@ -1,7 +1,9 @@
-﻿<h1>Delete Event</h1>
+﻿@using Search4Support.Models;
+
+<h1>Delete Service</h1>
 
 <form method="post">
-    @foreach (var srv in ViewBag.events)
+    @foreach (var srv in Model)
     {
         <div class="form-group">
             <label>

@@ -9,7 +9,7 @@ namespace Search4Support.Models
     {
         public string Name { get; set; }
         public int Id { get; set; }
-        public List<Service> Services { get; set; }
+        public List<Service> services { get; set; }
 
         public ServiceCategory(string name)
         {
@@ -21,15 +21,12 @@ namespace Search4Support.Models
 
         public override bool Equals(object obj)
         {
-            return obj is ServiceCategory category &&
-                   Name == category.Name &&
-                   Id == category.Id &&
-                   EqualityComparer<List<Service>>.Default.Equals(Services, category.Services);
+            return base.Equals(obj);
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(Name, Id, Services);
+            return base.GetHashCode();
         }
 
         public override string ToString()
