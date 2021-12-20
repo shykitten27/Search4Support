@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Search4Support.Data;
 using Search4Support.Models;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace Search4Support.Controllers
 {
+    [Authorize]
     public class ServicesController : Controller
     {
         private ServiceDbContext context;
@@ -19,6 +21,7 @@ namespace Search4Support.Controllers
             context = dbContext;
         }
 
+        [AllowAnonymous]
         // GET: ServicesController
         public IActionResult Index()
         {
@@ -26,6 +29,7 @@ namespace Search4Support.Controllers
             return View(services);
         }
 
+        [AllowAnonymous]
         // GET: ServicesController/Details/5
         public IActionResult Details(int id)
         {
