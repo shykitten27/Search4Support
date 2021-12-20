@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Search4Support.Areas.Identity.Data;
+using Search4Support.Data;
 
 [assembly: HostingStartup(typeof(Search4Support.Areas.Identity.IdentityHostingStartup))]
 namespace Search4Support.Areas.Identity
