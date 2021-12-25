@@ -35,7 +35,7 @@ namespace Search4Support.Models
 
         public override string ToString()
         {
-            return base.ToString();
+            return Name;
         }
     }
 }

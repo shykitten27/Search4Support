@@ -46,8 +46,8 @@ namespace Search4Support.Controllers
         // list services by column and value
         public IActionResult Services(string column, string value)
         {
-            List<Service> services = new List<Service>();
-            List<ServiceListViewModel> displayServices = new List<ServiceListViewModel>(services);
+            List<Service> services = context.Services.Include(s => s.Category).Include(s => s.Provider).ToList();
+            List<ServiceListViewModel> displayServices = new List<ServiceListViewModel>();
 
             if (column.ToLower().Equals("all"))
             {
