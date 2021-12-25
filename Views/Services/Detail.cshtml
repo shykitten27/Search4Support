@@ -4,14 +4,27 @@
 
 <table class="table">
     <tr>
-        <th>Name</th>
-        <td>@Model.Name</td>
+        <th>Provider</th>
+        <td>@Model.ProviderName</td>
+    </tr>
+    <tr>
+        <th>Category</th>
+        <td>@Model.CategoryName</td>
+    </tr>
+    @*<tr>
+        <th>Location</th>
+        <td>@Model.Location</td>*@
     </tr>
     <tr>
         <th>Description</th>
         <td>@Model.Description</td>
     </tr>
-
+    @*<tr>
+        <th>Tags</th>
+        <td>@Model.TagText</td>
+    </tr>*@
+    <tr>
+        <th>Add to Favorites</th>
+        <td><input type="checkbox" /></td>
+    </tr>
 </table>
-
-@*<a asp-controller="Skill" asp-action="AddJob" asp-route-id="@Model.JobId">Add additional skills</a>*@
