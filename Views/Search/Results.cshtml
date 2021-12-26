@@ -11,13 +11,13 @@ else{
 <th>Location</th>
 <th>Add to Favorites</th>
 </tr>
-@foreach (var service in Model)
+@foreach (var srv in Model)
 {
 <tr>
 <td>
-<a asp-controller="Search" asp-action="Results" asp-route-id="@service.Id">@service.Name</a></td>
-@*<td>@service.Category.Name </td>
-<td>@service.Location.Address</td>*@
+<a asp-controller="Search" asp-action="Results" asp-route-id="@srv.Id">@srv.Name</a></td>
+<td>@srv.Category.Name </td>
+<td>@srv.Provider.Address</td>
 <td><input type="checkbox" />
 </td>
 </tr>

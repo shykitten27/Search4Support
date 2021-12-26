@@ -140,6 +140,8 @@ namespace Search4Support.Controllers
         public IActionResult Detail(int id)
         {
             Service theService = context.Services
+                .Include(s => s.Category)
+                .Include(s => s.Provider)
                 .Single(s => s.Id == id);
 
             ServiceDetailViewModel viewModel = new ServiceDetailViewModel(theService);
