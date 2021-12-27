@@ -10,6 +10,7 @@ namespace Search4Support.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
+        //public string Description {get; set;}
        
         //one:many Provider:Services
         public List<Service> Services { get; set; }

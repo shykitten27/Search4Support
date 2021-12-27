@@ -8,8 +8,6 @@ namespace Search4Support.ViewModels
 {
     public class ServiceListViewModel
     {
-        private List<Service> services;
-
         public int ServiceId { get; set; }
         public string Name { get; set; }
         public string ProviderName { get; set; }
