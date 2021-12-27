@@ -9,8 +9,9 @@ namespace Search4Support.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string PhoneNumber { get; set; }
         public string Address { get; set; }
-        //public string Description {get; set;}
+        public string Description {get; set;}
        
         //one:many Provider:Services
         public List<Service> Services { get; set; }
@@ -19,10 +20,12 @@ namespace Search4Support.Models
         public Provider()
         {
         }
-        public Provider(string name, string address)
+        public Provider(string name, string phoneNumber, string address, string description)
         {
             Name = name;
+            PhoneNumber = phoneNumber;
             Address = address;
+            Description = description;
         }
 
 

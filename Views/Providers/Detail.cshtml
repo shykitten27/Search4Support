@@ -1,45 +1,32 @@
-﻿@using Search4Support.Models
+﻿@model Search4Support.ViewModels.ProviderDetailViewModel
 
-<h1>Providers</h1>
+<h1>@Model.Name</h1>
 
-<style>
-    table {
-        border-collapse: collapse;
-        width: 100%;
-    }
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <td>@Model.Name</td>
+    </tr>
+    <tr>
+        <th>Phone Number</th>
+        <td>@Model.PhoneNumber</td>
+    </tr>
+    <tr>
+        <th>Address</th>
+        <td>@Model.Address</td>
+    </tr>
+    <tr>
+        <th>Description</th>
+        <td>@Model.Description</td>
+    </tr>
+    @*<tr>
+        <th>Services</th>
+        <td>@Model.Services</td>
+    </tr>*@
+    @*<tr>
+            <th>Add to Favorites</th>
+            <td><input type="checkbox" /></td>
+        </tr>*@
+</table>
 
-    th, td {
-        text-align: left;
-        padding: 8px;
-    }
-
-    tr:nth-child(even) {
-        background-color: #f1f1f1;
-    }
-</style>
-
-@if (Model.Count == 0)
-{
-    <p>No providers yet!</p>
-}
-else
-{
-    <table class="table striped">
-        <tr>
-            <th>Name</th>
-            <th>Address</th>
-            <th>Services</th>
-            @*<th>Add to Favorites</th>*@
-        </tr>
-        @foreach (var prv in Model)
-        {
-            <tr>
-                <td><a asp-controller="Providers" asp-action="Detail" asp-route-id="@prv.Id">@prv.Name</a></td>
-                <td>@prv.Address</td>
-                <td>@prv.Services</td>
-                @*<td><input type="checkbox" /></td>*@
-            </tr>
-        }
-    </table>
-}
 
