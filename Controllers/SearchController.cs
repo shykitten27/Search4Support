@@ -35,7 +35,7 @@ namespace Search4Support.Controllers
         {
             ViewBag.columns = ColumnChoices;
             ViewBag.tablechoices = TableChoices;
-            //ViewBag.providers = context.Providers.ToList();
+            ViewBag.providers = context.Providers.ToList();
             ViewBag.services = context.Services.ToList();
             ViewBag.categories = context.Categories.ToList();
             //ViewBag.locations = context.Locations.ToList();
@@ -52,49 +52,44 @@ namespace Search4Support.Controllers
         public IActionResult Results(string searchType, string searchTerm)
         {
             List<Service> services = new List<Service>();
-            List<ServiceDetailViewModel> displayServices = new List<ServiceDetailViewModel>();
+            
             if (searchType.ToLower().Equals("all"))
             {
                 services = context.Services
-                    //.Include(s => s.Provider)
+                    .Include(s => s.Provider)
+                    .Include(s => s.Category)
                     .ToList();
 
-            foreach (Service srv in services)
-                {
-                    ServiceDetailViewModel newDisplayService = new ServiceDetailViewModel(srv);
-                    displayServices.Add(newDisplayService);
-            
-                }
             }
-            /*else
-            {
-                if (searchType == "provider")
-                {
-                    services = context.Services
-                        .Include(s => s.Provider)
-                        .Where(s => s.Provider.Name == searchTerm)
-                        .ToList();
-                }
-                else if (searchType == "category")
-                {
-                    services = context.Services
-                        .Include(s => s.Category)
-                        .Where(s => s.Category.Name == searchTerm)
-                        .ToList();
-                }
-                else if (searchType == "location")
-                {
-                    services = context.Services
-                        .Include(s => s.Location)
-                        .Where(s => s.Location.Address == searchTerm)
-                        .ToList();
-                }
-            }
-*/            
-            //ViewBag.columns = ListController.ColumnChoices;
+            //else
+            //{
+            //    if (searchType == "provider")
+            //    {
+            //        services = context.Services
+            //            .Include(s => s.Provider)
+            //            .Where(s => s.Provider.Name == searchTerm)
+            //            .ToList();
+            //    }
+            //    else if (searchType == "category")
+            //    {
+            //        services = context.Services
+            //            .Include(s => s.Category)
+            //            .Where(s => s.Category.Name == searchTerm)
+            //            .ToList();
+            //    }
+            //    else if (searchType == "location")
+            //    {
+            //        services = context.Services
+            //            .Include(s => s.Location)
+            //            .Where(s => s.Location.Address == searchTerm)
+            //            .ToList();
+            //    }
+            //}
+
+            ViewBag.columns = ListController.ColumnChoices;
             ViewBag.title = "Services with " + ColumnChoices[searchType] + ": " + searchTerm;
-            ViewBag.services = displayServices;
-            return View(displayServices);
+            ViewBag.services = services;
+            return View(services);
         }
 
     }
