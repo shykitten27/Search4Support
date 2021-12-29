@@ -18,6 +18,8 @@ namespace Search4Support.Models
         //one:one Service:ServiceCategory
         public ServiceCategory Category { get; set; }
         public int CategoryId { get; set; }
+
+
      
 
 
