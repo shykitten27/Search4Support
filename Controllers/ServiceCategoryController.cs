@@ -52,7 +52,7 @@ namespace Search4Support.Controllers
                 return Redirect("/ServiceCategory");
             }
 
-            return View("Create", addServiceCategoryViewModel);
+            return View("Add", addServiceCategoryViewModel);
         }
     }
 }
