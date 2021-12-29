@@ -36,5 +36,23 @@ namespace Search4Support.Controllers
             AddServiceCategoryViewModel addServiceCategoryViewModel = new AddServiceCategoryViewModel();
             return View(addServiceCategoryViewModel);
         }
+        [HttpPost]
+        public IActionResult ProcessAddServiceCategoryForm(AddServiceCategoryViewModel addServiceCategoryViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                ServiceCategory newCategory = new ServiceCategory
+                {
+                    Name = addServiceCategoryViewModel.Name,
+                };
+
+                context.Categories.Add(newCategory);
+                context.SaveChanges();
+
+                return Redirect("/ServiceCategory");
+            }
+
+            return View("Create", addServiceCategoryViewModel);
+        }
     }
 }

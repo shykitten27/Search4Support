@@ -1,14 +1,15 @@
-﻿<h1>You have arrived! - Add New Category</h1>
-@*<h1>Add New Category</h1>
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model Search4Support.ViewModels.AddServiceCategoryViewModel;
 
-<form method="post">
+<h1>Add New Category</h1>
+
+<form asp-controller="ServiceCategory" asp-action="ProcessAddServiceCategoryForm" method="post">
     <div class="form-group">
-        <label for="name">Name</label>
-        <input name="name" type="text" />
-    </div>
-    <div class="form-group">
-        <label for="description">Description</label>
-        <input name="description" />
+        <label asp-for="Name">Category Name</label>
+        <input asp-for="Name" />
+        <span asp-validation-for="Name"></span>
     </div>
     <input type="submit" value="Add Category" />
-</form>*@
+</form>
