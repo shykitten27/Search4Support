@@ -249,6 +249,37 @@ namespace Search4Support.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("Search4Support.Models.ServiceTag", b =>
+                {
+                    b.Property<int>("ServiceId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TagId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ServiceId", "TagId");
+
+                    b.HasIndex("TagId");
+
+                    b.ToTable("ServiceTags");
+                });
+
+            modelBuilder.Entity("Search4Support.Models.Tag", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("varchar(50) CHARACTER SET utf8mb4")
+                        .HasMaxLength(50);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Tags");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -305,6 +336,21 @@ namespace Search4Support.Migrations
                     b.HasOne("Search4Support.Models.ServiceCategory", null)
                         .WithMany("services")
                         .HasForeignKey("ServiceCategoryId");
+                });
+
+            modelBuilder.Entity("Search4Support.Models.ServiceTag", b =>
+                {
+                    b.HasOne("Search4Support.Models.Service", "Service")
+                        .WithMany()
+                        .HasForeignKey("ServiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Search4Support.Models.Tag", "Tag")
+                        .WithMany()
+                        .HasForeignKey("TagId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

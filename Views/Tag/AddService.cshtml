@@ -1,0 +1,13 @@
+﻿@model Search4Support.ViewModels.AddServiceTagViewModel
+
+<h1>Add Tag to Service: @Model.Service.Name</h1>
+
+<form asp-controller="Tag" asp-action="AddService" method="post">
+    <input type="hidden" value="@Model.Service.Id" name="ServiceId" />
+    <div class="form-group">
+        <label asp-for="TagId">Tag</label>
+        <select asp-for="TagId" asp-items="Model.Tags"></select>
+        <span asp-validation-for="TagId"></span>
+    </div>
+    <input type="submit" value="Add Tag" />
+</form>
