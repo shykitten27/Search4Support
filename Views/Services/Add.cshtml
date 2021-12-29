@@ -1,13 +1,16 @@
-﻿<h1>Add Service</h1>
+﻿@model Search4Support.ViewModels.AddServiceViewModel;
+<h1>Add Service</h1>
 
-<form method="post">
+<form asp-controller="Services" asp-action="Add" method="post">
     <div class="form-group">
         <label for="name">Name</label>
         <input name="name" type="text" />
+        <span class="field-validation-error" asp-validation-for="Name"></span>
     </div>
     <div class="form-group">
         <label for="description">Description</label>
         <input name="description" />
+        <span class="field-validation-error" asp-validation-for="Description"></span>
     </div>
     <input type="submit" value="Add Service" />
 </form>
