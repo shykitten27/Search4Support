@@ -13,7 +13,8 @@ namespace Search4Support.ViewModels
         public string PhoneNumber { get; set; }
         public string Address { get; set; }
         public string Description { get; set; }
-        public List<Service> Services { get; set; }
+        public string ServicesText { get; set; }
+      
         
 
         
@@ -24,7 +25,15 @@ namespace Search4Support.ViewModels
             PhoneNumber = theProvider.PhoneNumber;
             Address = theProvider.Address;
             Description = theProvider.Description;
-            Services = theProvider.Services;
+            ServicesText = "";
+            for (int i = 0; i < providerServices.Count; i++)
+            {
+                ServicesText += providerServices[i].Service.Name;
+                if(i < providerServices.Count - 1)
+                {
+                    ServicesText += ", ";
+                }
+            }
         }
 
        
