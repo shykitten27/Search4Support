@@ -7,7 +7,7 @@ namespace Search4Support.Models
 {
     public class ProviderService
     {
-        public int Id { get; set; }
+        //public int Id { get; set; }
         public int ProviderId { get; set;}
         public Provider Provider { get; set; }
 
@@ -16,6 +16,11 @@ namespace Search4Support.Models
 
         public ProviderService()
         {
+        }
+
+        public override string ToString()
+        {
+            return Service.Name;
         }
     }
 }

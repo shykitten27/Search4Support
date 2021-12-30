@@ -61,32 +61,32 @@ namespace Search4Support.Controllers
                     .ToList();
 
             }
-            //else
-            //{
-            //    if (searchType == "provider")
-            //    {
-            //        services = context.Services
-            //            .Include(s => s.Provider)
-            //            .Where(s => s.Provider.Name == searchTerm)
-            //            .ToList();
-            //    }
-            //    else if (searchType == "category")
-            //    {
-            //        services = context.Services
-            //            .Include(s => s.Category)
-            //            .Where(s => s.Category.Name == searchTerm)
-            //            .ToList();
-            //    }
-            //    else if (searchType == "location")
-            //    {
-            //        services = context.Services
-            //            .Include(s => s.Location)
-            //            .Where(s => s.Location.Address == searchTerm)
-            //            .ToList();
-            //    }
-            //}
+            else
+            {
+                if (searchType == "provider")
+                {
+                    services = context.Services
+                        .Include(s => s.Provider)
+                        .Where(s => s.Provider.Name == searchTerm)
+                        .ToList();
+                }
+                else if (searchType == "category")
+                {
+                    services = context.Services
+                        .Include(s => s.Category)
+                        .Where(s => s.Category.Name == searchTerm)
+                        .ToList();
+                }
+                //    else if (searchType == "location")
+                //    {
+                //        services = context.Services
+                //            .Include(s => s.Location)
+                //            .Where(s => s.Location.Address == searchTerm)
+                //            .ToList();
+                //    }
+                //}
 
-            ViewBag.columns = ListController.ColumnChoices;
+                ViewBag.columns = ListController.ColumnChoices;
             ViewBag.title = "Services with " + ColumnChoices[searchType] + ": " + searchTerm;
             ViewBag.services = services;
             return View(services);

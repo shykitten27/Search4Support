@@ -22,7 +22,9 @@ namespace Search4Support.Controllers
         // GET: ServicesController
         public IActionResult Index()
         {
-            List<Provider> providers = context.Providers.Include(p => p.Services).ToList();
+            List<Provider> providers = context.Providers
+                .Include(p => p.Services)
+                .ToList();
             return View(providers);
         }
 
@@ -33,7 +35,8 @@ namespace Search4Support.Controllers
                 .Include(p => p.Services)
                 .Single(s => s.Id == id);
             List<ProviderService> services = context.ProviderServices
-                .Where(ps => ps.ProviderId == id)
+                .Where(ps => ps.ProviderId== id)
+                .Include(ps => ps.Provider)
                 .Include(ps => ps.Service)
                 .ToList();
 
