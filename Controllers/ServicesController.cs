@@ -37,7 +37,9 @@ namespace Search4Support.Controllers
 
         public IActionResult Add()
         {
-            List<ServiceCategory> categories = context.Categories.ToList();
+            //List<ServiceCategory> categories = context.Categories.ToList();
+            //add sorting to category list
+            List<ServiceCategory> categories = context.Categories.OrderBy(c=>c.Name).ToList();
             AddServiceViewModel addServiceViewModel = new AddServiceViewModel(categories);
 
             return View(addServiceViewModel);
