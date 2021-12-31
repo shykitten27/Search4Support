@@ -26,15 +26,21 @@ else
 { 
 <table class="table striped">
     <tr>
-@*        <th>
+        @*        <th>
             Id
         </th>*@
         <th>
             Name
         </th>
         <th>
-            Description
+            Type
         </th>
+        <th>
+            Location
+        </th>
+        @*        <th>
+            Description
+        </th>*@
     </tr>
     @foreach (var srv in Model)
     {
@@ -42,7 +48,9 @@ else
 @*            <td>@srv.Id</td>*@
             <td><a asp-controller="Services" asp-action="Detail" asp-route-id="@srv.Id">@srv.Name</a></td>
             @*<td>@srv.Name</td>*@
-            <td>@srv.Description</td>
+            <td>@srv.Category.Name</td>
+            <td></td>
+@*            <td>@srv.Description</td>*@
         </tr>
     }
 </table>
