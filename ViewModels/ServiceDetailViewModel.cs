@@ -27,7 +27,7 @@ namespace Search4Support.ViewModels
             TagText = "";
             for (int i = 0; i < serviceTags.Count; i++)
             {
-                TagText += serviceTags[i].Tag.Name;
+                TagText += "#" + serviceTags[i].Tag.Name;
                 if (i < serviceTags.Count - 1)
                 {
                     TagText += ", ";

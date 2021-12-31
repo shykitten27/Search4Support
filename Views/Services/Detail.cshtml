@@ -11,7 +11,14 @@
         <th>Description</th>
         <td>@Model.Description</td>
     </tr>
-
+    <tr>
+        <th>Category</th>
+        <td>@Model.CategoryName</td>
+    </tr>
+    <tr>
+        <th>Tags</th>
+        <td>@Model.TagText</td>
+    </tr>
 </table>
 
-@*<a asp-controller="Skill" asp-action="AddJob" asp-route-id="@Model.JobId">Add additional skills</a>*@
+<a asp-controller="Tag" asp-action="AddService" asp-route-id="@Model.ServiceId">Add Tag</a>
