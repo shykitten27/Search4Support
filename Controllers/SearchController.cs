@@ -49,7 +49,7 @@ namespace Search4Support.Controllers
         //    return View();
         //}
 
-        public IActionResult Results(string searchType, string searchTerm)
+/*        public IActionResult Results(string searchType, string searchTerm)
         {
             List<Service> services = new List<Service>();
             List<ServiceDetailViewModel> displayServices = new List<ServiceDetailViewModel>();
@@ -66,7 +66,7 @@ namespace Search4Support.Controllers
             
                 }
             }
-            /*else
+            *//*else
             {
                 if (searchType == "provider")
                 {
@@ -90,12 +90,12 @@ namespace Search4Support.Controllers
                         .ToList();
                 }
             }
-*/            
+*//*            
             //ViewBag.columns = ListController.ColumnChoices;
             ViewBag.title = "Services with " + ColumnChoices[searchType] + ": " + searchTerm;
             ViewBag.services = displayServices;
             return View(displayServices);
-        }
+        }*/
 
     }
 }

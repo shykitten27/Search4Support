@@ -1,19 +1,22 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Search4Support.Data;
-using Search4Support.Models;
-using Search4Support.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Search4Support.Data;
+using Search4Support.Models;
+using Search4Support.ViewModels;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
+
+// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Search4Support.Controllers
 {
     [Authorize]
     public class ServicesController : Controller
     {
+
         private ServiceDbContext context;
 
         public ServicesController(ServiceDbContext dbContext)
@@ -22,25 +25,20 @@ namespace Search4Support.Controllers
         }
 
         [AllowAnonymous]
-        // GET: ServicesController
+        // GET: /<controller>/
         public IActionResult Index()
         {
-            List<Service> services = context.Services.ToList();
+            List<Service> services = context.Services
+                .Include(s => s.Category)
+                .ToList();
+
             return View(services);
         }
 
-        [AllowAnonymous]
-        // GET: ServicesController/Details/5
-        public IActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: ServicesController/Add
         public IActionResult Add()
         {
             List<ServiceCategory> categories = context.Categories.ToList();
-            AddServiceViewModel addServiceViewModel = new AddServiceViewModel();
+            AddServiceViewModel addServiceViewModel = new AddServiceViewModel(categories);
 
             return View(addServiceViewModel);
         }
@@ -69,16 +67,17 @@ namespace Search4Support.Controllers
 
         public IActionResult Delete()
         {
-            List<Service> services = context.Services.ToList();
+            ViewBag.events = context.Services.ToList();
+
             return View();
         }
 
         [HttpPost]
         public IActionResult Delete(int[] serviceIds)
         {
-            foreach (int serviceId in serviceIds)
+            foreach (int eventId in serviceIds)
             {
-                Service theService = context.Services.Find(serviceId);
+                Service theService = context.Services.Find(serviceIds);
                 context.Services.Remove(theService);
             }
 
@@ -87,69 +86,22 @@ namespace Search4Support.Controllers
             return Redirect("/Services");
         }
 
-        // POST: ServicesController/Add
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Add(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: ServicesController/Edit/5
-        public IActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: ServicesController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: ServicesController/Delete/5
-        public IActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: ServicesController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
+        [AllowAnonymous]
+        // /Services/Detail/5 where 5 is the id of the service i.e. path parameter
         public IActionResult Detail(int id)
         {
             Service theService = context.Services
+                .Include(s => s.Category)
                 .Single(s => s.Id == id);
 
-            ServiceDetailViewModel viewModel = new ServiceDetailViewModel(theService);
+            //new collection of tags where only those returned from query
+            //meet the serviceId and eager load the tags
+            List<ServiceTag> serviceTags = context.ServiceTags
+                .Where(st => st.ServiceId == id)
+                .Include(st => st.Tag)
+                .ToList();
+
+            ServiceDetailViewModel viewModel = new ServiceDetailViewModel(theService, serviceTags);
             return View(viewModel);
         }
     }
