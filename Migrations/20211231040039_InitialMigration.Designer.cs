@@ -9,7 +9,7 @@ using Search4Support.Data;
 namespace Search4Support.Migrations
 {
     [DbContext(typeof(ServiceDbContext))]
-    [Migration("20211229221205_InitialMigration")]
+    [Migration("20211231040039_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -221,18 +221,18 @@ namespace Search4Support.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Name")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<int?>("ServiceCategoryId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("ServiceCategoryId");
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Services");
                 });
@@ -335,9 +335,11 @@ namespace Search4Support.Migrations
 
             modelBuilder.Entity("Search4Support.Models.Service", b =>
                 {
-                    b.HasOne("Search4Support.Models.ServiceCategory", null)
+                    b.HasOne("Search4Support.Models.ServiceCategory", "Category")
                         .WithMany("services")
-                        .HasForeignKey("ServiceCategoryId");
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Search4Support.Models.ServiceTag", b =>

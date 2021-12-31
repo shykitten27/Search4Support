@@ -187,17 +187,17 @@ namespace Search4Support.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
-                    ServiceCategoryId = table.Column<int>(nullable: true)
+                    CategoryId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Services", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Services_Categories_ServiceCategoryId",
-                        column: x => x.ServiceCategoryId,
+                        name: "FK_Services_Categories_CategoryId",
+                        column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -262,9 +262,9 @@ namespace Search4Support.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Services_ServiceCategoryId",
+                name: "IX_Services_CategoryId",
                 table: "Services",
-                column: "ServiceCategoryId");
+                column: "CategoryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ServiceTags_TagId",
