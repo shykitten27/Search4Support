@@ -1,6 +1,13 @@
 ﻿@model List<Search4Support.Models.Tag>
+@using Microsoft.AspNetCore.Identity
 
-<h1>All Service Tags</h1>
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<h1 style="display:inline">All Service Tags </h1>@if (SignInManager.IsSignedIn(User))
+{
+    <a asp-controller="Tag" asp-action="Add">Add Tag</a>
+}
 
 @if (Model.Count == 0)
 {

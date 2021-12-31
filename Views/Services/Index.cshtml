@@ -1,6 +1,13 @@
 ﻿@using Search4Support.Models
+@using Microsoft.AspNetCore.Identity
 
-<h1>Services</h1>
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<h1 style="display:inline">Services </h1>@if (SignInManager.IsSignedIn(User))
+    {
+    <a asp-controller="Services" asp-action="Add">Add Service</a>
+    }
 
 <style>
     table {
@@ -23,36 +30,36 @@
     <p>No services yet!</p>
 }
 else
-{ 
-<table class="table striped">
-    <tr>
-        @*        <th>
-            Id
-        </th>*@
-        <th>
-            Name
-        </th>
-        <th>
-            Type
-        </th>
-        <th>
-            Location
-        </th>
-        @*        <th>
-            Description
-        </th>*@
-    </tr>
-    @foreach (var srv in Model)
-    {
+{
+    <table class="table striped">
         <tr>
-@*            <td>@srv.Id</td>*@
-            <td><a asp-controller="Services" asp-action="Detail" asp-route-id="@srv.Id">@srv.Name</a></td>
-            @*<td>@srv.Name</td>*@
-            <td>@srv.Category.Name</td>
-            <td></td>
-@*            <td>@srv.Description</td>*@
+            @*        <th>
+                    Id
+                </th>*@
+            <th>
+                Name
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                Location
+            </th>
+            @*        <th>
+                    Description
+                </th>*@
         </tr>
-    }
-</table>
+        @foreach (var srv in Model)
+        {
+            <tr>
+                @*            <td>@srv.Id</td>*@
+                <td><a asp-controller="Services" asp-action="Detail" asp-route-id="@srv.Id">@srv.Name</a></td>
+                @*<td>@srv.Name</td>*@
+                <td>@srv.Category.Name</td>
+                <td></td>
+                @*            <td>@srv.Description</td>*@
+            </tr>
+        }
+    </table>
 }
 
