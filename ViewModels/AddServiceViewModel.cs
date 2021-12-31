@@ -23,7 +23,7 @@ namespace Search4Support.ViewModels
 
         public List<SelectListItem> Categories { get; set; }
 
-        //constructor takes a list of EventCategory
+        //constructor takes a list of ServiceCategory
         public AddServiceViewModel(List<ServiceCategory> categories)
         {
             //create a new Categories listitem by looping thru all of the 

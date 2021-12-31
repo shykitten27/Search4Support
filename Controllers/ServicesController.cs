@@ -39,7 +39,9 @@ namespace Search4Support.Controllers
         // GET: ServicesController/Add
         public IActionResult Add()
         {
+            List<ServiceCategory> categories = context.Categories.ToList();
             AddServiceViewModel addServiceViewModel = new AddServiceViewModel();
+
             return View(addServiceViewModel);
         }
 
@@ -48,13 +50,15 @@ namespace Search4Support.Controllers
         {
             if (ModelState.IsValid)
             {
-                Service theService = new Service
+                ServiceCategory theCategory = context.Categories.Find(addServiceViewModel.CategoryId);
+                Service newService = new Service
                 {
                     Name = addServiceViewModel.Name,
-                    Description = addServiceViewModel.Description
+                    Description = addServiceViewModel.Description,
+                    Category = theCategory
                 };
 
-                context.Services.Add(theService);
+                context.Services.Add(newService);
                 context.SaveChanges();
 
                 return Redirect("/Services");
@@ -83,20 +87,20 @@ namespace Search4Support.Controllers
             return Redirect("/Services");
         }
 
-        /*        // POST: ServicesController/Add
-                [HttpPost]
-                [ValidateAntiForgeryToken]
-                public IActionResult Add(IFormCollection collection)
-                {
-                    try
-                    {
-                        return RedirectToAction(nameof(Index));
-                    }
-                    catch
-                    {
-                        return View();
-                    }
-                }*/
+        // POST: ServicesController/Add
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Add(IFormCollection collection)
+        {
+            try
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
 
         // GET: ServicesController/Edit/5
         public IActionResult Edit(int id)
