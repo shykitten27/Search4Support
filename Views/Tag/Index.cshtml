@@ -4,6 +4,22 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f1f1f1;
+    }
+</style>
+
 <h2 style="display:inline">All Service Tags </h2>@if (SignInManager.IsSignedIn(User))
 {
     <a asp-controller="Tag" asp-action="Add">Add Tag</a>
