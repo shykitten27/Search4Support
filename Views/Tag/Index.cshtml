@@ -4,7 +4,7 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
-<h1 style="display:inline">All Service Tags </h1>@if (SignInManager.IsSignedIn(User))
+<h2 style="display:inline">All Service Tags </h2>@if (SignInManager.IsSignedIn(User))
 {
     <a asp-controller="Tag" asp-action="Add">Add Tag</a>
 }
@@ -15,15 +15,15 @@
 }
 else
 {
-    <table class="table">
+    <table class="table striped">
         <tr>
-            <th>Id
+            @*<th>Id*@
             <th>Tag Name</th>
         </tr>
         @foreach (Tag tag in Model)
         {
             <tr>
-                <td>@tag.Id</td>
+                @*<td>@tag.Id</td>*@
                 <td><a asp-controller="Tag" asp-action="Detail" asp-route-id="@tag.Id">@tag.Name</a></td>
             </tr>
         }
