@@ -14,6 +14,7 @@ namespace Search4Support.ViewModels
         public string Address { get; set; }
         public string Description { get; set; }
         public List<Service> Services { get; set; }
+       
         
 
         
@@ -25,6 +26,7 @@ namespace Search4Support.ViewModels
             Address = theProvider.Address;
             Description = theProvider.Description;
             Services = theProvider.Services;
+            
         }
 
 

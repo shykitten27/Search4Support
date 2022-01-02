@@ -17,5 +17,7 @@ namespace Search4Support.Data
         public ServiceDbContext(DbContextOptions<ServiceDbContext> options) : base(options)
         {
         }
+
+        
     }
 }

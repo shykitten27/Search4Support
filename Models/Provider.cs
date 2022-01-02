@@ -15,6 +15,7 @@ namespace Search4Support.Models
        
         //one:many Provider:Services
         public List<Service> Services { get; set; }
+        
       
 
         public Provider()
@@ -44,7 +45,7 @@ namespace Search4Support.Models
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(Id, Name, Address);
+            return HashCode.Combine(Id, Name, PhoneNumber, Address, Description);
         }
     }
 }

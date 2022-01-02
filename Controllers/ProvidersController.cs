@@ -22,7 +22,7 @@ namespace Search4Support.Controllers
         // GET: ServicesController
         public IActionResult Index()
         {
-            List<Provider> providers = context.Providers.Include(p => p.Services).ToList();
+            ICollection<Provider> providers = context.Providers.Include(p => p.Services).ToList();
             return View(providers);
         }
 
