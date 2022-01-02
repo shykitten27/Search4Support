@@ -95,7 +95,7 @@ namespace Search4Support.Controllers
             }
 
 
-            ViewBag.columns = ListController.ColumnChoices;
+            //ViewBag.columns = ListController.ColumnChoices;
             ViewBag.title = "Services with " + ColumnChoices[searchType] + ": " + searchTerm;
             ViewBag.services = services;
             return View(services);
