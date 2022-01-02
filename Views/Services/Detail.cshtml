@@ -1,11 +1,12 @@
 ﻿@model Search4Support.ViewModels.ServiceDetailViewModel
 
+
 <h1>@Model.Name</h1>
 
 <table class="table">
     <tr>
         <th>Provider</th>
-        <td>@Model.ProviderName</td>
+        <td><a asp-controller="Providers" asp-action="Detail" asp-route-id="@Model.ProviderId">@Model.ProviderName</a></td>
     </tr>
     <tr>
         <th>Category</th>
