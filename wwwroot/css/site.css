@@ -51,6 +51,11 @@ button.accept-policy {
   line-height: inherit;
 }
 
+.column {
+    float: left;
+    padding: 8px;
+}
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
