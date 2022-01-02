@@ -27,7 +27,8 @@ namespace Search4Support.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            List<Tag> tags = context.Tags.ToList();
+            //default order by name ascending
+            List<Tag> tags = context.Tags.OrderBy(t => t.Name).ToList();
             return View(tags);
         }
 

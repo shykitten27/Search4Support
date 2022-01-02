@@ -26,7 +26,8 @@ namespace Search4Support.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            List<ServiceCategory> categories = context.Categories.ToList();
+            //default order by name ascending
+            List<ServiceCategory> categories = context.Categories.OrderBy(c => c.Name).ToList();
             return View(categories);
         }
 

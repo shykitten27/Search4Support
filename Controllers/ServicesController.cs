@@ -28,7 +28,8 @@ namespace Search4Support.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            List<Service> services = context.Services
+            //default order by name ascending
+            List<Service> services = context.Services.OrderBy(s => s.Name)
                 .Include(s => s.Category)
                 .ToList();
 
