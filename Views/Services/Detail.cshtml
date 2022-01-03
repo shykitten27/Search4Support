@@ -1,17 +1,31 @@
 ﻿@model Search4Support.ViewModels.ServiceDetailViewModel
 
+
 <h1>@Model.Name</h1>
 
 <table class="table">
     <tr>
-        <th>Name</th>
-        <td>@Model.Name</td>
+        <th>Provider</th>
+        <td><a asp-controller="Providers" asp-action="Detail" asp-route-id="@Model.ProviderId">@Model.ProviderName</a></td>
+    </tr>
+    <tr>
+        <th>Category</th>
+        <td>@Model.CategoryName</td>
+    </tr>
+    <tr>
+        <th>Location</th>
+        <td>@Model.Address</td>
     </tr>
     <tr>
         <th>Description</th>
         <td>@Model.Description</td>
     </tr>
-
+    @*<tr>
+        <th>Tags</th>
+        <td>@Model.TagText</td>
+    </tr>*@
+    @*<tr>
+        <th>Add to Favorites</th>
+        <td><input type="checkbox" /></td>
+    </tr>*@
 </table>
-
-@*<a asp-controller="Skill" asp-action="AddJob" asp-route-id="@Model.JobId">Add additional skills</a>*@

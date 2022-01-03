@@ -26,23 +26,18 @@ else
 { 
 <table class="table striped">
     <tr>
-@*        <th>
-            Id
-        </th>*@
-        <th>
-            Name
-        </th>
-        <th>
-            Description
-        </th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Provider</th>
+        @*<th>Add to Favorites</th>*@
     </tr>
     @foreach (var srv in Model)
     {
         <tr>
-@*            <td>@srv.Id</td>*@
             <td><a asp-controller="Services" asp-action="Detail" asp-route-id="@srv.Id">@srv.Name</a></td>
-            @*<td>@srv.Name</td>*@
-            <td>@srv.Description</td>
+            <td>@srv.Category</td>
+            <td><a asp-controller="Providers" asp-action="Detail" asp-route-id="@srv.Id">@srv.Provider.Name</a></td>
+            @*<td><input type="checkbox" /></td>*@
         </tr>
     }
 </table>

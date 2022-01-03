@@ -7,9 +7,12 @@ namespace Search4Support.Models
 {
     public class ServiceCategory
     {
-        public string Name { get; set; }
         public int Id { get; set; }
-        public List<Service> services { get; set; }
+        public string Name { get; set; }
+
+        //one:many ServiceCategory:Services
+        public List<Service> Services { get; set; }
+
 
         public ServiceCategory(string name)
         {
@@ -18,6 +21,7 @@ namespace Search4Support.Models
         public ServiceCategory()
         {
         }
+
 
         public override bool Equals(object obj)
         {
@@ -31,7 +35,7 @@ namespace Search4Support.Models
 
         public override string ToString()
         {
-            return base.ToString();
+            return Name;
         }
     }
 }
