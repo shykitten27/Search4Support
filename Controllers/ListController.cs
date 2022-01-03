@@ -59,8 +59,7 @@ namespace Search4Support.Controllers
 
                     ServiceListViewModel newDisplayService = new ServiceListViewModel(srv);
                     displayServices.Add(newDisplayService);
-            }
-            else
+                }
                 ViewBag.title = "All Services";
             }
             else if (column == "provider")
