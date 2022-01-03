@@ -1,4 +1,10 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Search4Support.Data;
+using Search4Support.Models;
+using Search4Support.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -70,8 +76,7 @@ namespace Search4Support.Controllers
 
         public IActionResult Delete()
         {
-            ViewBag.events = context.Services.ToList();
-
+            List<Service> services = context.Services.ToList();
             return View();
         }
 
@@ -95,6 +100,7 @@ namespace Search4Support.Controllers
         {
             Service theService = context.Services
                 .Include(s => s.Category)
+                .Include(s => s.Provider)
                 .Single(s => s.Id == id);
 
             //new collection of tags where only those returned from query

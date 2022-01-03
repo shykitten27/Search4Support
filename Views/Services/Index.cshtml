@@ -30,36 +30,23 @@
     <p>No services yet!</p>
 }
 else
-{
-    <table class="table striped">
+{ 
+<table class="table striped">
+    <tr>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Provider</th>
+        @*<th>Add to Favorites</th>*@
+    </tr>
+    @foreach (var srv in Model)
+    {
         <tr>
-            @*        <th>
-                    Id
-                </th>*@
-            <th>
-                Name
-            </th>
-            <th>
-                Type
-            </th>
-            <th>
-                Location
-            </th>
-            @*        <th>
-                    Description
-                </th>*@
+            <td><a asp-controller="Services" asp-action="Detail" asp-route-id="@srv.Id">@srv.Name</a></td>
+            <td>@srv.Category</td>
+            <td><a asp-controller="Providers" asp-action="Detail" asp-route-id="@srv.Id">@srv.Provider.Name</a></td>
+            @*<td><input type="checkbox" /></td>*@
         </tr>
-        @foreach (var srv in Model)
-        {
-            <tr>
-                @*            <td>@srv.Id</td>*@
-                <td><a asp-controller="Services" asp-action="Detail" asp-route-id="@srv.Id">@srv.Name</a></td>
-                @*<td>@srv.Name</td>*@
-                <td>@srv.Category.Name</td>
-                <td></td>
-                @*            <td>@srv.Description</td>*@
-            </tr>
-        }
-    </table>
+    }
+</table>
 }
 

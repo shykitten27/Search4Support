@@ -10,18 +10,17 @@ namespace Search4Support.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+
+        //one:one Service:Provider
+        public Provider Provider { get; set; }
+        public int ProviderId { get; set; }
+
+        //one:one Service:ServiceCategory
         public ServiceCategory Category { get; set; }
         public int CategoryId { get; set; }
-    //    public Provider Provider { get; set; }
-    //    public int ProviderId { get; set; }
-    //    public Location Location { get; set; }
-    //    public int LocationId { get; set; }
+     
 
-        public Service(string name, string description)
-        {
-            Name = name;
-            Description = description;
-        }
+
         public Service()
         {
         }
@@ -38,7 +37,23 @@ namespace Search4Support.Models
 
         public override string ToString()
         {
-            return base.ToString();
+            return Name;
+        }
+        public override bool Equals(object obj)
+        {
+            return obj is Service service &&
+                   Id == service.Id &&
+                   Name == service.Name &&
+                   Description == service.Description &&
+                   EqualityComparer<Provider>.Default.Equals(Provider, service.Provider) &&
+                   ProviderId == service.ProviderId &&
+                   EqualityComparer<ServiceCategory>.Default.Equals(Category, service.Category) &&
+                   CategoryId == service.CategoryId;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Id, Name, Description, Provider, ProviderId, Category, CategoryId);
         }
     }
 }
