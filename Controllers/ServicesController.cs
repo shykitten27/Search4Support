@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Search4Support.Data;
 using Search4Support.Models;
 using Search4Support.ViewModels;
@@ -22,7 +23,7 @@ namespace Search4Support.Controllers
         // GET: ServicesController
         public IActionResult Index()
         {
-            List<Service> services = context.Services.ToList();
+            List<Service> services = context.Services.Include(s => s.Category).Include(s => s.Provider).ToList();
             return View(services);
         }
 
@@ -139,6 +140,8 @@ namespace Search4Support.Controllers
         public IActionResult Detail(int id)
         {
             Service theService = context.Services
+                .Include(s => s.Category)
+                .Include(s => s.Provider)
                 .Single(s => s.Id == id);
 
             ServiceDetailViewModel viewModel = new ServiceDetailViewModel(theService);

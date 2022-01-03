@@ -11,9 +11,10 @@ namespace Search4Support.ViewModels
     {
         public int ServiceId { get; set; }
         public string Name { get; set; }
-        //public string ProviderName { get; set; }
-        //public string CategoryName { get; set; }
-        //public string Location { get; set; }
+        public string ProviderName { get; set; }
+        public int ProviderId { get; set; }
+        public string CategoryName { get; set; }
+        public string Address { get; set; }
         public string Description { get; set; }
         //public string TagText { get; set; }
         //public ServiceDetailViewModel(Service theService, List<ServiceTag> serviceTags)
@@ -21,9 +22,10 @@ namespace Search4Support.ViewModels
         {
             ServiceId = theService.Id;
             Name = theService.Name;
-            /*            ProviderName = theService.Provider.Name;
-                        CategoryName = theService.Category.Name;
-                        Location = theService.Location.Address;*/
+            ProviderId = theService.ProviderId;
+            ProviderName = theService.Provider.Name;
+            CategoryName = theService.Category.Name;
+            Address = theService.Provider.Address;
             Description = theService.Description;
 /*            TagText = "";*/
 /*            for (int i = 0; i < serviceTags.Count; i++)
