@@ -56,10 +56,10 @@ namespace Search4Support.Controllers
 
                     ServiceDetailViewModel newDisplayService = new ServiceDetailViewModel(service, serviceTags);
                     displayServices.Add(newDisplayService);
-                }
-
-                ViewBag.title = "All Services";
             }
+            else
+                ViewBag.title = "All Services";
+            
             {
                 if (column == "provider")
                 {
@@ -96,7 +96,7 @@ namespace Search4Support.Controllers
 
                         ServiceDetailViewModel newDisplayService = new ServiceDetailViewModel(service, serviceTags);
                         displayServices.Add(newDisplayService);
-                }
+                    }
                 }
 
                 else if (column == "location")
@@ -107,8 +107,8 @@ namespace Search4Support.Controllers
 
                         ServiceDetailViewModel newDisplayService = new ServiceDetailViewModel(service, serviceTags);
                         displayServices.Add(newDisplayService);
-                    }
                 }
+                
 
                 else if (column == "tag")
                 {
