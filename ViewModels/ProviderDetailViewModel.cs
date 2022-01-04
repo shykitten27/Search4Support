@@ -14,7 +14,7 @@ namespace Search4Support.ViewModels
         public string Address { get; set; }
         public string Description { get; set; }
         public List<ProviderService> Services { get; set; }
-        public string ServicesText { get; set; }
+        //public string ServicesText { get; set; }
       
         
 
@@ -28,16 +28,16 @@ namespace Search4Support.ViewModels
             Description = theProvider.Description;
             Services = theProvider.Services;
             
-            ServicesText = "";
+            //ServicesText = "";
 
-            for (int i = 0; i < providerServices.Count; i++)
-            {
-                ServicesText += providerServices[i].Service.Name;
-                if(i < providerServices.Count - 1)
-                {
-                    ServicesText += ", ";
-                }
-            }
+            //for (int i = 0; i < providerServices.Count; i++)
+            //{
+            //    ServicesText += providerServices[i].Service.Name;
+            //    if(i < providerServices.Count - 1)
+            //    {
+            //        ServicesText += ", ";
+            //    }
+            //}
         }
 
        

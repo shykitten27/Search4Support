@@ -52,7 +52,7 @@ namespace Search4Support.Controllers
         public IActionResult Results(string searchType, string searchTerm)
         {
             List<Service> services = new List<Service>();
-            
+
             if (searchType.ToLower().Equals("all"))
             {
                 services = context.Services
@@ -87,10 +87,11 @@ namespace Search4Support.Controllers
                 //}
 
                 ViewBag.columns = ListController.ColumnChoices;
-            ViewBag.title = "Services with " + ColumnChoices[searchType] + ": " + searchTerm;
-            ViewBag.services = services;
-            return View(services);
-        }
+                ViewBag.title = "Services with " + ColumnChoices[searchType] + ": " + searchTerm;
+                ViewBag.services = services;
+                return View(services);
+            }
 
+        }
     }
 }

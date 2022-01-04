@@ -13,14 +13,17 @@ namespace Search4Support.Models
 
         public int ServiceId { get; set; }
         public Service Service { get; set; }
+        public string ServiceName { get; set; }
+      
 
-        public ProviderService()
+        public ProviderService(string serviceName)
         {
+            ServiceName = Service.Name;
         }
 
         public override string ToString()
         {
-            return Service.Name;
+            return ServiceName;
         }
     }
 }

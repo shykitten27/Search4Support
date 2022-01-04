@@ -22,7 +22,16 @@
     </tr>
     <tr>
         <th>Services</th>
-        <td>@Model.Services</td>
-        </tr>
+        @*<td>@Model.Services</td>*@
+        <td>
+          
+            
+                @foreach (ProviderService srv in Model.Services)
+                {
+                <a asp-controller="Services" asp-action="Detail" asp-route-id="@srv.ServiceId">@srv.Service.Name</a>
+                }
+            
+        </td>   
+    </tr>
 </table>
   

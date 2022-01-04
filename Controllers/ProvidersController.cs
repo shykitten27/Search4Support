@@ -27,7 +27,9 @@ namespace Search4Support.Controllers
                 .ToList();
             return View(providers);
         }
+        
 
+      
 
         public IActionResult Detail(int id)
         {
