@@ -1,18 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Search4Support.Data;
 using Search4Support.Models;
 using Search4Support.ViewModels;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Search4Support.Data;
-using Search4Support.Models;
-using Search4Support.ViewModels;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -46,8 +38,10 @@ namespace Search4Support.Controllers
         {
             //List<ServiceCategory> categories = context.Categories.ToList();
             //add sorting to category list
+            //same for providers
             List<ServiceCategory> categories = context.Categories.OrderBy(c=>c.Name).ToList();
-            AddServiceViewModel addServiceViewModel = new AddServiceViewModel(categories);
+            List<Provider> providers = context.Providers.OrderBy(p => p.Name).ToList();
+            AddServiceViewModel addServiceViewModel = new AddServiceViewModel(categories, providers);
 
             return View(addServiceViewModel);
         }
@@ -58,11 +52,13 @@ namespace Search4Support.Controllers
             if (ModelState.IsValid)
             {
                 ServiceCategory theCategory = context.Categories.Find(addServiceViewModel.CategoryId);
+                Provider theProvider = context.Providers.Find(addServiceViewModel.ProviderId);
                 Service newService = new Service
                 {
                     Name = addServiceViewModel.Name,
                     Description = addServiceViewModel.Description,
-                    Category = theCategory
+                    Category = theCategory,
+                    Provider = theProvider
                 };
 
                 context.Services.Add(newService);

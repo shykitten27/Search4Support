@@ -9,7 +9,7 @@ using Search4Support.Data;
 namespace Search4Support.Migrations
 {
     [DbContext(typeof(ServiceDbContext))]
-    [Migration("20211231063604_InitialMigration")]
+    [Migration("20220103011828_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -215,6 +215,29 @@ namespace Search4Support.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Search4Support.Models.Provider", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Providers");
+                });
+
             modelBuilder.Entity("Search4Support.Models.Service", b =>
                 {
                     b.Property<int>("Id")
@@ -230,9 +253,14 @@ namespace Search4Support.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
+                    b.Property<int>("ProviderId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("ProviderId");
 
                     b.ToTable("Services");
                 });
@@ -336,8 +364,14 @@ namespace Search4Support.Migrations
             modelBuilder.Entity("Search4Support.Models.Service", b =>
                 {
                     b.HasOne("Search4Support.Models.ServiceCategory", "Category")
-                        .WithMany("services")
+                        .WithMany("Services")
                         .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Search4Support.Models.Provider", "Provider")
+                        .WithMany("Services")
+                        .HasForeignKey("ProviderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

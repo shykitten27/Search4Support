@@ -37,23 +37,7 @@ namespace Search4Support.Models
 
         public override string ToString()
         {
-            return Name;
-        }
-        public override bool Equals(object obj)
-        {
-            return obj is Service service &&
-                   Id == service.Id &&
-                   Name == service.Name &&
-                   Description == service.Description &&
-                   EqualityComparer<Provider>.Default.Equals(Provider, service.Provider) &&
-                   ProviderId == service.ProviderId &&
-                   EqualityComparer<ServiceCategory>.Default.Equals(Category, service.Category) &&
-                   CategoryId == service.CategoryId;
-        }
-
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(Id, Name, Description, Provider, ProviderId, Category, CategoryId);
+            return base.ToString();
         }
     }
 }

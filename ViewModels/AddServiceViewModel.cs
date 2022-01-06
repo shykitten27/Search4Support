@@ -18,13 +18,17 @@ namespace Search4Support.ViewModels
         [StringLength(500,MinimumLength = 3, ErrorMessage = "Description must be at least 3 and no more than 500 characters.")]
         public string Description { get; set; }
 
-        [Required(ErrorMessage = "Category is required")]
+        [Required(ErrorMessage = "Category is required.")]
         public int CategoryId { get; set; }
 
+        [Required(ErrorMessage ="Provider is required.")]
+        public int ProviderId { get; set; }
+
         public List<SelectListItem> Categories { get; set; }
+        public List<SelectListItem> Providers { get; set; }
 
         //constructor takes a list of ServiceCategory
-        public AddServiceViewModel(List<ServiceCategory> categories)
+        public AddServiceViewModel(List<ServiceCategory> categories, List<Provider> providers)
         {
             //create a new Categories listitem by looping thru all of the 
             //categories and adding them to the collection
@@ -36,6 +40,19 @@ namespace Search4Support.ViewModels
                     {
                         Value = category.Id.ToString(),
                         Text = category.Name
+                    }
+                ); ;
+            }
+            //create a new Providers listitem by looping thru all of the 
+            //providers and adding them to the collection
+            Providers = new List<SelectListItem>();
+            foreach (var provider in providers)
+            {
+                Providers.Add(
+                    new SelectListItem
+                    {
+                        Value = provider.Id.ToString(),
+                        Text = provider.Name
                     }
                 ); ;
             }

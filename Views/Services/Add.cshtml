@@ -16,5 +16,9 @@
         <label asp-for="CategoryId">Service Type</label>
         <select asp-for="CategoryId" asp-items="Model.Categories"></select>
     </div>
+    <div class="form-group">
+        <label asp-for="ProviderId">Provider</label>
+        <select asp-for="ProviderId" asp-items="Model.Providers"></select>
+    </div>
     <input type="submit" value="Add Service" />
 </form>

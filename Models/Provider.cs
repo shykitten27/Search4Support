@@ -15,12 +15,9 @@ namespace Search4Support.Models
        
         //one:many Provider:Services
         public List<Service> Services { get; set; }
-        
-      
 
-        public Provider()
-        {
-        }
+
+
         public Provider(string name, string phoneNumber, string address, string description)
         {
             Name = name;
@@ -29,6 +26,9 @@ namespace Search4Support.Models
             Description = description;
         }
 
+        public Provider()
+        {
+        }
 
 
         public override string ToString()
