@@ -43,7 +43,7 @@ else
         <tr>
             <td><a asp-controller="Services" asp-action="Detail" asp-route-id="@srv.Id">@srv.Name</a></td>
             <td>@srv.Category</td>
-            <td><a asp-controller="Providers" asp-action="Detail" asp-route-id="@srv.Id">@srv.Provider.Name</a></td>
+            <td>@srv.Provider.Name</td>
             @*<td><input type="checkbox" /></td>*@
         </tr>
     }
