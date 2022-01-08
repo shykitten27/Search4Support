@@ -22,14 +22,20 @@ namespace Search4Support.Controllers
         // GET: ServicesController
         public IActionResult Index()
         {
+            //System.InvalidOperationException: 'Sequence contains no elements'
             List<Provider> providers = context.Providers
                 .Include(p => p.Services)
                 .ToList();
             return View(providers);
         }
-        
 
-      
+
+        // GET: ProvidersController/Details/5
+        public IActionResult Details(int id)
+        {
+            return View();
+        }
+
         //TODO: Having issues coming from Service Detail to Provider Detail - 
         public IActionResult Detail(int id)
         {
@@ -39,7 +45,7 @@ namespace Search4Support.Controllers
                 .Single(p => p.Id == id);
             //System.InvalidOperationException 'Lambda expression used inside Include is not valid'
             List<Service> services = context.Services
-                .Where(s => s.ProviderId== id)
+                .Where(ps => ps.ProviderId== id)
                 .Include(s => s.Name)
                 .ToList();
 

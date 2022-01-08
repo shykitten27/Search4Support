@@ -58,6 +58,7 @@ namespace Search4Support.Controllers
                 services = context.Services
                     .Include(s => s.Provider)
                     .Include(s => s.Category)
+                    
                     .ToList();
 
             }
@@ -67,20 +68,21 @@ namespace Search4Support.Controllers
                 {
                     services = context.Services
                         .Include(s => s.Provider)
-                        .Where(s => s.Provider.Name == searchTerm)
+                        .Where(s => s.Provider.Name.Contains(searchTerm))
                         .ToList();
                 }
                 else if (searchType == "category")
                 {
                     services = context.Services
                         .Include(s => s.Category)
-                        .Where(s => s.Category.Name == searchTerm)
+                        .Where(s => s.Category.Name.Contains(searchTerm))
                         .ToList();
                 }
                 else if (searchType == "location")
                 {
                     services = context.Services
                         .Include(s => s.Provider)
+                        .Include(s => s.Category)
                         .Where(s => s.Provider.Address.Contains(searchTerm))
                         .ToList();
                 }
