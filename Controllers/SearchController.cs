@@ -90,6 +90,7 @@ namespace Search4Support.Controllers
                     services = context.Services
                         .Where(s => s.Provider.Address.Contains(searchTerm))
                         .Include(s => s.Provider)
+                        .Include(s => s.Category)
                         .ToList();
                 }
             }

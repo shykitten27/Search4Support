@@ -17,12 +17,15 @@ namespace Search4Support.Controllers
             {"all", "All" },
             {"provider", "Provider" },
             {"category", "Category"},
+            {"location", "Location" },
+
         };
 
         internal static List<string> TableChoices = new List<string>()
         {
             "provider",
             "category",
+            "location"
         };
 
         private ServiceDbContext context;
