@@ -1,12 +1,17 @@
-﻿@model Search4Support.ViewModels.ServiceDetailViewModel
+﻿
+@model Search4Support.ViewModels.ServiceDetailViewModel
 
 <h1>@Model.Name</h1>
 
 <table class="table">
+
+    @*TODO: Fix the link to Provider Detail*@
     <tr>
         <th>Provider</th>
-        <td>@Model.ProviderName</td>
+        <td><a asp-controller="Providers" asp-action="Detail" asp-route-id="@Model.ProviderName">@Model.ProviderName</a></td>
     </tr>
+
+
     <tr>
         <th>Category</th>
         <td>@Model.CategoryName</td>
@@ -19,10 +24,7 @@
         <th>Description</th>
         <td>@Model.Description</td>
     </tr>
-    @*<tr>
-        <th>Tags</th>
-        <td>@Model.TagText</td>
-    </tr>*@
+
     @*<tr>
         <th>Add to Favorites</th>
         <td><input type="checkbox" /></td>

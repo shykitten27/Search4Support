@@ -26,10 +26,10 @@
         <td>
           
             
-                @foreach (ProviderService srv in Model.Services)
+                @*@foreach (var srv in Model.Services)
                 {
                 <a asp-controller="Services" asp-action="Detail" asp-route-id="@srv.ServiceId">@srv.Service.Name</a>
-                }
+                }*@
             
         </td>   
     </tr>

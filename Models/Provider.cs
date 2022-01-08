@@ -14,7 +14,7 @@ namespace Search4Support.Models
         public string Description {get; set;}
        
         //one:many Provider:Services
-        public List<ProviderService> Services { get; set; }
+        public List<Service> Services { get; set; }
       
 
         public Provider()

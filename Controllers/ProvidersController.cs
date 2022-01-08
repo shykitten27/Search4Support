@@ -30,16 +30,17 @@ namespace Search4Support.Controllers
         
 
       
-
+        //TODO: Having issues coming from Service Detail to Provider Detail - 
         public IActionResult Detail(int id)
         {
+            //System.InvolvedOperationException: 'Sequence contains no elements'
             Provider theProvider = context.Providers
                 .Include(p => p.Services)
-                .Single(s => s.Id == id);
-            List<ProviderService> services = context.ProviderServices
-                .Where(ps => ps.ProviderId== id)
-                .Include(ps => ps.Provider)
-                .Include(ps => ps.Service)
+                .Single(p => p.Id == id);
+            //System.InvalidOperationException 'Lambda expression used inside Include is not valid'
+            List<Service> services = context.Services
+                .Where(s => s.ProviderId== id)
+                .Include(s => s.Name)
                 .ToList();
 
             ProviderDetailViewModel viewModel = new ProviderDetailViewModel(theProvider, services);

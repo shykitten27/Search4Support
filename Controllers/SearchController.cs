@@ -49,49 +49,48 @@ namespace Search4Support.Controllers
         //    return View();
         //}
 
-        public IActionResult Results(string searchType, string searchTerm)
-        {
-            List<Service> services = new List<Service>();
+        //public IActionResult Results(string searchType, string searchTerm)
+        //{
+        //    List<Service> services = new List<Service>();
 
-            if (searchType.ToLower().Equals("all"))
-            {
-                services = context.Services
-                    .Include(s => s.Provider)
-                    .Include(s => s.Category)
-                    .ToList();
+        //    if (searchType.ToLower().Equals("all"))
+        //    {
+        //        services = context.Services
+        //            .Include(s => s.Provider)
+        //            .Include(s => s.Category)
+        //            .ToList();
 
-            }
-            else
-            {
-                if (searchType == "provider")
-                {
-                    services = context.Services
-                        .Include(s => s.Provider)
-                        .Where(s => s.Provider.Name == searchTerm)
-                        .ToList();
-                }
-                else if (searchType == "category")
-                {
-                    services = context.Services
-                        .Include(s => s.Category)
-                        .Where(s => s.Category.Name == searchTerm)
-                        .ToList();
-                }
-                //    else if (searchType == "location")
-                //    {
-                //        services = context.Services
-                //            .Include(s => s.Location)
-                //            .Where(s => s.Location.Address == searchTerm)
-                //            .ToList();
-                //    }
-                //}
+        //    }
+        //    else
+        //    {
+        //        if (searchType == "provider")
+        //        {
+        //            services = context.Services
+        //                .Include(s => s.Provider)
+        //                .Where(s => s.Provider.Name == searchTerm)
+        //                .ToList();
+        //        }
+        //        else if (searchType == "category")
+        //        {
+        //            services = context.Services
+        //                .Include(s => s.Category)
+        //                .Where(s => s.Category.Name == searchTerm)
+        //                .ToList();
+        //        }
+        //        //    else if (searchType == "location")
+        //        //    {
+        //        //        services = context.Services
+        //        //            .Include(s => s.Location)
+        //        //            .Where(s => s.Location.Address == searchTerm)
+        //        //            .ToList();
+        //        //    }
+        //        //}
 
-                ViewBag.columns = ListController.ColumnChoices;
-                ViewBag.title = "Services with " + ColumnChoices[searchType] + ": " + searchTerm;
-                ViewBag.services = services;
-                return View(services);
-            }
+        //        ViewBag.columns = ListController.ColumnChoices;
+        //        ViewBag.title = "Services with " + ColumnChoices[searchType] + ": " + searchTerm;
+        //        ViewBag.services = services;
+        //        return View(services);
+        //    }
 
         }
     }
-}

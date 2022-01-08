@@ -8,8 +8,8 @@ using Search4Support.Data;
 namespace Search4Support.Migrations
 {
     [DbContext(typeof(ServiceDbContext))]
-    [Migration("20211229060439_ProviderServices added")]
-    partial class ProviderServicesadded
+    [Migration("20220106000052_Initial Migration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -43,19 +43,16 @@ namespace Search4Support.Migrations
 
             modelBuilder.Entity("Search4Support.Models.ProviderService", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
                     b.Property<int>("ProviderId")
                         .HasColumnType("int");
 
                     b.Property<int>("ServiceId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.Property<string>("ServiceName")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.HasIndex("ProviderId");
+                    b.HasKey("ProviderId", "ServiceId");
 
                     b.HasIndex("ServiceId");
 

@@ -41,19 +41,16 @@ namespace Search4Support.Migrations
 
             modelBuilder.Entity("Search4Support.Models.ProviderService", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
                     b.Property<int>("ProviderId")
                         .HasColumnType("int");
 
                     b.Property<int>("ServiceId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.Property<string>("ServiceName")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.HasIndex("ProviderId");
+                    b.HasKey("ProviderId", "ServiceId");
 
                     b.HasIndex("ServiceId");
 
