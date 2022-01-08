@@ -85,17 +85,17 @@ namespace Search4Support.Controllers
                         .ToList();
                 }
 
-                //else if (searchType == "location")
-                //{
-                //    services = context.Services
-                //        .Where(s => s.Location.Address == searchTerm)
-                //        .Include(s => s.Location)
-                //        .ToList();
-                //}
+                else if (searchType == "location")
+                {
+                    services = context.Services
+                        .Where(s => s.Provider.Address.Contains(searchTerm))
+                        .Include(s => s.Provider)
+                        .ToList();
+                }
             }
 
 
-            //ViewBag.columns = ListController.ColumnChoices;
+            ViewBag.columns = ListController.ColumnChoices;
             ViewBag.title = "Services with " + ColumnChoices[searchType] + ": " + searchTerm;
             ViewBag.services = services;
             return View(services);

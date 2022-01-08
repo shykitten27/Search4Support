@@ -18,7 +18,7 @@ namespace Search4Support.Models
         //one:one Service:ServiceCategory
         public ServiceCategory Category { get; set; }
         public int CategoryId { get; set; }
-     
+
 
 
         public Service()
@@ -45,6 +45,7 @@ namespace Search4Support.Models
                    ProviderId == service.ProviderId &&
                    EqualityComparer<ServiceCategory>.Default.Equals(Category, service.Category) &&
                    CategoryId == service.CategoryId;
+            
         }
 
         public override int GetHashCode()
