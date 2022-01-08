@@ -43,13 +43,14 @@ namespace Search4Support.Controllers
             Provider theProvider = context.Providers
                 .Include(p => p.Services)
                 .Single(p => p.Id == id);
-            //System.InvalidOperationException 'Lambda expression used inside Include is not valid'
-            List<Service> services = context.Services
-                .Where(ps => ps.ProviderId== id)
-                .Include(s => s.Name)
+
+            List<ProviderService> providerServices = context.ProviderServices
+                .Where(ps => ps.ServiceId== id)
+                .Include(ps => ps.Provider)
+                .Include(ps => ps.Service)
                 .ToList();
 
-            ProviderDetailViewModel viewModel = new ProviderDetailViewModel(theProvider, services);
+            ProviderDetailViewModel viewModel = new ProviderDetailViewModel(theProvider, providerServices);
             return View(viewModel);
         }
     }
