@@ -5,16 +5,15 @@ using System.Threading.Tasks;
 
 namespace Search4Support.Models
 {
-    public class ProviderService
+    public class CategoryService
     {
-        public int ProviderId { get; set; }
-        public Provider Provider { get; set; }
-
+        public int CategoryId { get; set; }
+        public Category Category { get; set; }
         public int ServiceId { get; set; }
         public Service Service { get; set; }
 
 
-        public ProviderService()
+        public CategoryService()
         {
         }
 
@@ -23,5 +22,4 @@ namespace Search4Support.Models
             return Service.Name;
         }
     }
-
 }
