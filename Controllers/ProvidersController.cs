@@ -36,10 +36,10 @@ namespace Search4Support.Controllers
             return View();
         }
 
-        //TODO: Having issues coming from Service Detail to Provider Detail - 
+        
         public IActionResult Detail(int id)
         {
-            //System.InvolvedOperationException: 'Sequence contains no elements'
+            
             Provider theProvider = context.Providers
                 .Include(p => p.Services)
                 .Single(p => p.Id == id);
@@ -51,7 +51,7 @@ namespace Search4Support.Controllers
                 .ToList();
 
             ProviderDetailViewModel viewModel = new ProviderDetailViewModel(theProvider, providerServices);
-            return View(viewModel);
+            return View(viewModel);     //System.Collections.Generic.List`1[Search4Support.Models.ProviderService]
         }
     }
 }

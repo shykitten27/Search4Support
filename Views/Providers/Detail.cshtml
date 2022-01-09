@@ -1,13 +1,11 @@
 ﻿@using Search4Support.Models
 @model Search4Support.ViewModels.ProviderDetailViewModel
 
+
 <h1>@Model.Name</h1>
 
 <table class="table">
-    @*<tr>
-        <th>Name</th>
-        <td>@Model.Name</td>
-    </tr>*@
+ 
     <tr>
         <th>Phone Number</th>
         <td>@Model.PhoneNumber</td>
@@ -22,16 +20,22 @@
     </tr>
     <tr>
         <th>Services</th>
-        <td>@Model.Services</td>
         <td>
-          
-            
-                @*@foreach (var srv in Model.Services)
-                {
-                <a asp-controller="Services" asp-action="Detail" asp-route-id="@srv.ServiceId">@srv.Service.Name</a>
-                }*@
-            
-        </td>   
+            @Model.Services  @*List of ProviderServices*@  
+            @*System.Collections.Generic.List`1[Search4Support.Models.ProviderService]*@
+
+
+
+            @* for every ProviderService object in the List of ProviderServices stored at Model.Services *@
+            @* post ProviderService.Name with link to Service DetailView *@
+            @foreach( ProviderService srv in Model.Services)
+            {
+
+                <a asp-controller="Services" asp-action="Detail" asp-route-id="@Model.Services.">@srv.Service.Name</a>
+            }
+
+        </td>
+    
     </tr>
 </table>
   

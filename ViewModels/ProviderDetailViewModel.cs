@@ -24,9 +24,9 @@ namespace Search4Support.ViewModels
             PhoneNumber = theProvider.PhoneNumber;
             Address = theProvider.Address;
             Description = theProvider.Description;
-            Services = theProvider.Services;
-            
-            
+            Services = theProvider.Services;     //System.Collections.Generic.List`1[Search4Support.Models.ProviderService]
+
+
         }
 
        
