@@ -42,57 +42,99 @@ namespace Search4Support.Controllers
             return View();
         }
 
-        // GET: /<controller>/
-        //public IActionResult Index()
-        //{
-        //    ViewBag.columns = ListController.ColumnChoices;
-        //    return View();
-        //}
+        //GET: /<controller>/
+        public IActionResult Index()
+        {
+            ViewBag.columns = ListController.ColumnChoices;
+            return View();
+        }
 
         public IActionResult Results(string searchType, string searchTerm)
         {
             List<Service> services = new List<Service>();
+            
 
-            if (searchType.ToLower().Equals("all"))
+            if (searchType.ToLower().Equals("all") && string.IsNullOrEmpty(searchTerm))
             {
                 services = context.Services
                     .Include(s => s.Provider)
                     .Include(s => s.Category)
-                    
                     .ToList();
+            }
+            else if (searchType.ToLower().Equals("all") && searchTerm != null)
+                {
+                    services = context.Services
+                        .Where(s => s.Name.Contains(searchTerm))
+                        .Include(s => s.Provider)
+                        .Include(s => s.Category)
+                        .ToList();
+                }
 
-            }
-            else
-            {
-                if (searchType == "provider")
-                {
-                    services = context.Services
-                        .Include(s => s.Provider)
-                        .Where(s => s.Provider.Name.Contains(searchTerm))
-                        .ToList();
-                }
-                else if (searchType == "category")
-                {
-                    services = context.Services
-                        .Include(s => s.Category)
-                        .Where(s => s.Category.Name.Contains(searchTerm))
-                        .ToList();
-                }
-                else if (searchType == "location")
-                {
-                    services = context.Services
-                        .Include(s => s.Provider)
-                        .Include(s => s.Category)
-                        .Where(s => s.Provider.Address.Contains(searchTerm))
-                        .ToList();
-                }
-            }
+
+                else if (searchType == "provider" && string.IsNullOrEmpty(searchTerm))
+                    {
+                        services = context.Services
+                            .Include(s => s.Provider)
+                            .Include(s => s.Category)
+                            .ToList();
+                        //passed to the View as a ProviderListViewModel
+                    }
+                    else if(searchType == "provider" && searchTerm != null)
+                        {
+                            services = context.Services
+                                .Where(s => s.Provider.Name.Contains(searchTerm))
+                                .Include(s => s.Provider)
+                                .Include(s => s.Category)
+                                .ToList();
+                            //passed to View as ProviderListViewModel
+                        }
+
+
+
+                        else if (searchType == "category" && string.IsNullOrEmpty(searchTerm))
+                            {
+                                services = context.Services
+                                    .Include(s => s.Provider)
+                                    .Include(s => s.Category)
+                                    .ToList();
+                                //passed to the View as a CategoryListViewModel
+                            }
+                            else if (searchType == "category" && searchTerm != null)
+                                        {
+                                            services = context.Services
+                                                .Include(s => s.Category)
+                                                .Where(s => s.Category.Name.Contains(searchTerm))
+                                                .ToList();
+                                            //passed to the View as a CategoryListViewModel
+                                        }
+
+
+                                        else if (searchType == "location" && string.IsNullOrEmpty(searchTerm))
+                                            {
+                                                services = context.Services
+                                                    .Include(s => s.Provider)
+                                                    .Include(s => s.Category)
+                                                    .ToList();
+                                                //passed to the View as a LocationListViewModel (not yet created)
+                                            }
+                                            else if (searchType == "location" && searchTerm != null)
+                                                {
+                                                    services = context.Services
+                                                        .Where(s => s.Provider.Address.Contains(searchTerm))
+                                                        .Include(s => s.Provider)
+                                                        .Include(s => s.Category)
+                                                        .ToList();
+                                                    //passed to the View as a LocationListViewModel (not yet created)
+                                                }
 
             ViewBag.columns = ListController.ColumnChoices;
-                ViewBag.title = "Services with " + ColumnChoices[searchType] + ": " + searchTerm;
-                ViewBag.services = services;
-                return View(services);
-            }
-
+            ViewBag.title = "Services with " + ColumnChoices[searchType] + ": " + searchTerm;
+            ViewBag.services = services;
+            return View(services);
         }
+
+          
     }
+
+}
+    
