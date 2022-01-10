@@ -20,10 +20,9 @@ namespace Search4Support.Controllers
             context = dbContext;
         }
 
-        // GET: ServicesController
+        // GET: CategoriesController
         public IActionResult Index()
         {
-            //System.InvalidOperationException: 'Sequence contains no elements'
             List<Category> categories = context.Categories
                 .Include(c => c.Services)
                 .ToList();
@@ -52,7 +51,7 @@ namespace Search4Support.Controllers
                 .ToList();
 
             CategoryDetailViewModel viewModel = new CategoryDetailViewModel(theCategory, categoryServices);
-            return View(viewModel);     //System.Collections.Generic.List`1[Search4Support.Models.ProviderService]
+            return View(viewModel);     
         }
     }
 }

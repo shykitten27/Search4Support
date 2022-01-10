@@ -19,7 +19,7 @@ namespace Search4Support.Controllers
             context = dbContext;
         }
 
-        // GET: ServicesController
+        // GET: ProvidersController
         public IActionResult Index()
         {
             //System.InvalidOperationException: 'Sequence contains no elements'
