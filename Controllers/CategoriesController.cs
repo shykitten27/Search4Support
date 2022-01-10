@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 
 namespace Search4Support.Controllers
 {
-    public class CategoryController : Controller
+    public class CategoriesController : Controller
 
     {
         private ServiceDbContext context;
 
-        public CategoryController(ServiceDbContext dbContext)
+        public CategoriesController(ServiceDbContext dbContext)
         {
             context = dbContext;
         }

@@ -20,12 +20,13 @@ namespace Search4Support.Models
         public Provider()
         {
         }
-        public Provider(string name, string phoneNumber, string address, string description)
+        public Provider(string name, string phoneNumber, string address, string description, List<ProviderService> providerServices)
         {
             Name = name;
             PhoneNumber = phoneNumber;
             Address = address;
             Description = description;
+            Services = providerServices;
         }
 
 

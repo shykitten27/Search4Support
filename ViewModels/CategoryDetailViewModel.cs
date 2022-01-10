@@ -16,7 +16,7 @@ namespace Search4Support.ViewModels
         public CategoryDetailViewModel(Category theCategory, List<CategoryService> categoryServices)
         {
             Name = theCategory.Name;
-            Services = categoryServices;
+            Services = theCategory.Services;
         }
     }
 }

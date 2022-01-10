@@ -11,16 +11,16 @@ namespace Search4Support.Models
         public string Name { get; set; }
         public string Description { get; set; }
 
+
         //one:one Service:Provider
         public Provider Provider { get; set; }
         public int ProviderId { get; set; }
+
 
         //one:one Service:ServiceCategory
         public Category Category { get; set; }
         public int CategoryId { get; set; }
 
-
-     
 
 
         public Service()

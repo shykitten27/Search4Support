@@ -10,8 +10,9 @@ namespace Search4Support.Models
         public int Id { get; set; }
         public string Name { get; set; }
 
+
         //one:many Category:Services
-        public List<Service> Services { get; set; }
+        public List<CategoryService> Services { get; set; }
 
 
         public Category(string name)
@@ -22,20 +23,19 @@ namespace Search4Support.Models
         {
         }
 
-
+        public override string ToString()
+        {
+            return Name;
+        }
         public override bool Equals(object obj)
         {
             return base.Equals(obj);
         }
-
         public override int GetHashCode()
         {
             return base.GetHashCode();
         }
 
-        public override string ToString()
-        {
-            return Name;
-        }
+
     }
 }

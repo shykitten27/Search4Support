@@ -21,5 +21,19 @@ namespace Search4Support.Models
         {
             return Service.Name;
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is CategoryService service &&
+                   CategoryId == service.CategoryId &&
+                   EqualityComparer<Category>.Default.Equals(Category, service.Category) &&
+                   ServiceId == service.ServiceId &&
+                   EqualityComparer<Service>.Default.Equals(Service, service.Service);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(CategoryId, Category, ServiceId, Service);
+        }
     }
 }
