@@ -12,7 +12,7 @@ namespace Search4Support.ViewModels
         public string Name { get; set; }
         public string PhoneNumber { get; set; }
         public string Address { get; set; }
-        public string AddressUrl { get; set; }
+        public string MapLink { get; set; }
 
 
 
@@ -24,7 +24,7 @@ namespace Search4Support.ViewModels
             Name = theProvider.Name;
             PhoneNumber = theProvider.PhoneNumber;
             Address = theProvider.Address;
-            AddressUrl = theProvider.AddressUrl;
+            MapLink = theProvider.MapLink;
         }
     }
 }

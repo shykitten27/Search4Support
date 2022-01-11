@@ -12,7 +12,7 @@ namespace Search4Support.Models
         public string Name { get; set; }
         public string PhoneNumber { get; set; }
         public string Address { get; set; }
-        public string AddressUrl { get; set; }
+        public string MapLink { get; set; }
         public string Description {get; set;}
        
         //one:many Provider:Services
@@ -22,18 +22,14 @@ namespace Search4Support.Models
         public Provider()
         {
         }
-        //public string GetUrl(string address)
-        //{
-        //    string gMaps = "https://www.google.com/maps/place/";
-        //    return gMaps + Uri.EscapeDataString(address);
-        //}
+
 
         public Provider(string name, string phoneNumber, string address, string description, List<ProviderService> providerServices)
         {
             Name = name;
             PhoneNumber = phoneNumber;
             Address = address;
-            AddressUrl = GetUrl(address);
+            MapLink = "https://www.google.com/maps/place/" + address.UrlEncode();
             Description = description;
             Services = providerServices;
         }
@@ -44,17 +40,22 @@ namespace Search4Support.Models
         {
             return Name;
         }
+
         public override bool Equals(object obj)
         {
             return obj is Provider provider &&
                    Id == provider.Id &&
                    Name == provider.Name &&
-                   Address == provider.Address;
+                   PhoneNumber == provider.PhoneNumber &&
+                   Address == provider.Address &&
+                   MapLink == provider.MapLink &&
+                   Description == provider.Description &&
+                   EqualityComparer<List<ProviderService>>.Default.Equals(Services, provider.Services);
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(Id, Name, Address);
+            return HashCode.Combine(Id, Name, PhoneNumber, Address, MapLink, Description, Services);
         }
     }
 }
