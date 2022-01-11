@@ -22,11 +22,11 @@ namespace Search4Support.Models
         public Provider()
         {
         }
-        public string GetUrl(string address)
-        {
-            string gMaps = "https://www.google.com/maps/place/";
-            return gMaps + Uri.EscapeDataString(address);
-        }
+        //public string GetUrl(string address)
+        //{
+        //    string gMaps = "https://www.google.com/maps/place/";
+        //    return gMaps + Uri.EscapeDataString(address);
+        //}
 
         public Provider(string name, string phoneNumber, string address, string description, List<ProviderService> providerServices)
         {

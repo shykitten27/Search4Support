@@ -29,6 +29,7 @@ else
             <th>Name</th>
             <th>Phone Number</th>
             <th>Address</th>
+           
             @*<th>Add to Favorites</th>*@
         </tr>
         @foreach (var prv in Model)
@@ -37,7 +38,7 @@ else
                 <td><a asp-controller="Providers" asp-action="Detail" asp-route-id="@prv.Id">@prv.Name</a></td>
                 <td>@prv.PhoneNumber</td>
                 <td>@prv.Address</td>
-                <td>@prv.AddressUrl</td>
+               
                 @*<td><input type="checkbox" /></td>*@
             </tr>
         }
