@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace Search4Support.Models
 {
@@ -11,6 +12,7 @@ namespace Search4Support.Models
         public string Name { get; set; }
         public string PhoneNumber { get; set; }
         public string Address { get; set; }
+        public string AddressUrl { get; set; }
         public string Description {get; set;}
        
         //one:many Provider:Services
@@ -20,11 +22,18 @@ namespace Search4Support.Models
         public Provider()
         {
         }
+        public string GetUrl(string address)
+        {
+            string gMaps = "https://www.google.com/maps/place/";
+            return gMaps + Uri.EscapeDataString(address);
+        }
+
         public Provider(string name, string phoneNumber, string address, string description, List<ProviderService> providerServices)
         {
             Name = name;
             PhoneNumber = phoneNumber;
             Address = address;
+            AddressUrl = GetUrl(address);
             Description = description;
             Services = providerServices;
         }

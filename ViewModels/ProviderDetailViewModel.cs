@@ -12,6 +12,7 @@ namespace Search4Support.ViewModels
         public string Name { get; set; }
         public string PhoneNumber { get; set; }
         public string Address { get; set; }
+        public string AddressUrl { get; set; }
         public string Description { get; set; }
         public List<ProviderService> Services { get; set; }
       
@@ -23,6 +24,7 @@ namespace Search4Support.ViewModels
             Name = theProvider.Name;
             PhoneNumber = theProvider.PhoneNumber;
             Address = theProvider.Address;
+            AddressUrl = theProvider.AddressUrl;
             Description = theProvider.Description;
             Services = theProvider.Services;    //System.Collections.Generic.List`1[Search4Support.Models.ProviderService]
 
