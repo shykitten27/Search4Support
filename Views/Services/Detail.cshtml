@@ -12,7 +12,7 @@
 
     <tr>
         <th>Category</th>
-        <td>@Model.CategoryName</td>
+        <td><a asp-controller="Categories" asp-action="Detail" asp-route-id="@Model.CategoryId">@Model.CategoryName</a></td>
     </tr>
     <tr>
         <th>Location</th>

@@ -1,5 +1,28 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@using Search4Support.Models
+@model Search4Support.ViewModels.CategoryDetailViewModel
+
+
+<h1>@Model.Name</h1>
+
+<table class="table">
+
+    <tr>
+        <th>Services</th>
+        <td>
+            @Model.Services  @*List of CategoryServices*@
+            @*System.Collections.Generic.List`1[Search4Support.Models.CategoryService]*@
+
+
+
+            @* for every CategoryService object in the List of CategoryServices stored at Model.Services *@
+            @* post ProviderService.Name with link to Service DetailView *@
+            @foreach (CategoryService srv in Model.Services)
+            {
+
+                <a asp-controller="Services" asp-action="Detail" asp-route-id="@Model.Services.">@srv.Service.Name</a>
+            }
+
+        </td>
+
+    </tr>
+</table>
