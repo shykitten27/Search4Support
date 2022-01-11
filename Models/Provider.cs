@@ -26,10 +26,11 @@ namespace Search4Support.Models
 
         public Provider(string name, string phoneNumber, string address, string description, List<ProviderService> providerServices)
         {
+            string addressUrl = "https://www.google.com/maps/place/" + address.UrlEncode();
             Name = name;
             PhoneNumber = phoneNumber;
             Address = address;
-            MapLink = "https://www.google.com/maps/place/" + address.UrlEncode();
+            MapLink = addressUrl;
             Description = description;
             Services = providerServices;
         }
