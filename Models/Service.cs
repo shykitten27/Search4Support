@@ -15,11 +15,13 @@ namespace Search4Support.Models
         //one:one Service:Provider
         public Provider Provider { get; set; }
         public int ProviderId { get; set; }
+        public List<ProviderService> ProviderServices { get; set; }
 
 
         //one:one Service:ServiceCategory
         public Category Category { get; set; }
         public int CategoryId { get; set; }
+        public List<CategoryService> CategoryServices {get; set;}
 
 
 

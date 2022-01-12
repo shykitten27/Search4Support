@@ -41,7 +41,7 @@ namespace Search4Support.Controllers
         {
             
             Provider theProvider = context.Providers
-                .Include(p => p.Services)
+                //.Include(p => p.Services)
                 .Single(p => p.Id == id);
 
             List<ProviderService> providerServices = context.ProviderServices

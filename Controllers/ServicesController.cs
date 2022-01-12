@@ -145,6 +145,7 @@ namespace Search4Support.Controllers
             Service theService = context.Services
                 .Include(s => s.Category)
                 .Include(s => s.Provider)
+                .Include(s => s.ProviderServices)
                 .Single(s => s.Id == id);
 
             ServiceDetailViewModel viewModel = new ServiceDetailViewModel(theService);
