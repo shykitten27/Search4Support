@@ -21,15 +21,15 @@
     </tr>
     <tr>
         <th>Services</th>
-        
-      
-            @foreach( var srv in Model.Services)
-            { 
-                <td>@srv.Name</td>
-            }
+        <td>
 
-        
-    
-    </tr>
+            @foreach (var srv in Model.Services)
+            {
+            <ul>@srv.Name</ul>
+        }
+            </td>
+
+
+        </tr>
 </table>
   

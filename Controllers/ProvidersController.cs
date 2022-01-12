@@ -50,8 +50,8 @@ namespace Search4Support.Controllers
             //        .Include(ps => ps.Service)
             //        .ToList();
 
-            //    ProviderDetailViewModel viewModel = new ProviderDetailViewModel(theProvider, providerServices);
-            return View();     //System.Collections.Generic.List`1[Search4Support.Models.ProviderService]
+                ProviderDetailViewModel viewModel = new ProviderDetailViewModel(theProvider);
+            return View(viewModel);     //System.Collections.Generic.List`1[Search4Support.Models.ProviderService]
         }
     }
 }
