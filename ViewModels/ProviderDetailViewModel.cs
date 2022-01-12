@@ -13,11 +13,11 @@ namespace Search4Support.ViewModels
         public string PhoneNumber { get; set; }
         public string Address { get; set; }
         public string Description { get; set; }
-        public List<ProviderService> Services { get; set; }
+        public List<Service> Services { get; set; }
       
 
         
-        public ProviderDetailViewModel(Provider theProvider, List<ProviderService> providerServices)
+        public ProviderDetailViewModel(Provider theProvider)
         {
             ProviderId = theProvider.Id;
             Name = theProvider.Name;

@@ -42,12 +42,12 @@ namespace Search4Support.Controllers
             return View();
         }
 
-        //GET: /<controller>/
-        public IActionResult Index()
-        {
-            ViewBag.columns = ListController.ColumnChoices;
-            return View();
-        }
+        ////GET: /<controller>/
+        //public IActionResult Index()
+        //{
+        //    ViewBag.columns = ListController.ColumnChoices;
+        //    return View();
+        //}
 
         public IActionResult Results(string searchType, string searchTerm)
         {
