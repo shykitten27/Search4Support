@@ -24,7 +24,7 @@ namespace Search4Support.Models
         }
 
 
-        public Provider(string name, string phoneNumber, string address, string description, List<ProviderService> providerServices)
+        public Provider(string name, string phoneNumber, string address, string description)
         {
             string addressUrl = "https://www.google.com/maps/place/" + address.UrlEncode();
             Name = name;
@@ -32,7 +32,7 @@ namespace Search4Support.Models
             Address = address;
             MapLink = addressUrl;
             Description = description;
-            Services = providerServices;
+            
         }
 
 
