@@ -44,14 +44,8 @@ namespace Search4Support.Controllers
                 .Include(p => p.Services)
                 .Single(p => p.Id == id);
 
-            List<ProviderService> providerServices = context.ProviderServices
-                .Where(ps => ps.ServiceId== id)
-                .Include(ps => ps.Provider)
-                .Include(ps => ps.Service)
-                .ToList();
-
-            ProviderDetailViewModel viewModel = new ProviderDetailViewModel(theProvider, providerServices);
-            return View(viewModel);     //System.Collections.Generic.List`1[Search4Support.Models.ProviderService]
+            ProviderDetailViewModel viewModel = new ProviderDetailViewModel(theProvider);
+            return View(viewModel);     
         }
     }
 }

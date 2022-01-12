@@ -12,7 +12,7 @@ namespace Search4Support.Models
 
 
         //one:many Category:Services
-        public List<CategoryService> Services { get; set; }
+        public List<Service> Services { get; set; }
 
 
         public Category(string name)

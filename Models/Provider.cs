@@ -14,19 +14,18 @@ namespace Search4Support.Models
         public string Description {get; set;}
        
         //one:many Provider:Services
-        public List<ProviderService> Services { get; set; }
+        public List<Service> Services { get; set; }
       
 
         public Provider()
         {
         }
-        public Provider(string name, string phoneNumber, string address, string description, List<ProviderService> providerServices)
+        public Provider(string name, string phoneNumber, string address, string description)
         {
             Name = name;
             PhoneNumber = phoneNumber;
             Address = address;
             Description = description;
-            Services = providerServices;
         }
 
 

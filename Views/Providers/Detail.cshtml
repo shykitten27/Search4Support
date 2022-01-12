@@ -21,17 +21,9 @@
     <tr>
         <th>Services</th>
         <td>
-            @Model.Services  @*List of ProviderServices*@  
-            @*System.Collections.Generic.List`1[Search4Support.Models.ProviderService]*@
-
-
-
-            @* for every ProviderService object in the List of ProviderServices stored at Model.Services *@
-            @* post ProviderService.Name with link to Service DetailView *@
-            @foreach( ProviderService srv in Model.Services)
+            @foreach (var srv in Model.Services)
             {
-
-                <a asp-controller="Services" asp-action="Detail" asp-route-id="@Model.Services.">@srv.Service.Name</a>
+                <ul><a asp-controller="Services" asp-action="Detail" asp-route-id="@srv.Id">@srv.Name</a></ul>
             }
 
         </td>
