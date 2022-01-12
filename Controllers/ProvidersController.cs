@@ -36,22 +36,22 @@ namespace Search4Support.Controllers
             return View();
         }
 
-        
-        //public IActionResult Detail(int id)
-        //{
-            
-        //    Provider theProvider = context.Providers
-        //        .Include(p => p.Services)
-        //        .Single(p => p.Id == id);
 
-        //    List<Service> providerServices = context.Services
-        //        .Where(ps => ps.ProviderId== id)
-        //        .Include(ps => ps.Provider)
-        //        .Include(ps => ps.Service)
-        //        .ToList();
+        public IActionResult Detail(int id)
+        {
 
-        //    ProviderDetailViewModel viewModel = new ProviderDetailViewModel(theProvider, providerServices);
-        //    return View(viewModel);     //System.Collections.Generic.List`1[Search4Support.Models.ProviderService]
-        //}
+            Provider theProvider = context.Providers
+                .Include(p => p.Services)
+                .Single(p => p.Id == id);
+
+            //    List<Service> providerServices = context.Services
+            //        .Where(ps => ps.ProviderId== id)
+            //        .Include(ps => ps.Provider)
+            //        .Include(ps => ps.Service)
+            //        .ToList();
+
+            //    ProviderDetailViewModel viewModel = new ProviderDetailViewModel(theProvider, providerServices);
+            return View();     //System.Collections.Generic.List`1[Search4Support.Models.ProviderService]
+        }
     }
 }

@@ -30,7 +30,7 @@ namespace Search4Support.Controllers
             return View(services);
         }
 
-        // GET: ServicesController/Details/5
+        // GET: ServicesController/Detail/5
         public IActionResult Details(int id)
         {
             return View();
