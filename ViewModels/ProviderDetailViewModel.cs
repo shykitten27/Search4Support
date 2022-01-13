@@ -30,6 +30,6 @@ namespace Search4Support.ViewModels
         }
 
 
-        }      
-    }
+    }      
 }
+

@@ -24,6 +24,7 @@ namespace Search4Support.Controllers
         public IActionResult Index()
         {
             List<Service> services = context.Services
+                .OrderBy(s => s.Name)
                 .Include(s => s.Category)
                 .Include(s => s.Provider)
                 .ToList();
