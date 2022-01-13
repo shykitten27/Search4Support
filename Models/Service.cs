@@ -11,14 +11,16 @@ namespace Search4Support.Models
         public string Name { get; set; }
         public string Description { get; set; }
 
+
         //one:one Service:Provider
         public Provider Provider { get; set; }
         public int ProviderId { get; set; }
 
+
         //one:one Service:ServiceCategory
-        public ServiceCategory Category { get; set; }
+        public Category Category { get; set; }
         public int CategoryId { get; set; }
-     
+
 
 
         public Service()
@@ -43,7 +45,7 @@ namespace Search4Support.Models
                    Description == service.Description &&
                    EqualityComparer<Provider>.Default.Equals(Provider, service.Provider) &&
                    ProviderId == service.ProviderId &&
-                   EqualityComparer<ServiceCategory>.Default.Equals(Category, service.Category) &&
+                   EqualityComparer<Category>.Default.Equals(Category, service.Category) &&
                    CategoryId == service.CategoryId;
         }
 

@@ -10,25 +10,23 @@ using System.Threading.Tasks;
 
 namespace Search4Support.Controllers
 {
-    public class ProvidersController : Controller
+    public class CategoriesController : Controller
+
     {
         private ServiceDbContext context;
 
-        public ProvidersController(ServiceDbContext dbContext)
+        public CategoriesController(ServiceDbContext dbContext)
         {
             context = dbContext;
         }
 
-        // GET: ProvidersController
+        // GET: CategoriesController
         public IActionResult Index()
         {
-
-            
-            List<Provider> providers = context.Providers
-                .Include(p => p.Services)
+            List<Category> categories = context.Categories
+                .Include(c => c.Services)
                 .ToList();
-
-            return View(providers);
+            return View(categories);
         }
 
 
@@ -38,15 +36,17 @@ namespace Search4Support.Controllers
             return View();
         }
 
-        
+
         public IActionResult Detail(int id)
         {
-            
-            Provider theProvider = context.Providers
+
+            Category theCategory = context.Categories
                 .Include(p => p.Services)
                 .Single(p => p.Id == id);
 
-            ProviderDetailViewModel viewModel = new ProviderDetailViewModel(theProvider);
+           
+
+            CategoryDetailViewModel viewModel = new CategoryDetailViewModel(theCategory);
             return View(viewModel);     
         }
     }

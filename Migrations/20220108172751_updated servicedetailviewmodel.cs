@@ -2,7 +2,7 @@
 
 namespace Search4Support.Migrations
 {
-    public partial class ListAllServicesisfunctional : Migration
+    public partial class updatedservicedetailviewmodel : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
