@@ -13,52 +13,55 @@ namespace Search4Support.Controllers
     public class SearchController : Controller
     {
         internal static Dictionary<string, string> ColumnChoices = new Dictionary<string, string>()
-                {
-                    {"all", "All" },
-                    {"provider", "Provider" },
-                    {"category", "Category"},
-                    {"location", "Location" },
-                    {"tag", "Tag" },
-                    {"keyword", "Keyword" }
-                };
+        {
+            {"all", "All" },
+            {"provider", "Provider" },
+            {"category", "Category"},
+            {"location", "Location" }
+        };
         internal static List<string> TableChoices = new List<string>()
-                {
-                    "provider",
-                    "category",
-                    "location",
-                    "tag",
-                    "keyword"
-                };
+        {
+            "provider",
+            "category",
+            "location"
+        };
         private ServiceDbContext context;
 
         public SearchController(ServiceDbContext dbContext)
         {
             context = dbContext;
         }
-
-
-        //GET: /<controller>/
         public IActionResult Index()
         {
-            ViewBag.columns = ListController.ColumnChoices;
+            ViewBag.columns = ColumnChoices;
+            ViewBag.tablechoices = TableChoices;
+            ViewBag.providers = context.Providers.ToList();
+            ViewBag.services = context.Services.ToList();
+            ViewBag.categories = context.Categories.ToList();
+            //ViewBag.locations = context.Locations.ToList();
             return View();
         }
+
+        // GET: /<controller>/
+        //public IActionResult Index()
+        //{
+        //    ViewBag.columns = ListController.ColumnChoices;
+        //    return View();
+        //}
 
         public IActionResult Results(string searchType, string searchTerm)
         {
             List<Service> services = new List<Service>();
 
-            //if (searchType.ToLower().Equals("all"))
-            //{
-            if (string.IsNullOrEmpty(searchTerm))
+            if (searchType.ToLower().Equals("all"))
             {
                 services = context.Services
                     .Include(s => s.Provider)
                     .Include(s => s.Category)
-                    
-                    .ToList();
-            }
 
+                    .ToList();
+
+            }
             else
             {
                 if (searchType == "provider")
@@ -83,21 +86,13 @@ namespace Search4Support.Controllers
                         .Where(s => s.Provider.Address.Contains(searchTerm))
                         .ToList();
                 }
-
-                //else if (searchType == "location")
-                //{
-                //    services = context.Services
-                //        .Where(s => s.Location.Address == searchTerm)
-                //        .Include(s => s.Location)
-                //        .ToList();
-                //}
             }
 
             ViewBag.columns = ListController.ColumnChoices;
-                ViewBag.title = "Services with " + ColumnChoices[searchType] + ": " + searchTerm;
-                ViewBag.services = services;
-                return View(services);
-            }
-
+            ViewBag.title = "Services with " + ColumnChoices[searchType] + ": " + searchTerm;
+            ViewBag.services = services;
+            return View(services);
         }
+
     }
+}
