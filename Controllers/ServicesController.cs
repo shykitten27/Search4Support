@@ -84,20 +84,20 @@ namespace Search4Support.Controllers
         //    return Redirect("/Services");
         //}
 
-        /*        // POST: ServicesController/Add
-                [HttpPost]
-                [ValidateAntiForgeryToken]
-                public IActionResult Add(IFormCollection collection)
-                {
-                    try
-                    {
-                        return RedirectToAction(nameof(Index));
-                    }
-                    catch
-                    {
-                        return View();
-                    }
-                }*/
+        // POST: ServicesController/Add
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Add(IFormCollection collection)
+        {
+            try
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
 
         //// GET: ServicesController/Edit/5
         //public IActionResult Edit(int id)

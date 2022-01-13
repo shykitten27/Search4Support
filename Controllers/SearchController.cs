@@ -48,9 +48,9 @@ namespace Search4Support.Controllers
         {
             List<Service> services = new List<Service>();
 
-
-            if (searchTerm.ToLower().Equals("all"))
-
+            //if (searchType.ToLower().Equals("all"))
+            //{
+            if (string.IsNullOrEmpty(searchTerm))
             {
                 services = context.Services
                     .Include(s => s.Provider)
@@ -83,6 +83,14 @@ namespace Search4Support.Controllers
                         .Where(s => s.Provider.Address.Contains(searchTerm))
                         .ToList();
                 }
+
+                //else if (searchType == "location")
+                //{
+                //    services = context.Services
+                //        .Where(s => s.Location.Address == searchTerm)
+                //        .Include(s => s.Location)
+                //        .ToList();
+                //}
             }
 
             ViewBag.columns = ListController.ColumnChoices;
