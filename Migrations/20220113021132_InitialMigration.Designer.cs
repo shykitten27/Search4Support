@@ -8,8 +8,8 @@ using Search4Support.Data;
 namespace Search4Support.Migrations
 {
     [DbContext(typeof(ServiceDbContext))]
-    [Migration("20220109231010_categoryservice")]
-    partial class categoryservice
+    [Migration("20220113021132_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,21 +30,6 @@ namespace Search4Support.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("Search4Support.Models.CategoryService", b =>
-                {
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ServiceId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CategoryId", "ServiceId");
-
-                    b.HasIndex("ServiceId");
-
-                    b.ToTable("CategoryServices");
                 });
 
             modelBuilder.Entity("Search4Support.Models.Provider", b =>
@@ -68,21 +53,6 @@ namespace Search4Support.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Providers");
-                });
-
-            modelBuilder.Entity("Search4Support.Models.ProviderService", b =>
-                {
-                    b.Property<int>("ProviderId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ServiceId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ProviderId", "ServiceId");
-
-                    b.HasIndex("ServiceId");
-
-                    b.ToTable("ProviderServices");
                 });
 
             modelBuilder.Entity("Search4Support.Models.Service", b =>
@@ -112,36 +82,6 @@ namespace Search4Support.Migrations
                     b.ToTable("Services");
                 });
 
-            modelBuilder.Entity("Search4Support.Models.CategoryService", b =>
-                {
-                    b.HasOne("Search4Support.Models.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Search4Support.Models.Service", "Service")
-                        .WithMany()
-                        .HasForeignKey("ServiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Search4Support.Models.ProviderService", b =>
-                {
-                    b.HasOne("Search4Support.Models.Provider", "Provider")
-                        .WithMany("Services")
-                        .HasForeignKey("ProviderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Search4Support.Models.Service", "Service")
-                        .WithMany()
-                        .HasForeignKey("ServiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Search4Support.Models.Service", b =>
                 {
                     b.HasOne("Search4Support.Models.Category", "Category")
@@ -151,7 +91,7 @@ namespace Search4Support.Migrations
                         .IsRequired();
 
                     b.HasOne("Search4Support.Models.Provider", "Provider")
-                        .WithMany()
+                        .WithMany("Services")
                         .HasForeignKey("ProviderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
