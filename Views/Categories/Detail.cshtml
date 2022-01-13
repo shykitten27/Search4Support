@@ -1,35 +1,20 @@
 ﻿@using Search4Support.Models
-@model Search4Support.ViewModels.ProviderDetailViewModel
+@model Search4Support.ViewModels.CategoryDetailViewModel
 
 
 <h1>@Model.Name</h1>
 
 <table class="table">
- 
-    <tr>
-        <th>Phone Number</th>
-        <td>@Model.PhoneNumber</td>
-    </tr>
-    <tr>
-        <th>Address</th>
-        <td>@Model.Address</td>
-    </tr>
-    <tr>
-        <th>Description</th>
-        <td>@Model.Description</td>
-    </tr>
+
     <tr>
         <th>Services</th>
-
         <td>
             @foreach (var srv in Model.Services)
             {
                 <ul><a asp-controller="Services" asp-action="Detail" asp-route-id="@srv.Id">@srv.Name</a></ul>
             }
 
-
         </td>
-    
+
     </tr>
 </table>
-  
