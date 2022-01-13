@@ -14,7 +14,7 @@ namespace Search4Support.ViewModels
         public string Address { get; set; }
         public string Description { get; set; }
         public List<Service> Services { get; set; }
-      
+
 
         
         public ProviderDetailViewModel(Provider theProvider)
@@ -24,7 +24,11 @@ namespace Search4Support.ViewModels
             PhoneNumber = theProvider.PhoneNumber;
             Address = theProvider.Address;
             Description = theProvider.Description;
-            Services = theProvider.Services;    //System.Collections.Generic.List`1[Search4Support.Models.ProviderService]
+
+            Services = theProvider.Services;
+            
+        }
+
 
         }      
     }

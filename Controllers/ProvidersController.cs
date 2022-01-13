@@ -22,10 +22,12 @@ namespace Search4Support.Controllers
         // GET: ProvidersController
         public IActionResult Index()
         {
-            //System.InvalidOperationException: 'Sequence contains no elements'
+
+            
             List<Provider> providers = context.Providers
                 .Include(p => p.Services)
                 .ToList();
+
             return View(providers);
         }
 
