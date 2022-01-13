@@ -49,6 +49,8 @@ namespace Search4Support.Controllers
             List<Service> services = new List<Service>();
             List<ServiceDetailViewModel> displayServices = new List<ServiceDetailViewModel>();
 
+            //if (searchType.ToLower().Equals("all"))
+            //{
             if (string.IsNullOrEmpty(searchTerm))
             {
                 services = context.Services
