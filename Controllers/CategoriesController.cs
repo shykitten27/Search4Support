@@ -21,11 +21,23 @@ namespace Search4Support.Controllers
         }
 
         // GET: CategoriesController
-        public IActionResult Index()
+        public IActionResult Index(string sortOrder)
         {
-            List<Category> categories = context.Categories
-                .Include(c => c.Services)
-                .ToList();
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+
+            IQueryable<Category> categories = context.Categories
+                .Include(c => c.Services);
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    categories = categories.OrderByDescending(p => p.Name);
+                    break;
+                default:
+                    categories = categories.OrderBy(s => s.Name);
+                    break;
+            }
+
             return View(categories);
         }
 
@@ -41,8 +53,8 @@ namespace Search4Support.Controllers
         {
 
             Category theCategory = context.Categories
-                .Include(p => p.Services)
-                .Single(p => p.Id == id);
+                .Include(c => c.Services)
+                .Single(c => c.Id == id);
 
             
 

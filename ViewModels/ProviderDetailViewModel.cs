@@ -26,6 +26,7 @@ namespace Search4Support.ViewModels
             Address = theProvider.Address;
             MapLink = theProvider.MapLink;
             Description = theProvider.Description;
+            Services = theProvider.Services;
 
         }      
     }

@@ -9,13 +9,15 @@
     <tr>
         <th>Services</th>
         <td>
-            @Model.Services  
-            
+
+
+        <td>
             @foreach (var srv in Model.Services)
             {
-
-                <a asp-controller="Services" asp-action="Detail" asp-route-id="@Model.Services.">@srv.Name</a>
+                <ul><a asp-controller="Services" asp-action="Detail" asp-route-id="@srv.Id">@srv.Name</a></ul>
             }
+
+        </td>
 
         </td>
 
