@@ -13,7 +13,7 @@ namespace Search4Support.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.6")
+                .HasAnnotation("ProductVersion", "3.1.18")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("Search4Support.Models.Category", b =>
@@ -28,21 +28,6 @@ namespace Search4Support.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("Search4Support.Models.CategoryService", b =>
-                {
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ServiceId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CategoryId", "ServiceId");
-
-                    b.HasIndex("ServiceId");
-
-                    b.ToTable("CategoryServices");
                 });
 
             modelBuilder.Entity("Search4Support.Models.Provider", b =>
@@ -69,21 +54,6 @@ namespace Search4Support.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Providers");
-                });
-
-            modelBuilder.Entity("Search4Support.Models.ProviderService", b =>
-                {
-                    b.Property<int>("ProviderId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ServiceId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ProviderId", "ServiceId");
-
-                    b.HasIndex("ServiceId");
-
-                    b.ToTable("ProviderServices");
                 });
 
             modelBuilder.Entity("Search4Support.Models.Service", b =>
@@ -113,46 +83,16 @@ namespace Search4Support.Migrations
                     b.ToTable("Services");
                 });
 
-            modelBuilder.Entity("Search4Support.Models.CategoryService", b =>
-                {
-                    b.HasOne("Search4Support.Models.Category", "Category")
-                        .WithMany("Services")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Search4Support.Models.Service", "Service")
-                        .WithMany("CategoryServices")
-                        .HasForeignKey("ServiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Search4Support.Models.ProviderService", b =>
-                {
-                    b.HasOne("Search4Support.Models.Provider", "Provider")
-                        .WithMany("Services")
-                        .HasForeignKey("ProviderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Search4Support.Models.Service", "Service")
-                        .WithMany("ProviderServices")
-                        .HasForeignKey("ServiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Search4Support.Models.Service", b =>
                 {
                     b.HasOne("Search4Support.Models.Category", "Category")
-                        .WithMany()
+                        .WithMany("Services")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Search4Support.Models.Provider", "Provider")
-                        .WithMany()
+                        .WithMany("Services")
                         .HasForeignKey("ProviderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
