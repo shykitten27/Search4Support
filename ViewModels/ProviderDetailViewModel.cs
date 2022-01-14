@@ -14,11 +14,11 @@ namespace Search4Support.ViewModels
         public string Address { get; set; }
         public string MapLink { get; set; }
         public string Description { get; set; }
-        public List<ProviderService> Services { get; set; }
+        public List<Service> Services { get; set; }
       
 
         
-        public ProviderDetailViewModel(Provider theProvider, List<ProviderService> providerServices)
+        public ProviderDetailViewModel(Provider theProvider)
         {
             ProviderId = theProvider.Id;
             Name = theProvider.Name;
@@ -26,7 +26,6 @@ namespace Search4Support.ViewModels
             Address = theProvider.Address;
             MapLink = theProvider.MapLink;
             Description = theProvider.Description;
-            Services = theProvider.Services;    //System.Collections.Generic.List`1[Search4Support.Models.ProviderService]
 
         }      
     }

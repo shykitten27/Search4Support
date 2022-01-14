@@ -9,17 +9,12 @@
     <tr>
         <th>Services</th>
         <td>
-            @Model.Services  @*List of CategoryServices*@
-            @*System.Collections.Generic.List`1[Search4Support.Models.CategoryService]*@
-
-
-
-            @* for every CategoryService object in the List of CategoryServices stored at Model.Services *@
-            @* post ProviderService.Name with link to Service DetailView *@
-            @foreach (CategoryService srv in Model.Services)
+            @Model.Services  
+            
+            @foreach (var srv in Model.Services)
             {
 
-                <a asp-controller="Services" asp-action="Detail" asp-route-id="@Model.Services.">@srv.Service.Name</a>
+                <a asp-controller="Services" asp-action="Detail" asp-route-id="@Model.Services.">@srv.Name</a>
             }
 
         </td>

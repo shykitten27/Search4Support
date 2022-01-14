@@ -44,13 +44,9 @@ namespace Search4Support.Controllers
                 .Include(p => p.Services)
                 .Single(p => p.Id == id);
 
-            List<CategoryService> categoryServices = context.CategoryServices
-                .Where(cs => cs.ServiceId == id)
-                .Include(cs => cs.Category)
-                .Include(cs => cs.Service)
-                .ToList();
+            
 
-            CategoryDetailViewModel viewModel = new CategoryDetailViewModel(theCategory, categoryServices);
+            CategoryDetailViewModel viewModel = new CategoryDetailViewModel(theCategory);
             return View(viewModel);     
         }
     }

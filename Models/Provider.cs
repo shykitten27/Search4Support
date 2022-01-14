@@ -16,7 +16,7 @@ namespace Search4Support.Models
         public string Description {get; set;}
        
         //one:many Provider:Services
-        public List<ProviderService> Services { get; set; }
+        public List<Service> Services { get; set; }
       
 
         public Provider()
@@ -51,7 +51,7 @@ namespace Search4Support.Models
                    Address == provider.Address &&
                    MapLink == provider.MapLink &&
                    Description == provider.Description &&
-                   EqualityComparer<List<ProviderService>>.Default.Equals(Services, provider.Services);
+                   EqualityComparer<List<Service>>.Default.Equals(Services, provider.Services);
         }
 
         public override int GetHashCode()
