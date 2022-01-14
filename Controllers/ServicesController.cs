@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using PagedList;
 using Search4Support.Data;
 using Search4Support.Models;
 using Search4Support.ViewModels;
@@ -8,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 
 namespace Search4Support.Controllers
 {
@@ -21,8 +23,9 @@ namespace Search4Support.Controllers
         }
 
         // GET: ServicesController
-        public IActionResult Index(string sortOrder)
+        public IActionResult Index(string sortOrder, int? page )
         {
+            ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.ProviderSortParm = sortOrder == "Provider" ? "provider_desc" : "Provider";
             ViewBag.CategorySortParm = sortOrder == "Category" ? "category_desc" : "Category";
@@ -53,7 +56,9 @@ namespace Search4Support.Controllers
                     services = services.OrderBy(s => s.Name);
                     break;
             }
-            return View(services.ToList());
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(services.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: ServicesController/Details/5
