@@ -26,9 +26,9 @@ else
 { 
 <table class="table striped">
     <tr>
-        <th>Name</th>
-        <th>Category</th>
-        <th>Provider</th>
+        <th>@Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm }) </th>
+        <th>@Html.ActionLink("Category", "Index", new { sortOrder = ViewBag.CategorySortParm }) </th>
+        <th>@Html.ActionLink("Provider", "Index", new { sortOrder = ViewBag.ProviderSortParm }) </th>
         @*<th>Add to Favorites</th>*@
     </tr>
     @foreach (var srv in Model)

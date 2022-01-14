@@ -21,13 +21,39 @@ namespace Search4Support.Controllers
         }
 
         // GET: ServicesController
-        public IActionResult Index()
+        public IActionResult Index(string sortOrder)
         {
-            List<Service> services = context.Services
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.ProviderSortParm = sortOrder == "Provider" ? "provider_desc" : "Provider";
+            ViewBag.CategorySortParm = sortOrder == "Category" ? "category_desc" : "Category";
+            
+            IQueryable<Service> services = context.Services
                 .Include(s => s.Category)
-                .Include(s => s.Provider)
-                .ToList();
-            return View(services);
+                .Include(s => s.Provider);
+                
+
+            switch(sortOrder)
+            {
+                case "name_desc":
+                    services = services.OrderByDescending(s => s.Name);
+                    break;
+                case "Provider":
+                    services = services.OrderBy(s => s.Provider.Name);
+                    break;
+                case "provider_desc":
+                    services = services.OrderByDescending(s => s.Provider.Name);
+                    break;
+                case "Category":
+                    services = services.OrderBy(s => s.Category.Name);
+                    break;
+                case "category_desc":
+                    services = services.OrderByDescending(s => s.Category.Name);
+                    break;
+                default:
+                    services = services.OrderBy(s => s.Name);
+                    break;
+            }
+            return View(services.ToList());
         }
 
         // GET: ServicesController/Details/5

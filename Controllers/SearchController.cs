@@ -58,7 +58,6 @@ namespace Search4Support.Controllers
                 services = context.Services
                     .Include(s => s.Provider)
                     .Include(s => s.Category)
-                    
                     .ToList();
 
             }
