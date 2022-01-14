@@ -1,7 +1,7 @@
 ﻿@using Search4Support.Models
-@model PagedList.IPagedList<Search4Support.Models.Service>
-@using PagedList.Mvc;
-@using PagedList;
+@model X.PagedList.PagedList<Search4Support.Models.Service>
+@using X.PagedList.Mvc.Core;
+
 
 
 <h1>Services</h1>
@@ -49,4 +49,4 @@ else
 
 <br />
 Page@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-@Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort }));
+@*@Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort }))*@

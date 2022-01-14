@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using PagedList;
+using X.PagedList;
 using Search4Support.Data;
 using Search4Support.Models;
 using Search4Support.ViewModels;

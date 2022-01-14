@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using X.PagedList;
 
 namespace Search4Support.Controllers
 {
@@ -21,8 +22,9 @@ namespace Search4Support.Controllers
         }
 
         // GET: CategoriesController
-        public IActionResult Index(string sortOrder)
+        public IActionResult Index(string sortOrder, int? page)
         {
+            ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
 
             IQueryable<Category> categories = context.Categories
@@ -38,7 +40,9 @@ namespace Search4Support.Controllers
                     break;
             }
 
-            return View(categories);
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(categories.ToPagedList(pageNumber, pageSize));
         }
 
 
