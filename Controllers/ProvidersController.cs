@@ -20,13 +20,24 @@ namespace Search4Support.Controllers
         }
 
         // GET: ProvidersController
-        public IActionResult Index()
+        public IActionResult Index(string sortOrder)
         {
-            //System.InvalidOperationException: 'Sequence contains no elements'
-            List<Provider> providers = context.Providers
-                .Include(p => p.Services)
-                .ToList();
-            return View(providers);
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+
+            IQueryable<Provider> providers = context.Providers
+                .Include(p => p.Services);
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    providers = providers.OrderByDescending(p => p.Name);
+                    break;
+                default:
+                    providers = providers.OrderBy(s => s.Name);
+                    break;
+            }
+
+            return View(providers.ToList());
         }
 
 
