@@ -1,12 +1,11 @@
-﻿@model Search4Support.ViewModels.ProviderDetailViewModel
+﻿@using Search4Support.Models
+@model Search4Support.ViewModels.ProviderDetailViewModel
+
 
 <h1>@Model.Name</h1>
 
 <table class="table">
-    <tr>
-        <th>Name</th>
-        <td>@Model.Name</td>
-    </tr>
+ 
     <tr>
         <th>Phone Number</th>
         <td>@Model.PhoneNumber</td>
@@ -21,12 +20,17 @@
     </tr>
     <tr>
         <th>Services</th>
-        <td>@Model.Services</td>
+
+        <td>
+            @foreach (var srv in Model.Services)
+            {
+                <ul><a asp-controller="Services" asp-action="Detail" asp-route-id="@srv.Id">@srv.Name</a></ul>
+            }
+
+
+        </td>
+        
+
     </tr>
-    @*<tr>
-            <th>Add to Favorites</th>
-            <td><input type="checkbox" /></td>
-        </tr>*@
 </table>
-
-
+  

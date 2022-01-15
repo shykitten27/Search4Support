@@ -11,39 +11,38 @@ using X.PagedList;
 
 namespace Search4Support.Controllers
 {
-    public class ProvidersController : Controller
+    public class CategoriesController : Controller
+
     {
         private ServiceDbContext context;
 
-        public ProvidersController(ServiceDbContext dbContext)
+        public CategoriesController(ServiceDbContext dbContext)
         {
             context = dbContext;
         }
 
-        // GET: ProvidersController
+        // GET: CategoriesController
         public IActionResult Index(string sortOrder, int? page)
         {
-
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
 
-            IQueryable<Provider> providers = context.Providers
-                .Include(p => p.Services);
+            IQueryable<Category> categories = context.Categories
+                .Include(c => c.Services);
 
             switch (sortOrder)
             {
                 case "name_desc":
-                    providers = providers.OrderByDescending(p => p.Name);
+                    categories = categories.OrderByDescending(p => p.Name);
                     break;
                 default:
-                    providers = providers.OrderBy(s => s.Name);
+                    categories = categories.OrderBy(s => s.Name);
                     break;
             }
 
             int pageSize = 10;
             int pageNumber = (page ?? 1);
-            return View(providers.ToPagedList(pageNumber, pageSize));
-
+            return View(categories.ToPagedList(pageNumber, pageSize));
         }
 
 
@@ -53,18 +52,17 @@ namespace Search4Support.Controllers
             return View();
         }
 
-        
+
         public IActionResult Detail(int id)
         {
-            
-            Provider theProvider = context.Providers
-                .Include(p => p.Services)
-                .Single(p => p.Id == id);
-         
 
-            ProviderDetailViewModel viewModel = new ProviderDetailViewModel(theProvider);
-            return View(viewModel);    
+            Category theCategory = context.Categories
+                .Include(c => c.Services)
+                .Single(c => c.Id == id);
 
+
+            CategoryDetailViewModel viewModel = new CategoryDetailViewModel(theCategory);
+            return View(viewModel);     
         }
     }
 }

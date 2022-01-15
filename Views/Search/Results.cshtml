@@ -1,6 +1,10 @@
 ﻿@using Search4Support.ViewModels
-@model List<Search4Support.Models.Service>
-<h2>Services</h2>
+@*@model List<Search4Support.Models.Service>*@
+
+@using Search4Support.Models
+
+
+<h1>Services</h1>
 @if (Model.Count == 0){
 <p>No services available.</p>}
 else{
@@ -9,17 +13,17 @@ else{
 <th>Name</th>
 <th>Category</th>
 <th>Location</th>
-<th>Add to Favorites</th>
+@*<th>Add to Favorites</th>*@
 </tr>
 @foreach (var srv in Model)
 {
 <tr>
 <td>
 <a asp-controller="Search" asp-action="Results" asp-route-id="@srv.Id">@srv.Name</a></td>
-@*<td>@srv.Category.Name </td>*@
-@*<td>@srv.Provider.Address</td>*@
-<td><input type="checkbox" />
-</td>
+<td>@srv.Category.Name </td>
+<td>@srv.Provider.Address</td>
+@*<td><input type="checkbox" />
+</td>*@
 </tr>
 }
 </table>}

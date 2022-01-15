@@ -11,8 +11,11 @@ namespace Search4Support.ViewModels
     {
         public int ServiceId { get; set; }
         public string Name { get; set; }
-        public string ProviderName { get; set; }
         public int ProviderId { get; set; }
+        public string ProviderName { get; set; }
+
+        public int CategoryId { get; set; }
+
         public string CategoryName { get; set; }
         public string Address { get; set; }
         public string Description { get; set; }
@@ -23,6 +26,7 @@ namespace Search4Support.ViewModels
             Name = theService.Name;
             ProviderId = theService.ProviderId;
             ProviderName = theService.Provider.Name;
+            CategoryId = theService.CategoryId;
             CategoryName = theService.Category.Name;
             Address = theService.Provider.Address;
             Description = theService.Description;

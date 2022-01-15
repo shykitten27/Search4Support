@@ -13,6 +13,8 @@ namespace Search4Support.Data
     {
         public DbSet<Service> Services { get; set; }
         public DbSet<Provider> Providers { get; set; }
+        public DbSet<Category> Categories { get; set; }
+
         public DbSet<ServiceCategory> Categories { get; set; }
 /*        public DbSet<Location> Locations { get; set; }*/
         public DbSet<ServiceTag> ServiceTags { get; set; }
@@ -29,6 +31,6 @@ namespace Search4Support.Data
             base.OnModelCreating(modelBuilder);
         }
 
-        
+
     }
 }
