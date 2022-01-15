@@ -28,7 +28,7 @@ namespace Search4Support.ViewModels
         public List<SelectListItem> Providers { get; set; }
 
         //constructor takes a list of ServiceCategory
-        public AddServiceViewModel(List<ServiceCategory> categories, List<Provider> providers)
+        public AddServiceViewModel(List<Category> categories, List<Provider> providers)
         {
             //create a new Categories listitem by looping thru all of the 
             //categories and adding them to the collection
