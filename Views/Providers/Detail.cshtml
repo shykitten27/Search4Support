@@ -20,11 +20,13 @@
     </tr>
     <tr>
         <th>Services</th>
+
         <td>
             @foreach (var srv in Model.Services)
             {
                 <ul><a asp-controller="Services" asp-action="Detail" asp-route-id="@srv.Id">@srv.Name</a></ul>
             }
+
 
         </td>
         

@@ -60,7 +60,6 @@ namespace Search4Support.Controllers
                 .Include(c => c.Services)
                 .Single(c => c.Id == id);
 
-            
 
             CategoryDetailViewModel viewModel = new CategoryDetailViewModel(theCategory);
             return View(viewModel);     

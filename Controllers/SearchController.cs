@@ -58,6 +58,7 @@ namespace Search4Support.Controllers
                 services = context.Services
                     .Include(s => s.Provider)
                     .Include(s => s.Category)
+
                     .ToList();
 
             }
@@ -88,10 +89,10 @@ namespace Search4Support.Controllers
             }
 
             ViewBag.columns = ListController.ColumnChoices;
-                ViewBag.title = "Services with " + ColumnChoices[searchType] + ": " + searchTerm;
-                ViewBag.services = services;
-                return View(services);
-            }
-
+            ViewBag.title = "Services with " + ColumnChoices[searchType] + ": " + searchTerm;
+            ViewBag.services = services;
+            return View(services);
         }
+
     }
+}

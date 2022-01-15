@@ -13,7 +13,9 @@ namespace Search4Support.ViewModels
         public string Name { get; set; }
         public int ProviderId { get; set; }
         public string ProviderName { get; set; }
+
         public int CategoryId { get; set; }
+
         public string CategoryName { get; set; }
         public string Address { get; set; }
         public string Description { get; set; }

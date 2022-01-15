@@ -25,6 +25,7 @@ namespace Search4Support.Controllers
         // GET: ServicesController
         public IActionResult Index(string sortOrder, int? page )
         {
+
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.ProviderSortParm = sortOrder == "Provider" ? "provider_desc" : "Provider";
@@ -114,20 +115,20 @@ namespace Search4Support.Controllers
         //    return Redirect("/Services");
         //}
 
-        /*        // POST: ServicesController/Add
-                [HttpPost]
-                [ValidateAntiForgeryToken]
-                public IActionResult Add(IFormCollection collection)
-                {
-                    try
-                    {
-                        return RedirectToAction(nameof(Index));
-                    }
-                    catch
-                    {
-                        return View();
-                    }
-                }*/
+        // POST: ServicesController/Add
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Add(IFormCollection collection)
+        {
+            try
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
 
         //// GET: ServicesController/Edit/5
         //public IActionResult Edit(int id)

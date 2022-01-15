@@ -17,12 +17,12 @@ namespace Search4Support.Models
        
         //one:many Provider:Services
         public List<Service> Services { get; set; }
+
       
 
         public Provider()
         {
         }
-
 
         public Provider(string name, string phoneNumber, string address, string description)
         {
@@ -32,7 +32,7 @@ namespace Search4Support.Models
             Address = address;
             MapLink = addressUrl;
             Description = description;
-            
+
         }
 
 
@@ -56,7 +56,10 @@ namespace Search4Support.Models
 
         public override int GetHashCode()
         {
+
             return HashCode.Combine(Id, Name, PhoneNumber, Address, MapLink, Description, Services);
+
+
         }
     }
 }

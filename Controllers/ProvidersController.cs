@@ -23,6 +23,7 @@ namespace Search4Support.Controllers
         // GET: ProvidersController
         public IActionResult Index(string sortOrder, int? page)
         {
+
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
 
@@ -42,6 +43,7 @@ namespace Search4Support.Controllers
             int pageSize = 10;
             int pageNumber = (page ?? 1);
             return View(providers.ToPagedList(pageNumber, pageSize));
+
         }
 
 
@@ -58,11 +60,11 @@ namespace Search4Support.Controllers
             Provider theProvider = context.Providers
                 .Include(p => p.Services)
                 .Single(p => p.Id == id);
-
          
 
             ProviderDetailViewModel viewModel = new ProviderDetailViewModel(theProvider);
             return View(viewModel);    
+
         }
     }
 }

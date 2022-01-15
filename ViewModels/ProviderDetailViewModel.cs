@@ -15,7 +15,7 @@ namespace Search4Support.ViewModels
         public string MapLink { get; set; }
         public string Description { get; set; }
         public List<Service> Services { get; set; }
-      
+
 
         
         public ProviderDetailViewModel(Provider theProvider)
@@ -28,6 +28,7 @@ namespace Search4Support.ViewModels
             Description = theProvider.Description;
             Services = theProvider.Services;
 
-        }      
-    }
+            
+        }
+
 }
