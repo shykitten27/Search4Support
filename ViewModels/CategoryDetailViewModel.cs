@@ -17,6 +17,7 @@ namespace Search4Support.ViewModels
         {
             Name = theCategory.Name;
             Services = theCategory.Services;
+           
         }
     }
 }
