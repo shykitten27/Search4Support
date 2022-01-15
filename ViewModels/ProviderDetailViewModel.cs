@@ -17,7 +17,7 @@ namespace Search4Support.ViewModels
         public List<Service> Services { get; set; }
 
 
-        
+
         public ProviderDetailViewModel(Provider theProvider)
         {
             ProviderId = theProvider.Id;
@@ -30,5 +30,7 @@ namespace Search4Support.ViewModels
 
             
         }
-
+    }
 }
+
+
