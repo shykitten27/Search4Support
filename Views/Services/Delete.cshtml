@@ -1,0 +1,18 @@
+﻿@using Search4Support.Models;
+
+<h2>Delete Service</h2>
+
+<form method="post">
+    @foreach (var srv in Model)
+    {
+        <div class="form-group">
+            <label>
+                <span>@srv.Name</span>
+                <input type="checkbox" name="serviceIds" value="@srv.Id" class="form-control">
+            </label>
+        </div>
+    }
+
+    <input type="submit" value="Delete Selected Services" class="btn btn-danger">
+
+</form>

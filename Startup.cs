@@ -27,8 +27,11 @@ namespace Search4Support
         {
             services.AddControllersWithViews();
 
-            services.AddDbContext<ServiceDbContext>(options =>
-                options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
+            //configure to use Identity
+            /*services.AddDbContext<ServiceDbContext>(options =>
+                options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));*/
+            services.AddRazorPages();
+            //configure to use Identity
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,13 +52,17 @@ namespace Search4Support
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                //configure to use Identity
+                endpoints.MapRazorPages();
             });
         }
     }

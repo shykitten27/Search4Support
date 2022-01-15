@@ -1,0 +1,47 @@
+﻿@model List<Search4Support.Models.Tag>
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f1f1f1;
+    }
+</style>
+
+<h2 style="display:inline">All Service Tags </h2>@if (SignInManager.IsSignedIn(User))
+{
+    <a asp-controller="Tag" asp-action="Add">Add Tag</a>
+}
+
+@if (Model.Count == 0)
+{
+    <p>No tags yet!</p>
+}
+else
+{
+    <table class="table striped">
+        <tr>
+            @*<th>Id*@
+            <th>Tag Name</th>
+        </tr>
+        @foreach (Tag tag in Model)
+        {
+            <tr>
+                @*<td>@tag.Id</td>*@
+                <td><a asp-controller="Tag" asp-action="Detail" asp-route-id="@tag.Id">@tag.Name</a></td>
+            </tr>
+        }
+    </table>
+}

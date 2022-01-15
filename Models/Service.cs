@@ -23,22 +23,15 @@ namespace Search4Support.Models
         public int CategoryId { get; set; }
        
 
-
-
         public Service()
         {
-
-        }
-        public Service(string name, string description)
-        {
-            Name = name;
-            Description = description;
         }
 
-        public override string ToString()
+        public override int GetHashCode()
         {
-            return Name;
+            return base.GetHashCode();
         }
+
         public override bool Equals(object obj)
         {
             return obj is Service service &&
@@ -52,9 +45,9 @@ namespace Search4Support.Models
             
         }
 
-        public override int GetHashCode()
+        public override string ToString()
         {
-            return HashCode.Combine(Id, Name, Description, Provider, ProviderId, Category, CategoryId);
+            return Name;
         }
     }
 }

@@ -32,34 +32,22 @@ namespace Search4Support.Models
             Address = address;
             MapLink = addressUrl;
             Description = description;
-
-        }
-
-
-
-        public override string ToString()
-        {
-            return Name;
+            
         }
 
         public override bool Equals(object obj)
         {
-            return obj is Provider provider &&
-                   Id == provider.Id &&
-                   Name == provider.Name &&
-                   PhoneNumber == provider.PhoneNumber &&
-                   Address == provider.Address &&
-                   MapLink == provider.MapLink &&
-                   Description == provider.Description &&
-                   EqualityComparer<List<Service>>.Default.Equals(Services, provider.Services);
+            return base.Equals(obj);
         }
 
         public override int GetHashCode()
         {
+            return base.GetHashCode();
+        }
 
-            return HashCode.Combine(Id, Name, PhoneNumber, Address, MapLink, Description, Services);
-
-
+        public override string ToString()
+        {
+            return Name;
         }
     }
 }
