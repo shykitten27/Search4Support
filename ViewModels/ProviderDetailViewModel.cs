@@ -12,6 +12,7 @@ namespace Search4Support.ViewModels
         public string Name { get; set; }
         public string PhoneNumber { get; set; }
         public string Address { get; set; }
+        public string MapLink { get; set; }
         public string Description { get; set; }
         public List<Service> Services { get; set; }
 
@@ -23,9 +24,10 @@ namespace Search4Support.ViewModels
             Name = theProvider.Name;
             PhoneNumber = theProvider.PhoneNumber;
             Address = theProvider.Address;
+            MapLink = theProvider.MapLink;
             Description = theProvider.Description;
-
             Services = theProvider.Services;
+
             
         }
 

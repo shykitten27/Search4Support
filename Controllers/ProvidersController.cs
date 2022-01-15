@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using X.PagedList;
 
 namespace Search4Support.Controllers
 {
@@ -20,15 +21,29 @@ namespace Search4Support.Controllers
         }
 
         // GET: ProvidersController
-        public IActionResult Index()
+        public IActionResult Index(string sortOrder, int? page)
         {
 
-            
-            List<Provider> providers = context.Providers
-                .Include(p => p.Services)
-                .ToList();
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
 
-            return View(providers);
+            IQueryable<Provider> providers = context.Providers
+                .Include(p => p.Services);
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    providers = providers.OrderByDescending(p => p.Name);
+                    break;
+                default:
+                    providers = providers.OrderBy(s => s.Name);
+                    break;
+            }
+
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(providers.ToPagedList(pageNumber, pageSize));
+
         }
 
 
@@ -45,9 +60,11 @@ namespace Search4Support.Controllers
             Provider theProvider = context.Providers
                 .Include(p => p.Services)
                 .Single(p => p.Id == id);
+         
 
             ProviderDetailViewModel viewModel = new ProviderDetailViewModel(theProvider);
-            return View(viewModel);     
+            return View(viewModel);    
+
         }
     }
 }

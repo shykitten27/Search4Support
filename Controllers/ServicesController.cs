@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using X.PagedList;
 using Search4Support.Data;
 using Search4Support.Models;
 using Search4Support.ViewModels;
@@ -8,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 
 namespace Search4Support.Controllers
 {
@@ -21,14 +23,43 @@ namespace Search4Support.Controllers
         }
 
         // GET: ServicesController
-        public IActionResult Index()
+        public IActionResult Index(string sortOrder, int? page )
         {
-            List<Service> services = context.Services
-                .OrderBy(s => s.Name)
+
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.ProviderSortParm = sortOrder == "Provider" ? "provider_desc" : "Provider";
+            ViewBag.CategorySortParm = sortOrder == "Category" ? "category_desc" : "Category";
+            
+            IQueryable<Service> services = context.Services
                 .Include(s => s.Category)
-                .Include(s => s.Provider)
-                .ToList();
-            return View(services);
+                .Include(s => s.Provider);
+                
+
+            switch(sortOrder)
+            {
+                case "name_desc":
+                    services = services.OrderByDescending(s => s.Name);
+                    break;
+                case "Provider":
+                    services = services.OrderBy(s => s.Provider.Name);
+                    break;
+                case "provider_desc":
+                    services = services.OrderByDescending(s => s.Provider.Name);
+                    break;
+                case "Category":
+                    services = services.OrderBy(s => s.Category.Name);
+                    break;
+                case "category_desc":
+                    services = services.OrderByDescending(s => s.Category.Name);
+                    break;
+                default:
+                    services = services.OrderBy(s => s.Name);
+                    break;
+            }
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(services.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: ServicesController/Details/5

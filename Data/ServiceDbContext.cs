@@ -12,10 +12,11 @@ namespace Search4Support.Data
         public DbSet<Service> Services { get; set; }
         public DbSet<Provider> Providers { get; set; }
         public DbSet<Category> Categories { get; set; }
- 
+
         public ServiceDbContext(DbContextOptions<ServiceDbContext> options) : base(options)
         {
         }
+
 
     }
 }

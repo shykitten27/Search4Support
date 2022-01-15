@@ -1,4 +1,6 @@
 ﻿@using Search4Support.Models
+@model X.PagedList.PagedList<Search4Support.Models.Provider>
+@using X.PagedList.Mvc.Core;
 
 <h1>Providers</h1>
 
@@ -26,9 +28,10 @@ else
 {
     <table class="table striped">
         <tr>
-            <th>Name</th>
+            <th>@Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm })</th>
             <th>Phone Number</th>
             <th>Address</th>
+
             @*<th>Add to Favorites</th>*@
         </tr>
         @foreach (var prv in Model)
@@ -36,11 +39,12 @@ else
             <tr>
                 <td><a asp-controller="Providers" asp-action="Detail" asp-route-id="@prv.Id">@prv.Name</a></td>
                 <td>@prv.PhoneNumber</td>
-                <td>@prv.Address</td>
+                <td><a href="@prv.MapLink">@prv.Address</a></td>
+
                 @*<td><input type="checkbox" /></td>*@
             </tr>
         }
     </table>
 }
 
-
+Page@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
