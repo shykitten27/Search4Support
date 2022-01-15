@@ -7,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
 namespace Search4Support.Controllers
 {
     public class SearchController : Controller
@@ -26,7 +25,6 @@ namespace Search4Support.Controllers
             "location"
         };
         private ServiceDbContext context;
-
         public SearchController(ServiceDbContext dbContext)
         {
             context = dbContext;
@@ -41,26 +39,23 @@ namespace Search4Support.Controllers
             //ViewBag.locations = context.Locations.ToList();
             return View();
         }
-
         // GET: /<controller>/
         //public IActionResult Index()
         //{
         //    ViewBag.columns = ListController.ColumnChoices;
         //    return View();
         //}
-
         public IActionResult Results(string searchType, string searchTerm)
         {
             List<Service> services = new List<Service>();
-
+            //newList = list.FindAll(delegate(string s){return s == "match";});
+        
             if (searchType.ToLower().Equals("all"))
             {
                 services = context.Services
                     .Include(s => s.Provider)
                     .Include(s => s.Category)
-
                     .ToList();
-
             }
             else
             {
@@ -68,6 +63,7 @@ namespace Search4Support.Controllers
                 {
                     services = context.Services
                         .Include(s => s.Provider)
+                        .Include(s => s.Category)
                         .Where(s => s.Provider.Name.Contains(searchTerm))
                         .ToList();
                 }
@@ -75,6 +71,7 @@ namespace Search4Support.Controllers
                 {
                     services = context.Services
                         .Include(s => s.Category)
+                        .Include(s => s.Provider)
                         .Where(s => s.Category.Name.Contains(searchTerm))
                         .ToList();
                 }
@@ -87,12 +84,10 @@ namespace Search4Support.Controllers
                         .ToList();
                 }
             }
-
             ViewBag.columns = ListController.ColumnChoices;
             ViewBag.title = "Services with " + ColumnChoices[searchType] + ": " + searchTerm;
             ViewBag.services = services;
             return View(services);
         }
-
     }
 }
