@@ -97,10 +97,14 @@ namespace Search4Support.Controllers
         {
             if (ModelState.IsValid)
             {
+                Provider theProvider = context.Providers.Find(addServiceViewModel.ProviderId);
+                Category theCategory = context.Categories.Find(addServiceViewModel.CategoryId);
                 Service theService = new Service
                 {
                     Name = addServiceViewModel.Name,
-                    Description = addServiceViewModel.Description
+                    Description = addServiceViewModel.Description,
+                    Category = theCategory,
+                    Provider = theProvider
                 };
 
                 context.Services.Add(theService);
