@@ -86,7 +86,9 @@ namespace Search4Support.Controllers
         // GET: ServicesController/Add
         public IActionResult Add()
         {
-            AddServiceViewModel addServiceViewModel = new AddServiceViewModel();
+            List<Category> categories = context.Categories.OrderBy(c => c.Name).ToList();
+            List<Provider> providers = context.Providers.OrderBy(p => p.Name).ToList();
+            AddServiceViewModel addServiceViewModel = new AddServiceViewModel(categories, providers);
             return View(addServiceViewModel);
         }
 
