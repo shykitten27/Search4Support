@@ -19,6 +19,10 @@ INSERT INTO categories
 VALUES(9, "Child Care");
 INSERT INTO categories
 VALUES(10, "Healthcare");
+INSERT INTO categories
+VALUES(11, "Sexual Assault");
+INSERT INTO categories
+VALUES(12, "Substance Abuse");
 
 INSERT INTO providers
 VALUES (1, "Safe Connections", "314-646-7500", "2165 Hampton Ave, St. Louis, MO 63139", "", "Safe Connections’ award-winning, nationally-accredited programs reduce the impact and incidence of domestic and sexual violence through youth education, 24-hour crisis care, and therapy for adult and teen survivors.");
