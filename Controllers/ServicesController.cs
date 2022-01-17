@@ -65,13 +65,6 @@ namespace Search4Support.Controllers
         }
 
         [AllowAnonymous]
-        // GET: ServicesController/Details/5
-        public IActionResult Details(int id)
-        {
-            return View();
-        }
-
-        [AllowAnonymous]
         public IActionResult Detail(int id)
         {
             Service theService = context.Services
