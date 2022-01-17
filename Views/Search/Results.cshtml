@@ -12,6 +12,7 @@ else{
 <tr>
 <th>Name</th>
 <th>Category</th>
+<th>Provider</th>
 <th>Location</th>
 @*<th>Add to Favorites</th>*@
 </tr>
@@ -19,8 +20,9 @@ else{
 {
 <tr>
 <td>
-<a asp-controller="Search" asp-action="Results" asp-route-id="@srv.Id">@srv.Name</a></td>
+<a asp-controller="Services" asp-action="Detail" asp-route-id="@srv.Id">@srv.Name</a></td>
 <td>@srv.Category.Name </td>
+<td>@srv.Provider.Name</td>
 <td>@srv.Provider.Address</td>
 @*<td><input type="checkbox" />
 </td>*@
