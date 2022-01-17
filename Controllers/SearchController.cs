@@ -24,11 +24,13 @@ namespace Search4Support.Controllers
             "category",
             "location"
         };
+
         private ServiceDbContext context;
         public SearchController(ServiceDbContext dbContext)
         {
             context = dbContext;
         }
+
         public IActionResult Index()
         {
             ViewBag.columns = ColumnChoices;
@@ -46,27 +48,65 @@ namespace Search4Support.Controllers
         //    return View();
         //}
         public IActionResult Results(string searchType, string searchTerm)
+
         {
             List<Service> services = new List<Service>();
-            //newList = list.FindAll(delegate(string s){return s == "match";});
-        
+
             if (searchType.ToLower().Equals("all"))
             {
-                services = context.Services
-                    .Include(s => s.Provider)
-                    .Include(s => s.Category)
-                    .ToList();
-            }
-            else
-            {
-                if (searchType == "provider")
+                if (searchTerm == null || searchTerm == "")
                 {
                     services = context.Services
+                        .Include(s => s.Provider)
+                        .Include(s => s.Category)
+                        .ToList();
+                }
+               
+
+                        foreach (Service srv in allServices)
+                    {
+                        if (srv.Name.ToLower().Contains(searchTerm.ToLower()))
+                        {
+                            services.Add(srv);
+                        }
+                        else if (srv.Provider.Name.ToLower().Contains(searchTerm.ToLower()))
+                        {
+                            services.Add(srv);
+                        }
+                        else if(srv.Category.Name.ToLower().Contains(searchTerm.ToLower())){
+                            services.Add(srv);
+                        }
+                        else if (srv.Provider.Address.ToLower().Contains(searchTerm.ToLower())) {
+                            services.Add(srv);
+                        }
+                    }
+             }
+
+            }
+            else if (searchType == "provider")
+                    if (searchTerm == null || searchTerm == "")
+                    {
+                        services = context.Provider
+                            .Include(s => s.Provider)
+                            .Include(s => s.Category)
+                            .ToList();
+                     }
+                        foreach
+            else
+                {
+                        services = context.Services
+                         .Include(s => s.Provider)
+                         .Include(s => s.Category)
+                         .ToList();
+
+                {
+                                services = context.Services
                         .Include(s => s.Provider)
                         .Include(s => s.Category)
                         .Where(s => s.Provider.Name.Contains(searchTerm))
                         .ToList();
                 }
+
                 else if (searchType == "category")
                 {
                     services = context.Services
