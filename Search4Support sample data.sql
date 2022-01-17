@@ -33,8 +33,7 @@ VALUES(3, "Salvation Army", "314-423-7770", "10740 West Page Ave, St. Louis, MO 
 INSERT INTO providers
 VALUES(4, "YWCA", "314-531-1115", " 1155 Olivette Executive Pkwy, St. Louis, MO 63132", "", "YWCA is dedicated to eliminating racism, empowering women, and promoting peace, justice, freedom and dignity for all.");
 INSERT INTO providers
-VALUES(5, "Food Outreach", "314-652-3663", "3117 Olive Street, St. Louis, MO 63103", "", "A MISSION OF NUTRITION
-DOING OUR PART IN THE FIGHT AGAINST HIV/AIDS AND CANCER");
+VALUES(5, "Food Outreach", "314-652-3663", "3117 Olive Street, St. Louis, MO 63103", "", "A MISSION OF NUTRITION DOING OUR PART IN THE FIGHT AGAINST HIV/AIDS AND CANCER");
 INSERT INTO providers
 VALUES(6, "NAMI St. Louis", "314-962-4670", "1810 Craig Rd, Ste 124, St. Louis, MO 63146", "", "NAMI St. Louis is an organization of families, friends and individuals whose lives have been affected by mental illness. Together, we advocate for better lives for those individuals who have a mental illness, and we offer support, education and advocacy as we do so.");
 INSERT INTO providers
