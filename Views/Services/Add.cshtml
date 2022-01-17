@@ -1,7 +1,7 @@
 ﻿@model Search4Support.ViewModels.AddServiceViewModel;
 <h2>Add Service</h2>
 
-<form asp-controller="Services" asp-action="Add" method="post">
+<form asp-controller="Services" asp-action="ProcessAddServiceForm" method="post">
     <div class="form-group">
         <label for="name">Name</label>
         <input name="name" type="text" />
@@ -15,10 +15,12 @@
     <div class="form-group">
         <label asp-for="CategoryId">Category</label>
         <select asp-for="CategoryId" asp-items="Model.Categories"></select>
+        <span class="field-validation-error" asp-validation-for="CategoryId"></span>
     </div>
     <div class="form-group">
         <label asp-for="ProviderId">Provider</label>
         <select asp-for="ProviderId" asp-items="Model.Providers"></select>
+        <span class="field-validation-error" asp-validation-for="ProviderId"></span>
     </div>
     <input type="submit" value="Add Service" />
 </form>

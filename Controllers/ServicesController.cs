@@ -86,13 +86,14 @@ namespace Search4Support.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(AddServiceViewModel addServiceViewModel)
+        public IActionResult ProcessAddServiceForm(AddServiceViewModel addServiceViewModel)
+            //process the add form
         {
             if (ModelState.IsValid)
             {
                 Provider theProvider = context.Providers.Find(addServiceViewModel.ProviderId);
                 Category theCategory = context.Categories.Find(addServiceViewModel.CategoryId);
-                Service theService = new Service
+                Service newService = new Service
                 {
                     Name = addServiceViewModel.Name,
                     Description = addServiceViewModel.Description,
@@ -100,7 +101,7 @@ namespace Search4Support.Controllers
                     Provider = theProvider
                 };
 
-                context.Services.Add(theService);
+                context.Services.Add(newService);
                 context.SaveChanges();
 
                 return Redirect("/Services");
