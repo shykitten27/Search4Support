@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Search4Support.Data;
 using Search4Support.Models;
@@ -11,6 +13,7 @@ using X.PagedList;
 
 namespace Search4Support.Controllers
 {
+    [Authorize]
     public class CategoriesController : Controller
 
     {
@@ -21,6 +24,7 @@ namespace Search4Support.Controllers
             context = dbContext;
         }
 
+        [AllowAnonymous]
         // GET: CategoriesController
         public IActionResult Index(string sortOrder, int? page)
         {
@@ -45,14 +49,14 @@ namespace Search4Support.Controllers
             return View(categories.ToPagedList(pageNumber, pageSize));
         }
 
-
+        [AllowAnonymous]
         // GET: ProvidersController/Details/5
         public IActionResult Details(int id)
         {
             return View();
         }
 
-
+        [AllowAnonymous]
         public IActionResult Detail(int id)
         {
 
@@ -63,6 +67,32 @@ namespace Search4Support.Controllers
 
             CategoryDetailViewModel viewModel = new CategoryDetailViewModel(theCategory);
             return View(viewModel);     
+        }
+
+        [HttpGet]
+        public IActionResult Add()
+        {
+            AddCategoryViewModel addCategoryViewModel = new AddCategoryViewModel();
+            return View(addCategoryViewModel);
+        }
+
+        [HttpPost]
+        public IActionResult ProcessAddCategoryForm(AddCategoryViewModel addCategoryViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                Category newCategory = new Category
+                {
+                    Name = addCategoryViewModel.Name,
+                };
+
+                context.Categories.Add(newCategory);
+                context.SaveChanges();
+
+                return Redirect("/Categories");
+            }
+
+            return View("Add", addCategoryViewModel);
         }
     }
 }

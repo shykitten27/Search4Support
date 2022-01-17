@@ -1,0 +1,15 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model Search4Support.ViewModels.AddCategoryViewModel;
+
+<h2>Add New Category</h2>
+
+<form asp-controller="Categories" asp-action="ProcessAddCategoryForm" method="post">
+    <div class="form-group">
+        <label asp-for="Name">Category Name</label>
+        <input asp-for="Name" />
+        <span class="field-validation-error" asp-validation-for="Name"></span>
+    </div>
+    <input type="submit" value="Add Category" />
+</form>
