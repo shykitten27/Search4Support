@@ -1,9 +1,19 @@
 ﻿@using Search4Support.Models
 @model X.PagedList.PagedList<Search4Support.Models.Provider>
 @using X.PagedList.Mvc.Core;
+@using Microsoft.AspNetCore.Identity
+
 <link href="~/Content/X.PagedList.css" rel="stylesheet" type="text/css" />
 
-<h1>Providers</h1>
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<h1 style="display:inline">Providers </h1>@if (SignInManager.IsSignedIn(User))
+{
+    <a asp-controller="Providers" asp-action="Add">Add Provider</a>
+}
+@*<h1>Providers</h1>*@
 
 <style>
     table {
