@@ -3,9 +3,18 @@
 @using X.PagedList.Mvc.Core;
 <link href="~/Content/X.PagedList.css" rel="stylesheet" type="text/css" />
 
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<h1 style="display:inline">Services </h1>@if (SignInManager.IsSignedIn(User))
+{
+    <a asp-controller="Services" asp-action="Add">Add Service</a>
+}
 
 
-<h1>Services</h1>
+@*<h1>Services</h1>*@
 
 <style>
     table {
