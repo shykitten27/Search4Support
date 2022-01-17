@@ -8,6 +8,7 @@ using Search4Support.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
+using X.PagedList;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -25,11 +26,33 @@ namespace Search4Support.Controllers
 
         [AllowAnonymous]
         // GET: /<controller>/
-        public IActionResult Index()
+        /*        public IActionResult Index()
+                {
+                    //default order by name ascending
+                    List<Tag> tags = context.Tags.OrderBy(t => t.Name).ToList();
+                    return View(tags);
+                }*/
+        // GET: CategoriesController
+        public IActionResult Index(string sortOrder, int? page)
         {
-            //default order by name ascending
-            List<Tag> tags = context.Tags.OrderBy(t => t.Name).ToList();
-            return View(tags);
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+
+            IQueryable<Tag> tags = context.Tags;
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    tags = tags.OrderByDescending(t => t.Name);
+                    break;
+                default:
+                    tags = tags.OrderBy(t => t.Name);
+                    break;
+            }
+
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(tags.ToPagedList(pageNumber, pageSize));
         }
 
         public IActionResult Add()
