@@ -61,7 +61,12 @@ namespace Search4Support.Controllers
                         .Include(s => s.Category)
                         .ToList();
                 }
-               
+                else
+                {
+                    List<Service> allServices = context.Services
+                         .Include(s => s.Provider)
+                         .Include(s => s.Category)
+                         .ToList();
 
                         foreach (Service srv in allServices)
                     {
@@ -80,27 +85,15 @@ namespace Search4Support.Controllers
                             services.Add(srv);
                         }
                     }
-             }
+                }
 
             }
-            else if (searchType == "provider")
-                    if (searchTerm == null || searchTerm == "")
-                    {
-                        services = context.Provider
-                            .Include(s => s.Provider)
-                            .Include(s => s.Category)
-                            .ToList();
-                     }
-                        foreach
             else
-                {
-                        services = context.Services
-                         .Include(s => s.Provider)
-                         .Include(s => s.Category)
-                         .ToList();
+            {
+                if (searchType == "provider")
 
                 {
-                                services = context.Services
+                    services = context.Services
                         .Include(s => s.Provider)
                         .Include(s => s.Category)
                         .Where(s => s.Provider.Name.Contains(searchTerm))
