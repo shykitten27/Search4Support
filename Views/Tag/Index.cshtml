@@ -1,4 +1,6 @@
-﻿@model List<Search4Support.Models.Tag>
+﻿@*@model List<Search4Support.Models.Tag>*@
+@model X.PagedList.PagedList<Search4Support.Models.Tag>
+@using X.PagedList.Mvc.Core;
 @using Microsoft.AspNetCore.Identity
 
 @inject SignInManager<IdentityUser> SignInManager
@@ -20,7 +22,8 @@
     }
 </style>
 
-<h2 style="display:inline">All Service Tags </h2>@if (SignInManager.IsSignedIn(User))
+<h2 style="display:inline">All Service Tags </h2>
+@if (SignInManager.IsSignedIn(User))
 {
     <a asp-controller="Tag" asp-action="Add">Add Tag</a>
 }
@@ -33,15 +36,16 @@ else
 {
     <table class="table striped">
         <tr>
-            @*<th>Id*@
-            <th>Tag Name</th>
+            <th>@Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm })</th>
+            @*<th>Add to Favorites</th>*@
         </tr>
         @foreach (Tag tag in Model)
         {
             <tr>
-                @*<td>@tag.Id</td>*@
                 <td><a asp-controller="Tag" asp-action="Detail" asp-route-id="@tag.Id">@tag.Name</a></td>
+                @*<td><input type="checkbox" /></td>*@
             </tr>
         }
     </table>
 }
+Page@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
