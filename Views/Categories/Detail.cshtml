@@ -4,10 +4,12 @@
 
 <h1>@Model.Name</h1>
 
+
 <table class="table">
 
     <tr>
         <th>Services</th>
+        @*<th>Providers</th>*@
         <td>
          
             @foreach (Service srv in Model.Services)
@@ -15,10 +17,20 @@
 
             <ul>
                 <a asp-controller="Services" asp-action="Detail" asp-route-id="@srv.Id">@srv.Name</a>
+                
             </ul>
+      
             }
-
+           
         </td>
+        @*<td>
+            @foreach (Service srv in Model.Services)
+            {
+                <ul>
+                    <a asp-controller="Providers" asp-action="Detail" asp-route-id="@srv.ProviderId">@srv.Provider</a>
+                </ul>
+            }
+        </td>*@
 
     </tr>
 </table>
