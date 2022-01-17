@@ -134,7 +134,6 @@ namespace Search4Support.Controllers
                         services = context.Services
                             .Include(s => s.Category)
                             .Include(s => s.Provider)
-                            .Include(s => s.Provider.Address)
                             .ToList();
                     }
                     else
