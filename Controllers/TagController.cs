@@ -26,13 +26,6 @@ namespace Search4Support.Controllers
 
         [AllowAnonymous]
         // GET: /<controller>/
-        /*        public IActionResult Index()
-                {
-                    //default order by name ascending
-                    List<Tag> tags = context.Tags.OrderBy(t => t.Name).ToList();
-                    return View(tags);
-                }*/
-        // GET: CategoriesController
         public IActionResult Index(string sortOrder, int? page)
         {
             ViewBag.CurrentSort = sortOrder;
