@@ -3,6 +3,9 @@
 @using X.PagedList.Mvc.Core;
 @using Microsoft.AspNetCore.Identity
 
+<link href="~/Content/X.PagedList.css" rel="stylesheet" type="text/css" />
+
+
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
@@ -47,7 +50,7 @@ else
             <tr>
                 <td><a asp-controller="Providers" asp-action="Detail" asp-route-id="@prv.Id">@prv.Name</a></td>
                 <td>@prv.PhoneNumber</td>
-                <td><a href="@prv.MapLink">@prv.Address</a></td>
+                <td>@prv.Address</td>
 
                 @*<td><input type="checkbox" /></td>*@
             </tr>
@@ -55,4 +58,11 @@ else
     </table>
 }
 
-Page@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@*Page@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount*@
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort }),
+    new X.PagedList.Web.Common.PagedListRenderOptions
+    {
+        LiElementClasses = new string[] { "page-item" },
+        PageClasses = new string[] { "page-link" }
+    })
+

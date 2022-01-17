@@ -1,6 +1,7 @@
 ﻿@using Search4Support.Models
 @model X.PagedList.PagedList<Search4Support.Models.Category>
 @using X.PagedList.Mvc.Core;
+<link href="~/Content/X.PagedList.css" rel="stylesheet" type="text/css" />
 
 <h1>Categories</h1>
 
@@ -41,4 +42,11 @@ else
         }
     </table>
 }
-Page@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@*Page@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount*@
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort }),
+    new X.PagedList.Web.Common.PagedListRenderOptions
+    {
+        LiElementClasses = new string[] { "page-item" },
+        PageClasses = new string[] { "page-link" }
+    })
