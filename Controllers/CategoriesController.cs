@@ -61,13 +61,22 @@ namespace Search4Support.Controllers
         {
 
             Category theCategory = context.Categories
-                .Include(c => c.Services)
-                /*.OrderBy(c => c.Name)*/
-                .Single(c => c.Id == id);
+/*                .Include(c => c.Services)
+                *//*.OrderBy(c => c.Name)*//*
+                .Single(c => c.Id == id);*/
                 
+                .Join(context.Services,
+                       left => left.Id,
+                       right => right.CategoryId,
+                       (left, right) => new { categories = left, services = right })
+                .Join(context.Providers,
+                       left => left.services.Id,
+                       right => right.Id,
+                       (left, right) => new { categories = left.categories, services = left.services, providers = right })
+                .Where(c => c.Services.ProviderId == id);
 
 
-            CategoryDetailViewModel viewModel = new CategoryDetailViewModel(theCategory);
+            CategoryDetailViewModel viewModel = new CategoryDetailViewModel(theCategory, theProvider);
             return View(viewModel);     
         }
 

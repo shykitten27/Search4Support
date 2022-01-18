@@ -11,13 +11,14 @@ namespace Search4Support.ViewModels
         public int CategoryId { get; set; }
         public string Name { get; set; }
         public List<Service> Services { get; set; }
+        public List<Provider> Providers { get; set; }
 
 
-        public CategoryDetailViewModel(Category theCategory)
+        public CategoryDetailViewModel(Category theCategory, Provider theProvider)
         {
             Name = theCategory.Name;
             Services = theCategory.Services;
-           
+            Providers = theProvider.Providers;
         }
     }
 }

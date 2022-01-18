@@ -14,6 +14,9 @@ namespace Search4Support.Models
         //one:many Category:Services
         public List<Service> Services { get; set; }
 
+        //one:many Category:Providers
+        public List<Provider> Providers { get; set; }
+
 
         public Category(string name)
         {
