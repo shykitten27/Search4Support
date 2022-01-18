@@ -14,11 +14,10 @@ namespace Search4Support.ViewModels
         public List<Provider> Providers { get; set; }
 
 
-        public CategoryDetailViewModel(Category theCategory, Provider theProvider)
+        public CategoryDetailViewModel(Category theCategory)
         {
             Name = theCategory.Name;
             Services = theCategory.Services;
-            Providers = theProvider.Providers;
         }
     }
 }

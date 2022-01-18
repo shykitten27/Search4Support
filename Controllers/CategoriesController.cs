@@ -61,9 +61,9 @@ namespace Search4Support.Controllers
         {
 
             Category theCategory = context.Categories
-/*                .Include(c => c.Services)
-                *//*.OrderBy(c => c.Name)*//*
-                .Single(c => c.Id == id);*/
+                //.Include(c => c.Services)
+                //.OrderBy(c => c.Name)
+                //.Single(c => c.Id == id)
                 
                 .Join(context.Services,
                        left => left.Id,
@@ -76,7 +76,7 @@ namespace Search4Support.Controllers
                 .Where(c => c.Services.ProviderId == id);
 
 
-            CategoryDetailViewModel viewModel = new CategoryDetailViewModel(theCategory, theProvider);
+            CategoryDetailViewModel viewModel = new CategoryDetailViewModel(theCategory);
             return View(viewModel);     
         }
 
