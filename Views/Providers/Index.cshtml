@@ -9,7 +9,8 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
-<h1 style="display:inline">Providers </h1>@if (SignInManager.IsSignedIn(User))
+<h1 style="display:inline">Providers </h1>
+@if (SignInManager.IsSignedIn(User))
 {
     <a asp-controller="Providers" asp-action="Add">Add Provider</a>
 }
