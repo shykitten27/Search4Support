@@ -2,7 +2,7 @@
 
 <h2>Edit Category</h2>
 
-<form method="post">
+<form asp-controller="Categories" asp-action="Edit" method="post">
     @foreach (var cat in Model)
     {
         <div class="form-group">
@@ -13,5 +13,7 @@
     }
 
     <input type="submit" value="Save">
+
+    <p><a asp-area="" asp-controller="Categories" asp-action="Index"></a>Back to List</p>
 
 </form>
