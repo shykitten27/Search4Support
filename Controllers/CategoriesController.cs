@@ -62,7 +62,9 @@ namespace Search4Support.Controllers
 
             Category theCategory = context.Categories
                 .Include(c => c.Services)
+                /*.OrderBy(c => c.Name)*/
                 .Single(c => c.Id == id);
+                
 
 
             CategoryDetailViewModel viewModel = new CategoryDetailViewModel(theCategory);
