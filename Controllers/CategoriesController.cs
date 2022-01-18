@@ -94,5 +94,26 @@ namespace Search4Support.Controllers
 
             return View("Add", addCategoryViewModel);
         }
+
+        [HttpPost]
+        public ActionResult Edit(int id)
+        {
+            return View(context.Categories.Find(id));
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Category category)
+        {
+            if (ModelState.IsValid)
+            {
+                context.Entry(category).State = EntityState.Modified;
+                context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+        }
     }
 }
