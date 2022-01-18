@@ -76,3 +76,48 @@ INSERT INTO services
 VALUES(15, "LGBTQ Support", "Homeless Shelters, Help with Substance Abuse, Food Insecurity, Teenage Suicide, Job Training", 3, 4);
 INSERT INTO services
 VALUES(16, "Alcohol and Drug Rehab", "Combat addiction, Build work and social skills, Regain health and stability, Restore families", 3, 12);
+
+INSERT INTO tags
+VALUES(1, "Adults");
+INSERT INTO tags
+VALUES(2, "Teens");
+INSERT INTO tags
+VALUES(3, "Children");
+INSERT INTO tags
+VALUES(4, "Early Childhood");
+INSERT INTO tags
+VALUES(5, "No-cost");
+INSERT INTO tags
+VALUES(6, "Sliding scale pricing");
+INSERT INTO tags
+VALUES(7, "volunteer");
+INSERT INTO tags
+VALUES(8, "Faith-based");
+INSERT INTO tags
+VALUES(9, "Family");
+INSERT INTO tags
+VALUES(10, "Education");
+INSERT INTO tags
+VALUES(11, "Virtual");
+INSERT INTO tags
+VALUES(12, "COVID Vaccine Required");
+INSERT INTO tags
+VALUES(13, "Mask required");
+INSERT INTO tags
+VALUES(14, "Women");
+INSERT INTO tags
+VALUES(15, "Men");
+INSERT INTO tags
+VALUES(16, "Non-binary");
+INSERT INTO tags
+VALUES(17, "LGBTQ");
+INSERT INTO tags
+VALUES(18, "Trauma");
+INSERT INTO tags
+VALUES(19, "Event");
+INSERT INTO tags
+VALUES(20, "Class");
+
+
+
+
