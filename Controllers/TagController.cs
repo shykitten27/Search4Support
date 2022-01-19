@@ -70,10 +70,7 @@ namespace Search4Support.Controllers
         public IActionResult AddService(int id)
         {
             Service theService = context.Services.Find(id);
-            //List<Tag> possibleTags = context.Tags.ToList();
-            //add sorting to tag list
             List<Tag> possibleTags = context.Tags.OrderBy(t => t.Name).ToList();
-
 
             AddServiceTagViewModel viewModel = new AddServiceTagViewModel(theService, possibleTags);
 
