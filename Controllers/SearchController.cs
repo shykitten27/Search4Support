@@ -16,13 +16,15 @@ namespace Search4Support.Controllers
             {"all", "All" },
             {"provider", "Provider" },
             {"category", "Category"},
-            {"location", "Location" }
+            {"location", "Location" },
+            {"tag", "Tag" }
         };
         internal static List<string> TableChoices = new List<string>()
         {
             "provider",
             "category",
-            "location"
+            "location",
+            "tag"
         };
 
         private ServiceDbContext context;
@@ -89,6 +91,7 @@ namespace Search4Support.Controllers
                         {
                             services.Add(srv);
                         }
+
                     }
                 }
 
@@ -129,6 +132,22 @@ namespace Search4Support.Controllers
 
                 //"location" searchType
                 else if (searchType == "location")
+                    if (searchTerm == null || searchTerm == "")
+                    {
+                        services = context.Services
+                            .Include(s => s.Category)
+                            .Include(s => s.Provider)
+                            .ToList();
+                    }
+                    else
+                        services = context.Services
+                            .Include(s => s.Category)
+                            .Include(s => s.Provider)
+                            .Where(s => s.Provider.Address.Contains(searchTerm.ToLower()))
+                            .ToList();
+
+                //"tag" searchType
+                else if (searchType == "tag")
                     if (searchTerm == null || searchTerm == "")
                     {
                         services = context.Services
