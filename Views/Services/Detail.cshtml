@@ -1,6 +1,9 @@
 ﻿
 @model Search4Support.ViewModels.ServiceDetailViewModel
+@using Microsoft.AspNetCore.Identity
 
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 
 <h1>@Model.Name</h1>
 
@@ -33,4 +36,8 @@
         </tr>*@
 </table>
 
-<a asp-controller="Tag" asp-action="AddService" asp-route-id="@Model.ServiceId">Add Tag</a>
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <a asp-controller="Tag" asp-action="AddService" asp-route-id="@Model.ServiceId">Add Tag</a>
+}
