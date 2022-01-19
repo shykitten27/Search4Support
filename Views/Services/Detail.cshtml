@@ -5,7 +5,7 @@
 <h1>@Model.Name</h1>
 
 <table class="table">
-  
+
     <tr>
         <th>Provider</th>
         <td><a asp-controller="Providers" asp-action="Detail" asp-route-id="@Model.ProviderId">@Model.ProviderName</a></td>
@@ -23,9 +23,14 @@
         <th>Description</th>
         <td>@Model.Description</td>
     </tr>
-
+    <tr>
+        <th>Tags</th>
+        <td>@Model.TagText</td>
+    </tr>
     @*<tr>
-        <th>Add to Favorites</th>
-        <td><input type="checkbox" /></td>
-    </tr>*@
+            <th>Add to Favorites</th>
+            <td><input type="checkbox" /></td>
+        </tr>*@
 </table>
+
+<a asp-controller="Tag" asp-action="AddService" asp-route-id="@Model.ServiceId">Add Tag</a>

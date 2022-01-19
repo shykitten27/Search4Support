@@ -72,7 +72,12 @@ namespace Search4Support.Controllers
                 .Include(s => s.Provider)
                 .Single(s => s.Id == id);
 
-            ServiceDetailViewModel viewModel = new ServiceDetailViewModel(theService);
+            List<ServiceTag> serviceTags = context.ServiceTags
+                .Where(st => st.ServiceId == id)
+                .Include(st => st.Tag)
+                .ToList();
+
+            ServiceDetailViewModel viewModel = new ServiceDetailViewModel(theService, serviceTags);
             return View(viewModel);
         }
 
