@@ -1,36 +1,39 @@
 ﻿@using Search4Support.Models
 @model Search4Support.ViewModels.CategoryDetailViewModel
 
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f1f1f1;
+    }
+</style>
 
 <h1>@Model.Name</h1>
 
+    <table class="table striped">
+        <tr>
+            <th>Services</th>
+            <th>Provider</th>
+        </tr>
 
-<table class="table">
-
-    <tr>
-        <th>Services</th>
-        @*<th>Providers</th>*@
-        <td>
-         
-            @foreach (Service srv in Model.Services)
-            {
-
-            <ul>
-                <a asp-controller="Services" asp-action="Detail" asp-route-id="@srv.Id">@srv.Name</a>
-                
-            </ul>
-      
-            }
-           
-        </td>
-        @*<td>
-            @foreach (Service srv in Model.Services)
-            {
-                <ul>
-                    <a asp-controller="Providers" asp-action="Detail" asp-route-id="@srv.ProviderId">@srv.Provider</a>
-                </ul>
-            }
-        </td>*@
-
-    </tr>
-</table>
+        @foreach (Service srv in Model.Services)
+        {
+            <tr>
+                <td>
+                    <a asp-controller="Services" asp-action="Detail" asp-route-id="@srv.Id">@srv.Name</a>
+                </td>
+                                <td>
+                                    <a asp-controller="Services" asp-action="Detail" asp-route-id="@srv.ProviderId">@srv.ProviderId</a>
+                </td>
+            </tr>
+        }
+    </table>
